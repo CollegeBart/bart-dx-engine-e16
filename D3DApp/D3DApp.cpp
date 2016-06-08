@@ -21,10 +21,6 @@ D3DApp::D3DApp()
 	: mhAppInstance(nullptr)
 	, mhMainWindow(nullptr)
 	, mMainWindowCaption("")
-	, mSpriteBatch(nullptr)
-	, mTexture(nullptr)
-	, mCenter(0.f, 0.f, 0.f)
-	, mPosition(0.f, 0.f, 0.f)
 {
 }
 
@@ -32,19 +28,10 @@ D3DApp::D3DApp(HINSTANCE hInstance, std::string winCaption)
 	: mhAppInstance(hInstance)
 	, mhMainWindow(nullptr)
 	, mMainWindowCaption(winCaption)
-	, mSpriteBatch(nullptr)
-	, mTexture(nullptr)
-	, mCenter(0.f, 0.f, 0.f)
-	, mPosition(-392.f, -281.f, 0.f)
 {
 	InitMainWindow();
 	InitDirect3D();
-
-	HR(D3DXCreateSprite(gD3DDevice, &mSpriteBatch));
 	
-	// TODO - D3DXCreateTextureFromFileEx
-	HR(D3DXCreateTextureFromFile(gD3DDevice, "hey-girl-sloth.jpg", &mTexture));
-
 	D3DXMATRIX view;
 	D3DXMATRIX orth;
 	D3DXVECTOR3 pos(0.f, 0.f, -100.0f);
@@ -84,7 +71,10 @@ int D3DApp::Run()
 		else
 		{
 			Update();
+
+			PreDraw();
 			Draw();
+			PostDraw();
 		}
 	}
 	return (int)msg.wParam;
@@ -200,30 +190,23 @@ void D3DApp::Update()
 {
 }
 
-void D3DApp::Draw()
+void D3DApp::PreDraw()
 {
-	D3DXMATRIX S;
-	D3DXMatrixScaling(&S, 1.f, -1.0f, 1.0f);
-
 	HR(gD3DDevice->Clear(
-		0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, 
+		0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,
 		D3DCOLOR_XRGB(255, 255, 255), 1.0f, 0));
 
 	HR(gD3DDevice->BeginScene());
-	{
-		HR(mSpriteBatch->Begin(
-			D3DXSPRITE_ALPHABLEND  |
-			D3DXSPRITE_OBJECTSPACE |
-			D3DXSPRITE_DONOTMODIFY_RENDERSTATE));
-		{
-			HR(mSpriteBatch->SetTransform(&S));
-			HR(mSpriteBatch->Draw(mTexture, 0,
-				&mCenter, &mPosition, D3DCOLOR_XRGB(255, 255, 255)));
-		}
-		HR(mSpriteBatch->End());
-	}
-	HR(gD3DDevice->EndScene());
+	
+}
 
+void D3DApp::Draw()
+{
+}
+
+void D3DApp::PostDraw()
+{
+	HR(gD3DDevice->EndScene());
 	HR(gD3DDevice->Present(0, 0, 0, 0));
 }
 

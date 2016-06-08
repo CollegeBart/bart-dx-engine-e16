@@ -9,7 +9,7 @@ public:
 	D3DApp(
 		HINSTANCE hInstance, 
 		std::string winCaption);
-	~D3DApp();
+	virtual ~D3DApp();
 
 	virtual int Run();
 	virtual LRESULT MsgProc(
@@ -22,7 +22,9 @@ protected:
 	virtual void OnResetDevice();
 	virtual void OnLostDevice();
 	virtual void Update();
+	virtual void PreDraw();
 	virtual void Draw();
+	virtual void PostDraw();
 
 private:
 	IDirect3D9* mD3DObject;
@@ -31,11 +33,6 @@ private:
 	HWND mhMainWindow;
 	HINSTANCE mhAppInstance;
 	std::string mMainWindowCaption;
-
-	ID3DXSprite* mSpriteBatch;
-	IDirect3DTexture9* mTexture;
-	D3DXVECTOR3 mCenter;
-	D3DXVECTOR3 mPosition;
 
 };
 
