@@ -20,7 +20,6 @@ SpriteApp::SpriteApp(HINSTANCE hInstance, std::string winCaption)
 	
 	// TODO - D3DXCreateTextureFromFileEx
 	HR(D3DXCreateTextureFromFile(gD3DDevice, "hey-girl-sloth.jpg", &mTexture));
-
 }
 
 SpriteApp::~SpriteApp()
@@ -30,15 +29,22 @@ SpriteApp::~SpriteApp()
 
 void SpriteApp::OnLostDevice()
 {
+	HR(mSpriteBatch->OnLostDevice());
 }
 
 void SpriteApp::OnResetDevice()
 {
+	HR(mSpriteBatch->OnResetDevice());
 }
 
 void SpriteApp::Update()
 {
+	if (gDInput->keyDown(DIK_SPACE))
+	{
+		mPosition.x += 100.0f * gTimer->GetDeltaTime();
+	}
 
+	
 }
 
 void SpriteApp::Draw()
@@ -55,5 +61,6 @@ void SpriteApp::Draw()
 		HR(mSpriteBatch->Draw(mTexture, 0,
 			&mCenter, &mPosition, D3DCOLOR_XRGB(255, 255, 255)));
 	}
+
 	HR(mSpriteBatch->End());
 }

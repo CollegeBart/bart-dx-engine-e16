@@ -1,6 +1,9 @@
 #pragma once
 
 #include "D3DUtils.h"
+#include "DirectInput.h"
+#include "GameTimer.h"
+#include "time.h"
 
 class D3DApp
 {
@@ -33,7 +36,6 @@ private:
 	HWND mhMainWindow;
 	HINSTANCE mhAppInstance;
 	std::string mMainWindowCaption;
-
 };
 
 extern D3DApp* gD3DApp;

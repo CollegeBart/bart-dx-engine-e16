@@ -29,9 +29,35 @@ D3DApp::D3DApp(HINSTANCE hInstance, std::string winCaption)
 	, mhMainWindow(nullptr)
 	, mMainWindowCaption(winCaption)
 {
+	srand((unsigned int)time(0));
+
+	//standard input/ output/ error file pointers
+	FILE *fpStdIn, *fpStdOut, *fpStdErr;
+
+	// Enable run-time memory check for debug build
+#if defined(DEBUG) | defined(_DEBUG)
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
+	if (AllocConsole())
+	{
+		//Assign the stdin/ stdout/ stderr streams to the newly created console
+		_tfreopen_s(&fpStdIn, _T("CONIN$"), _T("r"), stdin);
+		_tfreopen_s(&fpStdOut, _T("CONOUT$"), _T("w"), stdout);
+		_tfreopen_s(&fpStdErr, _T("CONOUT$"), _T("w"), stderr);
+	}
+#endif
+
 	InitMainWindow();
 	InitDirect3D();
 	
+	gDInput = new DirectInput(
+		hInstance, mhMainWindow,
+		DISCL_NONEXCLUSIVE | DISCL_FOREGROUND,
+		DISCL_NONEXCLUSIVE | DISCL_FOREGROUND);
+
+	gTimer = new GameTimer();
+	gTimer->Reset();
+
 	D3DXMATRIX view;
 	D3DXMATRIX orth;
 	D3DXVECTOR3 pos(0.f, 0.f, -100.0f);
@@ -61,8 +87,14 @@ int D3DApp::Run()
 	MSG msg;
 	ZeroMemory(&msg, sizeof(MSG));
 
+	gTimer->Start();
+
 	while (msg.message != WM_QUIT)
 	{
+
+		gDInput->poll();
+		gTimer->Tick();
+
 		if (PeekMessage(&msg, 0, 0, 0, PM_REMOVE))
 		{
 			TranslateMessage(&msg);
@@ -77,6 +109,9 @@ int D3DApp::Run()
 			PostDraw();
 		}
 	}
+
+	gTimer->Stop();
+
 	return (int)msg.wParam;
 }
 
