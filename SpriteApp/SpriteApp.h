@@ -1,5 +1,4 @@
 #pragma once
-
 #include "D3DApp.h"
 
 class SpriteApp :

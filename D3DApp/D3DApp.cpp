@@ -135,7 +135,7 @@ void D3DApp::InitMainWindow()
 		PostQuitMessage(0);
 	}
 
-	RECT r = { 0, 0, 800, 600 };
+	RECT r = { 0, 0, 1218, 939 };
 
 	mhMainWindow = CreateWindow(
 		wc.lpszClassName,
@@ -223,6 +223,7 @@ void D3DApp::OnLostDevice()
 
 void D3DApp::Update()
 {
+	
 }
 
 void D3DApp::PreDraw()
@@ -237,6 +238,7 @@ void D3DApp::PreDraw()
 
 void D3DApp::Draw()
 {
+	
 }
 
 void D3DApp::PostDraw()
