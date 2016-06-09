@@ -19,5 +19,8 @@ public:
 	void Start();
 	void Update();
 	void Draw(ID3DXSprite* spriteBatch);
+
+private :
+	bool needImpl;
 };
 
