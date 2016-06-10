@@ -135,7 +135,7 @@ void D3DApp::InitMainWindow()
 		PostQuitMessage(0);
 	}
 
-	RECT r = { 0, 0, 1218, 939 };
+	RECT r = { 0, 0, 818, 639 }; //800x600
 
 	mhMainWindow = CreateWindow(
 		wc.lpszClassName,
