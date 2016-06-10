@@ -21,6 +21,8 @@ D3DApp::D3DApp()
 	: mhAppInstance(nullptr)
 	, mhMainWindow(nullptr)
 	, mMainWindowCaption("")
+	, resWidth(1218)
+	, resHeight(939)
 {
 }
 
@@ -28,6 +30,8 @@ D3DApp::D3DApp(HINSTANCE hInstance, std::string winCaption)
 	: mhAppInstance(hInstance)
 	, mhMainWindow(nullptr)
 	, mMainWindowCaption(winCaption)
+	, resWidth(1218)
+	, resHeight(939)
 {
 	srand((unsigned int)time(0));
 
@@ -50,6 +54,60 @@ D3DApp::D3DApp(HINSTANCE hInstance, std::string winCaption)
 	InitMainWindow();
 	InitDirect3D();
 	
+	gDInput = new DirectInput(
+		hInstance, mhMainWindow,
+		DISCL_NONEXCLUSIVE | DISCL_FOREGROUND,
+		DISCL_NONEXCLUSIVE | DISCL_FOREGROUND);
+
+	gTimer = new GameTimer();
+	gTimer->Reset();
+
+	D3DXMATRIX view;
+	D3DXMATRIX orth;
+	D3DXVECTOR3 pos(0.f, 0.f, -100.0f);
+	D3DXVECTOR3 up(0.f, 1.f, 0.f);
+	D3DXVECTOR3 target(0.f, 0.f, 0.f);
+
+	D3DXMatrixLookAtLH(&view, &pos, &target, &up);
+	D3DXMatrixOrthoLH(
+		&orth, (float)mD3Dpp.BackBufferWidth, (float)mD3Dpp.BackBufferHeight,
+		1.0f, 5000.0f);
+
+	HR(gD3DDevice->SetRenderState(D3DRS_LIGHTING, false));
+	HR(gD3DDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE));
+
+	HR(gD3DDevice->SetTransform(D3DTS_VIEW, &view));
+	HR(gD3DDevice->SetTransform(D3DTS_PROJECTION, &orth));
+}
+
+D3DApp::D3DApp(HINSTANCE hInstance, std::string winCaption, int resWidth, int resHeight)
+	: mhAppInstance(hInstance)
+	, mhMainWindow(nullptr)
+	, mMainWindowCaption(winCaption)
+	, resWidth(resWidth + 18)
+	, resHeight(resHeight + 39)
+{
+	srand((unsigned int)time(0));
+
+	//standard input/ output/ error file pointers
+	FILE *fpStdIn, *fpStdOut, *fpStdErr;
+
+	// Enable run-time memory check for debug build
+#if defined(DEBUG) | defined(_DEBUG)
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
+	if (AllocConsole())
+	{
+		//Assign the stdin/ stdout/ stderr streams to the newly created console
+		_tfreopen_s(&fpStdIn, _T("CONIN$"), _T("r"), stdin);
+		_tfreopen_s(&fpStdOut, _T("CONOUT$"), _T("w"), stdout);
+		_tfreopen_s(&fpStdErr, _T("CONOUT$"), _T("w"), stderr);
+	}
+#endif
+
+	InitMainWindow();
+	InitDirect3D();
+
 	gDInput = new DirectInput(
 		hInstance, mhMainWindow,
 		DISCL_NONEXCLUSIVE | DISCL_FOREGROUND,
@@ -135,7 +193,7 @@ void D3DApp::InitMainWindow()
 		PostQuitMessage(0);
 	}
 
-	RECT r = { 0, 0, 1218, 939 };
+	RECT r = { 0, 0, resWidth, resHeight };
 
 	mhMainWindow = CreateWindow(
 		wc.lpszClassName,

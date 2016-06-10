@@ -12,6 +12,14 @@ public:
 	D3DApp(
 		HINSTANCE hInstance, 
 		std::string winCaption);
+
+	D3DApp(
+		HINSTANCE hInstance,
+		std::string winCaption,
+		int resWidth,
+		int resHeight);
+
+
 	virtual ~D3DApp();
 
 	virtual int Run();
@@ -36,6 +44,10 @@ private:
 	HWND mhMainWindow;
 	HINSTANCE mhAppInstance;
 	std::string mMainWindowCaption;
+
+
+	int resWidth;
+	int resHeight;
 };
 
 extern D3DApp* gD3DApp;
