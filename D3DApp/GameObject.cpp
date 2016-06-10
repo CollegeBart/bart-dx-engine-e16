@@ -15,7 +15,7 @@ GameObject::GameObject(const char * path)
 	//HR(D3DXCreateTextureFromFile(gD3DDevice, path, &mTexture));
 	HR(D3DXCreateTextureFromFileEx(gD3DDevice, path, 0, 0, 1, 0,
 		D3DFMT_A8R8G8B8, D3DPOOL_MANAGED, D3DX_FILTER_NONE, D3DX_DEFAULT,
-		D3DCOLOR_XRGB(255, 255, 255), NULL, NULL, &mTexture));
+		D3DCOLOR_XRGB(255, 255, 255), &info, NULL, &mTexture));
 }
 
 GameObject::GameObject(const char * path, float startX, float startY)
@@ -25,7 +25,7 @@ GameObject::GameObject(const char * path, float startX, float startY)
 	//HR(D3DXCreateTextureFromFile(gD3DDevice, path, &mTexture));
 	HR(D3DXCreateTextureFromFileEx(gD3DDevice, path, 0, 0, 1, 0,
 		D3DFMT_A8R8G8B8, D3DPOOL_MANAGED, D3DX_FILTER_NONE, D3DX_DEFAULT,
-		D3DCOLOR_XRGB(255, 255, 255), NULL, NULL, &mTexture));
+		D3DCOLOR_XRGB(255, 255, 255), &info, NULL, &mTexture));
 
 	mPosition.x = startX;
 	mPosition.y = startY;

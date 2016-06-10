@@ -61,6 +61,15 @@ Engine::Engine(HINSTANCE hInstance, std::string winCaption)
 	HR(D3DXCreateSprite(gD3DDevice, &mSpriteBatch));
 }
 
+Engine::Engine(HINSTANCE hInstance, std::string winCaption, int resWidth, int resHeight)
+	: D3DApp(hInstance, winCaption, resWidth, resHeight)
+	, mSpriteBatch(nullptr)
+{
+	gD3DApp = this;
+
+	HR(D3DXCreateSprite(gD3DDevice, &mSpriteBatch));
+}
+
 Engine::~Engine()
 {
 }
