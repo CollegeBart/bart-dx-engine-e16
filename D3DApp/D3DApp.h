@@ -18,6 +18,8 @@ public:
 	virtual LRESULT MsgProc(
 		UINT msg, WPARAM wParam, LPARAM lParam);
 
+	HWND GetMainWindow() const { return mhMainWindow; }
+
 protected:
 	virtual void InitMainWindow();
 	virtual void InitDirect3D();

@@ -20,7 +20,11 @@ public:
 	void Update();
 	void Draw(ID3DXSprite* spriteBatch);
 
+protected:
+	D3DXIMAGE_INFO info;
+
 private :
 	bool needImpl;
+	
 };
 
