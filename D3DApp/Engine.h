@@ -8,6 +8,12 @@ class Engine
 {
 public:	
 	Engine(HINSTANCE hInstance, std::string winCaption);
+	Engine(HINSTANCE hInstance, std::string winCaption, int resWidth, int resHeight);
+		
+		
+		
+
+		
 	~Engine();
 
 	// Appel Update sur tout les Component dans le vector components	
