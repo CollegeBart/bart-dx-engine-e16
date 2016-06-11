@@ -16,12 +16,17 @@ public:
 	void OnLostDevice();
 	void OnResetDevice();
 
-	void Start();
-	void Update();
-	void Draw(ID3DXSprite* spriteBatch);
+	virtual void Start();
+	virtual void Update();
+	virtual void Draw(ID3DXSprite* spriteBatch);
 
 protected:
 	D3DXIMAGE_INFO info;
+
+	D3DXMATRIX rot;
+	D3DXMATRIX trans;
+	D3DXMATRIX scale;
+	D3DXMATRIX resultant;
 
 private :
 	bool needImpl;

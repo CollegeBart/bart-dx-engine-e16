@@ -1,3 +1,4 @@
+
 #pragma once
 #include <Windows.h>
 #include <stdio.h>
@@ -10,6 +11,13 @@
 #include <dxerr.h>
 
 //int (WINAPIV * __vsnprintf)(char *, size_t, const char*, va_list) = _vsnprintf;
+#define PI 3.14159265358979323846f
+#define DEG_TO_RAD PI / 180.0f
+#define RADIAN(x)\
+{\
+	 x * DEG_TO_RAD\
+}
+
 
 #define ReleaseCOM(x)	\
 {						\
