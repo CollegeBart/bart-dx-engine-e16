@@ -20,6 +20,16 @@ TextObject::~TextObject()
 {
 }
 
+void TextObject::OnLostDevice()
+{
+	mFont->OnLostDevice();
+}
+
+void TextObject::OnResetDevice()
+{
+	mFont->OnResetDevice();
+}
+
 void TextObject::Update()
 {
 }

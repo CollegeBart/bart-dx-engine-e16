@@ -73,3 +73,19 @@ Engine::Engine(HINSTANCE hInstance, std::string winCaption, int resWidth, int re
 Engine::~Engine()
 {
 }
+
+void Engine::OnLostDevice()
+{
+	for (int i = 0; i < Component::components.size(); i++)
+	{
+		Component::components[i]->OnLostDevice();
+	}
+}
+
+void Engine::OnResetDevice()
+{
+	for (int i = 0; i < Component::components.size(); i++)
+	{
+		Component::components[i]->OnResetDevice();
+	}
+}

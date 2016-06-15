@@ -9,6 +9,9 @@ public:
 	TextObject();
 	~TextObject();
 
+	void OnLostDevice();
+	void OnResetDevice();
+
 	void Update();
 	void Draw(ID3DXSprite* spriteBatch);
 

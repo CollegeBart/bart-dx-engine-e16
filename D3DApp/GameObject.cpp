@@ -35,6 +35,14 @@ GameObject::~GameObject()
 {
 }
 
+void GameObject::OnLostDevice()
+{
+}
+
+void GameObject::OnResetDevice()
+{
+}
+
 void GameObject::Start()
 {
 }

@@ -7,6 +7,10 @@ class Component
 public:
 	Component();
 	~Component();
+
+	virtual void OnLostDevice();
+	virtual void OnResetDevice();
+
 	// Virtuel pure
 	virtual void Update() = 0;
 	virtual void Draw(ID3DXSprite* spriteBatch) = 0;

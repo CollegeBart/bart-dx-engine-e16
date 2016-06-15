@@ -13,5 +13,15 @@ Component::Component()
 
 Component::~Component()
 {
+	ReleaseCOM(mTexture);
+}
+
+void Component::OnLostDevice()
+{
+
+}
+
+void Component::OnResetDevice()
+{
 }
 
