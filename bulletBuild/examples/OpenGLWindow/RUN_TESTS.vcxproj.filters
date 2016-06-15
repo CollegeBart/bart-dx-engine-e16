@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\CMakeFiles\bc835417a7082ffcb876dd30f30c32d6\RUN_TESTS_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{85C53878-5CF5-3160-92B4-5D085BA94423}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

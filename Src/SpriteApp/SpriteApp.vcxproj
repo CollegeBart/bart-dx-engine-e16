@@ -71,8 +71,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\D3DApp;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\..\bulletSource\src;..\D3DApp;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\bulletBuild\lib\Debug;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -100,7 +100,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d9.lib;d3dx9.lib;dxerr.lib;dxguid.lib;dinput8.lib;legacy_stdio_definitions.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d9.lib;d3dx9.lib;dxerr.lib;dxguid.lib;dinput8.lib;legacy_stdio_definitions.lib;BulletDynamics_Debug.lib;BulletCollision_Debug.lib;LinearMath_Debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -158,6 +158,15 @@
     <ClCompile Include="SpriteApp.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\bulletBuild\src\Bullet3Collision\Bullet3Collision.vcxproj">
+      <Project>{00a1fed9-3812-3586-9135-7f39e66720ed}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\bulletBuild\src\Bullet3Dynamics\Bullet3Dynamics.vcxproj">
+      <Project>{8d5136ab-3f0e-35c5-906a-65c993f38a97}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\bulletBuild\src\LinearMath\LinearMath.vcxproj">
+      <Project>{ac30cd77-b5d0-3d42-9290-334da0b5314c}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\D3DApp\D3DApp.vcxproj">
       <Project>{b2355076-d77d-49b4-9264-95c54d92c403}</Project>
     </ProjectReference>

@@ -36,6 +36,9 @@
     <ClCompile Include="TextObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PhysicsManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="D3DApp.h">
@@ -60,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TextObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
