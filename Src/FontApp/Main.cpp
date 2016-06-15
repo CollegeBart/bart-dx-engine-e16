@@ -10,7 +10,8 @@ int WINAPI WinMain(
 	gEngine = new Engine(hInstance, "Game: ");
 
 	//TestEnvironment* env = new TestEnvironment();
-	TextObject* text = new TextObject();
+	TextObject* text = new TextObject("Times New Roman", "lol",D3DCOLOR_XRGB(0,0,0));
+	text->SetProperties(10, 10, true, true, D3DCOLOR_XRGB(10, 100, 25));
 
 	int res = gEngine->Run();
 
