@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -23,6 +23,7 @@
     <Keyword>Win32Proj</Keyword>
     <Platform>Win32</Platform>
     <ProjectName>App_ExampleBrowser</ProjectName>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -56,33 +57,33 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-    <PropertyGroup>
-      <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\examples\ExampleBrowser\Debug\</OutDir>
-      <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">App_ExampleBrowser.dir\Debug\</IntDir>
-      <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">App_ExampleBrowser</TargetName>
-      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.exe</TargetExt>
-      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
-      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
-      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\examples\ExampleBrowser\Release\</OutDir>
-      <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">App_ExampleBrowser.dir\Release\</IntDir>
-      <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">App_ExampleBrowser</TargetName>
-      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.exe</TargetExt>
-      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
-      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
-      <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\examples\ExampleBrowser\MinSizeRel\</OutDir>
-      <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">App_ExampleBrowser.dir\MinSizeRel\</IntDir>
-      <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">App_ExampleBrowser</TargetName>
-      <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.exe</TargetExt>
-      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkIncremental>
-      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">true</GenerateManifest>
-      <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\examples\ExampleBrowser\RelWithDebInfo\</OutDir>
-      <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">App_ExampleBrowser.dir\RelWithDebInfo\</IntDir>
-      <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">App_ExampleBrowser</TargetName>
-      <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.exe</TargetExt>
-      <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</LinkIncremental>
-      <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</GenerateManifest>
-    </PropertyGroup>
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\App_ExampleBrowser.dir\Debug</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">App_ExampleBrowser.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">App_ExampleBrowser</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\examples\ExampleBrowser\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">App_ExampleBrowser.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">App_ExampleBrowser</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\examples\ExampleBrowser\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">App_ExampleBrowser.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">App_ExampleBrowser</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\examples\ExampleBrowser\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">App_ExampleBrowser.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">App_ExampleBrowser</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</GenerateManifest>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <AdditionalIncludeDirectories>D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ExampleBrowser\.;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\src;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ThirdPartyLibs;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ThirdPartyLibs\Glew;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -123,7 +124,8 @@
       <ImportLibrary>D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/examples/ExampleBrowser/Debug/App_ExampleBrowser.lib</ImportLibrary>
       <ProgramDataBaseFile>D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/examples/ExampleBrowser/Debug/App_ExampleBrowser.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
-      <Version></Version>
+      <Version>
+      </Version>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -145,7 +147,8 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;GLEW_STATIC;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
-      <DebugInformationFormat></DebugInformationFormat>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;GLEW_STATIC;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -168,7 +171,8 @@
       <ImportLibrary>D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/examples/ExampleBrowser/Release/App_ExampleBrowser.lib</ImportLibrary>
       <ProgramDataBaseFile>D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/examples/ExampleBrowser/Release/App_ExampleBrowser.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
-      <Version></Version>
+      <Version>
+      </Version>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -190,7 +194,8 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;GLEW_STATIC;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
-      <DebugInformationFormat></DebugInformationFormat>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;NDEBUG;USE_GRAPHICAL_BENCHMARK;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;GLEW_STATIC;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -213,7 +218,8 @@
       <ImportLibrary>D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/examples/ExampleBrowser/MinSizeRel/App_ExampleBrowser.lib</ImportLibrary>
       <ProgramDataBaseFile>D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/examples/ExampleBrowser/MinSizeRel/App_ExampleBrowser.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
-      <Version></Version>
+      <Version>
+      </Version>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -258,7 +264,8 @@
       <ImportLibrary>D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/examples/ExampleBrowser/RelWithDebInfo/App_ExampleBrowser.lib</ImportLibrary>
       <ProgramDataBaseFile>D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/examples/ExampleBrowser/RelWithDebInfo/App_ExampleBrowser.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
-      <Version></Version>
+      <Version>
+      </Version>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -407,107 +414,107 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ExampleBrowser\GwenGUISupport\GwenTextureWindow.h" />
     <ClInclude Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ExampleBrowser\GwenGUISupport\gwenInternalData.h" />
     <ClInclude Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ExampleBrowser\GwenGUISupport\gwenUserInterface.h" />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ExampleBrowser\main.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ExampleBrowser\ExampleEntries.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\SharedMemory\PhysicsServer.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\SharedMemory\PhysicsClientSharedMemory.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\SharedMemory\PhysicsClient.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\SharedMemory\PhysicsClientC_API.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\SharedMemory\PhysicsServerExample.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\SharedMemory\PhysicsClientExample.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\SharedMemory\PosixSharedMemory.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\SharedMemory\Win32SharedMemory.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\SharedMemory\PhysicsServerSharedMemory.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\SharedMemory\PhysicsDirect.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\SharedMemory\PhysicsDirectC_API.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\SharedMemory\PhysicsLoopBack.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\SharedMemory\PhysicsLoopBackC_API.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\SharedMemory\PhysicsServerCommandProcessor.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\BasicDemo\BasicExample.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\InverseDynamics\InverseDynamicsExample.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ForkLift\ForkLiftDemo.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Tutorial\Tutorial.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Tutorial\Dof6ConstraintTutorial.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Collision\CollisionSdkC_Api.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Collision\CollisionTutorialBullet2.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Collision\Internal\Bullet2CollisionSdk.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Collision\Internal\RealTimeBullet3CollisionSdk.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\GyroscopicDemo\GyroscopicSetup.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Planar2D\Planar2D.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\RollingFrictionDemo\RollingFrictionDemo.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\FractureDemo\FractureDemo.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\FractureDemo\btFractureBody.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\FractureDemo\btFractureDynamicsWorld.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\DynamicControlDemo\MotorDemo.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\MultiThreading\MultiThreadingExample.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\MultiThreading\b3PosixThreadSupport.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\MultiThreading\b3Win32ThreadSupport.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\MultiThreading\b3ThreadSupportInterface.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\RenderingExamples\TimeSeriesCanvas.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\RenderingExamples\TimeSeriesFontData.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\RenderingExamples\CoordinateSystemDemo.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\RenderingExamples\RaytracerSetup.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\RenderingExamples\RenderInstancingDemo.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\RenderingExamples\TimeSeriesExample.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Benchmarks\BenchmarkDemo.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Raycast\RaytestDemo.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportBullet\SerializeSetup.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\Extras\Serialize\BulletWorldImporter\btBulletWorldImporter.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\Extras\Serialize\BulletFileLoader\bChunk.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\Extras\Serialize\BulletFileLoader\bFile.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\Extras\Serialize\BulletFileLoader\bDNA.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\Extras\Serialize\BulletFileLoader\btBulletFile.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportBsp\BspConverter.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportBsp\BspLoader.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportBsp\ImportBspExample.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportColladaDemo\ImportColladaSetup.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportColladaDemo\LoadMeshFromCollada.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportObjDemo\ImportObjExample.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportObjDemo\LoadMeshFromObj.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportObjDemo\Wavefront2GLInstanceGraphicsShape.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportSTLDemo\ImportSTLSetup.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportURDFDemo\ImportURDFSetup.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportURDFDemo\URDF2Bullet.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportURDFDemo\MyMultiBodyCreator.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportURDFDemo\UrdfParser.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportURDFDemo\urdfStringSplit.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\VoronoiFracture\VoronoiFractureDemo.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\VoronoiFracture\btConvexConvexMprAlgorithm.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Vehicles\Hinge2Vehicle.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\MultiBody\Pendulum.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\MultiBody\TestJointTorqueSetup.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\MultiBody\InvertedPendulumPDControl.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\MultiBody\MultiBodyConstraintFeedback.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\MultiBody\MultiDofDemo.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Constraints\TestHingeTorque.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Constraints\ConstraintDemo.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Constraints\Dof6Spring2Setup.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Constraints\ConstraintPhysicsSetup.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ThirdPartyLibs\stb_image\stb_image.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ThirdPartyLibs\Wavefront\tiny_obj_loader.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ThirdPartyLibs\tinyxml\tinystr.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ThirdPartyLibs\tinyxml\tinyxml.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ThirdPartyLibs\tinyxml\tinyxmlerror.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ThirdPartyLibs\tinyxml\tinyxmlparser.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ThirdPartyLibs\urdf\urdfdom\urdf_parser\src\pose.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ThirdPartyLibs\urdf\urdfdom\urdf_parser\src\model.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ThirdPartyLibs\urdf\urdfdom\urdf_parser\src\link.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ThirdPartyLibs\urdf\urdfdom\urdf_parser\src\joint.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ThirdPartyLibs\urdf\boost_replacement\printf_console.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ThirdPartyLibs\urdf\boost_replacement\string_split.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Utils\b3Clock.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Utils\b3ResourcePath.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ExampleBrowser\GL_ShapeDrawer.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ExampleBrowser\OpenGLExampleBrowser.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ExampleBrowser\OpenGLGuiHelper.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ExampleBrowser\GwenGUISupport\GraphingTexture.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ExampleBrowser\GwenGUISupport\GwenParameterInterface.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ExampleBrowser\GwenGUISupport\GwenProfileWindow.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ExampleBrowser\GwenGUISupport\GwenTextureWindow.cpp"  />
-    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ExampleBrowser\GwenGUISupport\gwenUserInterface.cpp"  />
-    <ResourceCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\build3\bullet.rc"  />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ExampleBrowser\main.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ExampleBrowser\ExampleEntries.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\SharedMemory\PhysicsServer.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\SharedMemory\PhysicsClientSharedMemory.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\SharedMemory\PhysicsClient.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\SharedMemory\PhysicsClientC_API.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\SharedMemory\PhysicsServerExample.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\SharedMemory\PhysicsClientExample.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\SharedMemory\PosixSharedMemory.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\SharedMemory\Win32SharedMemory.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\SharedMemory\PhysicsServerSharedMemory.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\SharedMemory\PhysicsDirect.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\SharedMemory\PhysicsDirectC_API.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\SharedMemory\PhysicsLoopBack.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\SharedMemory\PhysicsLoopBackC_API.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\SharedMemory\PhysicsServerCommandProcessor.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\BasicDemo\BasicExample.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\InverseDynamics\InverseDynamicsExample.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ForkLift\ForkLiftDemo.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Tutorial\Tutorial.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Tutorial\Dof6ConstraintTutorial.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Collision\CollisionSdkC_Api.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Collision\CollisionTutorialBullet2.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Collision\Internal\Bullet2CollisionSdk.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Collision\Internal\RealTimeBullet3CollisionSdk.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\GyroscopicDemo\GyroscopicSetup.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Planar2D\Planar2D.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\RollingFrictionDemo\RollingFrictionDemo.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\FractureDemo\FractureDemo.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\FractureDemo\btFractureBody.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\FractureDemo\btFractureDynamicsWorld.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\DynamicControlDemo\MotorDemo.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\MultiThreading\MultiThreadingExample.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\MultiThreading\b3PosixThreadSupport.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\MultiThreading\b3Win32ThreadSupport.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\MultiThreading\b3ThreadSupportInterface.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\RenderingExamples\TimeSeriesCanvas.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\RenderingExamples\TimeSeriesFontData.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\RenderingExamples\CoordinateSystemDemo.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\RenderingExamples\RaytracerSetup.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\RenderingExamples\RenderInstancingDemo.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\RenderingExamples\TimeSeriesExample.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Benchmarks\BenchmarkDemo.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Raycast\RaytestDemo.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportBullet\SerializeSetup.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\Extras\Serialize\BulletWorldImporter\btWorldImporter.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\Extras\Serialize\BulletWorldImporter\btBulletWorldImporter.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\Extras\Serialize\BulletFileLoader\bChunk.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\Extras\Serialize\BulletFileLoader\bFile.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\Extras\Serialize\BulletFileLoader\bDNA.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\Extras\Serialize\BulletFileLoader\btBulletFile.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportBsp\BspConverter.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportBsp\BspLoader.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportBsp\ImportBspExample.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportColladaDemo\ImportColladaSetup.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportColladaDemo\LoadMeshFromCollada.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportObjDemo\ImportObjExample.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportObjDemo\LoadMeshFromObj.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportObjDemo\Wavefront2GLInstanceGraphicsShape.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportSTLDemo\ImportSTLSetup.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportURDFDemo\ImportURDFSetup.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportURDFDemo\URDF2Bullet.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportURDFDemo\MyMultiBodyCreator.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportURDFDemo\UrdfParser.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportURDFDemo\urdfStringSplit.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Importers\ImportURDFDemo\BulletUrdfImporter.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\VoronoiFracture\VoronoiFractureDemo.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\VoronoiFracture\btConvexConvexMprAlgorithm.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Vehicles\Hinge2Vehicle.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\MultiBody\Pendulum.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\MultiBody\TestJointTorqueSetup.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\MultiBody\InvertedPendulumPDControl.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\MultiBody\MultiBodyConstraintFeedback.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\MultiBody\MultiDofDemo.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Constraints\TestHingeTorque.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Constraints\ConstraintDemo.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Constraints\Dof6Spring2Setup.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Constraints\ConstraintPhysicsSetup.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ThirdPartyLibs\stb_image\stb_image.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ThirdPartyLibs\Wavefront\tiny_obj_loader.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ThirdPartyLibs\tinyxml\tinystr.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ThirdPartyLibs\tinyxml\tinyxml.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ThirdPartyLibs\tinyxml\tinyxmlerror.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ThirdPartyLibs\tinyxml\tinyxmlparser.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ThirdPartyLibs\urdf\urdfdom\urdf_parser\src\pose.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ThirdPartyLibs\urdf\urdfdom\urdf_parser\src\model.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ThirdPartyLibs\urdf\urdfdom\urdf_parser\src\link.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ThirdPartyLibs\urdf\urdfdom\urdf_parser\src\joint.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ThirdPartyLibs\urdf\boost_replacement\printf_console.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ThirdPartyLibs\urdf\boost_replacement\string_split.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Utils\b3Clock.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\Utils\b3ResourcePath.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ExampleBrowser\GL_ShapeDrawer.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ExampleBrowser\OpenGLExampleBrowser.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ExampleBrowser\OpenGLGuiHelper.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ExampleBrowser\GwenGUISupport\GraphingTexture.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ExampleBrowser\GwenGUISupport\GwenParameterInterface.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ExampleBrowser\GwenGUISupport\GwenProfileWindow.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ExampleBrowser\GwenGUISupport\GwenTextureWindow.cpp" />
+    <ClCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ExampleBrowser\GwenGUISupport\gwenUserInterface.cpp" />
+    <ResourceCompile Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\build3\bullet.rc" />
     <None Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ExampleBrowser\GwenGUISupport" />
     <None Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\examples\ExampleBrowser\premake4.lua" />
   </ItemGroup>
