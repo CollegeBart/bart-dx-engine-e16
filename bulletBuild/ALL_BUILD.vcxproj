@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGUID>{72A3C5A6-A069-3DEA-9F95-D58D0E41A4B5}</ProjectGUID>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+    <PropertyGroup>
+      <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletSource/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\bin\cmake.exe -HD:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletSource -BD:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild --check-stamp-file D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletSource/CMakeLists.txt;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\CMakeLists.txt;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\CMakeFiles\3.6.0-rc2\CMakeSystem.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeSystemSpecificInitialize.cmake;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\CMakeFiles\3.6.0-rc2\CMakeCCompiler.cmake;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\CMakeFiles\3.6.0-rc2\CMakeCXXCompiler.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeSystemSpecificInformation.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeGenericSystem.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\Platform\Windows.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\Platform\WindowsPaths.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeCInformation.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeLanguageInformation.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\Platform\Windows-MSVC-C.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\Platform\Windows-MSVC.cmake;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\CMakeFiles\3.6.0-rc2\CMakeRCCompiler.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeRCInformation.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeCommonLanguageInclude.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeCXXInformation.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeLanguageInformation.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\Compiler\MSVC-CXX.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\Platform\Windows-MSVC.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeCommonLanguageInclude.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\FindOpenGL.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\FindPackageHandleStandardArgs.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\FindPackageMessage.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeParseArguments.cmake;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\BulletConfig.cmake.in;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletSource/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\bin\cmake.exe -HD:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletSource -BD:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild --check-stamp-file D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletSource/CMakeLists.txt;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\CMakeLists.txt;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\CMakeFiles\3.6.0-rc2\CMakeSystem.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeSystemSpecificInitialize.cmake;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\CMakeFiles\3.6.0-rc2\CMakeCCompiler.cmake;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\CMakeFiles\3.6.0-rc2\CMakeCXXCompiler.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeSystemSpecificInformation.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeGenericSystem.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\Platform\Windows.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\Platform\WindowsPaths.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeCInformation.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeLanguageInformation.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\Platform\Windows-MSVC-C.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\Platform\Windows-MSVC.cmake;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\CMakeFiles\3.6.0-rc2\CMakeRCCompiler.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeRCInformation.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeCommonLanguageInclude.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeCXXInformation.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeLanguageInformation.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\Compiler\MSVC-CXX.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\Platform\Windows-MSVC.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeCommonLanguageInclude.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\FindOpenGL.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\FindPackageHandleStandardArgs.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\FindPackageMessage.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeParseArguments.cmake;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\BulletConfig.cmake.in;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletSource/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\bin\cmake.exe -HD:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletSource -BD:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild --check-stamp-file D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletSource/CMakeLists.txt;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\CMakeLists.txt;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\CMakeFiles\3.6.0-rc2\CMakeSystem.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeSystemSpecificInitialize.cmake;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\CMakeFiles\3.6.0-rc2\CMakeCCompiler.cmake;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\CMakeFiles\3.6.0-rc2\CMakeCXXCompiler.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeSystemSpecificInformation.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeGenericSystem.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\Platform\Windows.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\Platform\WindowsPaths.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeCInformation.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeLanguageInformation.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\Platform\Windows-MSVC-C.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\Platform\Windows-MSVC.cmake;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\CMakeFiles\3.6.0-rc2\CMakeRCCompiler.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeRCInformation.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeCommonLanguageInclude.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeCXXInformation.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeLanguageInformation.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\Compiler\MSVC-CXX.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\Platform\Windows-MSVC.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeCommonLanguageInclude.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\FindOpenGL.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\FindPackageHandleStandardArgs.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\FindPackageMessage.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeParseArguments.cmake;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\BulletConfig.cmake.in;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletSource/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\bin\cmake.exe -HD:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletSource -BD:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild --check-stamp-file D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletSource/CMakeLists.txt;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\CMakeLists.txt;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\CMakeFiles\3.6.0-rc2\CMakeSystem.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeSystemSpecificInitialize.cmake;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\CMakeFiles\3.6.0-rc2\CMakeCCompiler.cmake;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\CMakeFiles\3.6.0-rc2\CMakeCXXCompiler.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeSystemSpecificInformation.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeGenericSystem.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\Platform\Windows.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\Platform\WindowsPaths.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeCInformation.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeLanguageInformation.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\Platform\Windows-MSVC-C.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\Platform\Windows-MSVC.cmake;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\CMakeFiles\3.6.0-rc2\CMakeRCCompiler.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeRCInformation.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeCommonLanguageInclude.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeCXXInformation.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeLanguageInformation.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\Compiler\MSVC-CXX.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\Platform\Windows-MSVC.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeCommonLanguageInclude.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\FindOpenGL.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\FindPackageHandleStandardArgs.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\FindPackageMessage.cmake;D:\Users\1530025\Desktop\cmake-3.6.0-rc2-win64-x64\share\cmake-3.6\Modules\CMakeParseArguments.cmake;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\BulletConfig.cmake.in;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletBuild\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/ZERO_CHECK.vcxproj">
+      <Project>2D9629B1-7D6F-3F40-A252-7A5947796804</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/examples/BasicDemo/App_BasicExample.vcxproj">
+      <Project>AB572832-AA62-3981-B587-530F7D0B9182</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/examples/ExampleBrowser/App_ExampleBrowser.vcxproj">
+      <Project>A5B70615-E99B-35F6-A594-AAC12EF19D5D</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/examples/HelloWorld/App_HelloWorld.vcxproj">
+      <Project>5BFF8904-C575-313F-9BFA-917D56F16B40</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/src/Bullet3Serialize/Bullet2FileLoader/Bullet2FileLoader.vcxproj">
+      <Project>5B625793-7994-30A6-9426-BD73C499D054</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/src/Bullet3Collision/Bullet3Collision.vcxproj">
+      <Project>00A1FED9-3812-3586-9135-7F39E66720ED</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/src/Bullet3Common/Bullet3Common.vcxproj">
+      <Project>E5EBBEC4-A52A-3D0F-A155-73D2545CBAA6</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/src/Bullet3Dynamics/Bullet3Dynamics.vcxproj">
+      <Project>8D5136AB-3F0E-35C5-906A-65C993F38A97</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/src/Bullet3Geometry/Bullet3Geometry.vcxproj">
+      <Project>18ACFC55-C644-3BEE-BD1A-C99859F63D7F</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/src/Bullet3OpenCL/Bullet3OpenCL_clew.vcxproj">
+      <Project>45552E13-CDB3-3B15-B0AD-F27314BE20BD</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/src/BulletCollision/BulletCollision.vcxproj">
+      <Project>67CEFFAE-118F-3757-8B35-30F5B6EAE0CD</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/src/BulletDynamics/BulletDynamics.vcxproj">
+      <Project>5C975C5B-BA20-3D9A-A4B7-AFFAA930488B</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/Extras/Serialize/BulletFileLoader/BulletFileLoader.vcxproj">
+      <Project>1AEFCE1D-48E8-3657-8147-13C5A7968602</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/src/BulletInverseDynamics/BulletInverseDynamics.vcxproj">
+      <Project>99ECD4E5-8CC7-3A67-B0B5-321E36077984</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/Extras/InverseDynamics/BulletInverseDynamicsUtils.vcxproj">
+      <Project>39FD909D-4159-3799-ACB4-86206D5C513C</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/src/BulletSoftBody/BulletSoftBody.vcxproj">
+      <Project>663B7516-DEAD-3364-A7CB-0C6944941F1A</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/Extras/Serialize/BulletWorldImporter/BulletWorldImporter.vcxproj">
+      <Project>5D40A85B-582F-3C74-A327-C7122018B79E</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/Extras/Serialize/BulletXmlWorldImporter/BulletXmlWorldImporter.vcxproj">
+      <Project>083947F6-89ED-3226-B3AC-AC70AE9AA12B</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/Extras/ConvexDecomposition/ConvexDecomposition.vcxproj">
+      <Project>C27D4F31-275E-31EF-848F-01CAC757F149</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/Extras/GIMPACTUtils/GIMPACTUtils.vcxproj">
+      <Project>B6F28FFD-151C-3E67-90DE-69F6CE086872</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/Extras/HACD/HACD.vcxproj">
+      <Project>C4B3C46F-5337-3A7D-B6CF-31BC99A88232</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/src/LinearMath/LinearMath.vcxproj">
+      <Project>AC30CD77-B5D0-3D42-9290-334DA0B5314C</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/examples/OpenGLWindow/OpenGLWindow.vcxproj">
+      <Project>E47986AD-DBF4-3225-8681-5A50904BE431</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/test/BulletDynamics/pendulum/Test_BulletDynamics.vcxproj">
+      <Project>C3174030-18C6-3EC3-AAC1-DDC49326D952</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/test/InverseDynamics/Test_BulletInverseDynamics.vcxproj">
+      <Project>1249B6A5-1184-3EB1-98CF-F1F602C99A02</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/test/collision/Test_Collision.vcxproj">
+      <Project>EAC80309-3521-374D-A5D1-3EB4DEB23C69</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/test/gtest-1.7.0/gtest.vcxproj">
+      <Project>6659B8A8-E854-3713-A3AF-FDB7F4799426</Project>
+    </ProjectReference>
+    <ProjectReference Include="D:/Users/1530025/Desktop/bart-dx-engine-e16/bart-dx-engine-e16/bulletBuild/examples/ThirdPartyLibs/Gwen/gwen.vcxproj">
+      <Project>2FEB778B-063D-349C-BB53-9EA33CD9EE66</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
