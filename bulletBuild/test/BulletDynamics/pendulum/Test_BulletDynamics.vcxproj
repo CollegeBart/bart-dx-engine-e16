@@ -86,7 +86,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\test\BulletDynamics\pendulum\.;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\test\BulletDynamics\pendulum\..\..\..\src;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\test\BulletDynamics\pendulum\..\..\gtest-1.7.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\bulletSource\test\BulletDynamics\pendulum\.;..\..\..\bulletSource\test\BulletDynamics\pendulum\..\..\..\src;..\..\..\bulletSource\test\BulletDynamics\pendulum\..\..\gtest-1.7.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Debug/</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <CompileAs>CompileAsCpp</CompileAs>

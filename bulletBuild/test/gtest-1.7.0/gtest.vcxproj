@@ -78,7 +78,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\test\gtest-1.7.0\.;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\test\gtest-1.7.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\bulletSource\test\gtest-1.7.0\.;..\..\..\bulletSource\test\gtest-1.7.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Debug/</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <CompileAs>CompileAsCpp</CompileAs>

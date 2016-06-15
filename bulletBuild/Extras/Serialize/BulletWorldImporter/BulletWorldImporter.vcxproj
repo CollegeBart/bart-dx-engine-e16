@@ -78,7 +78,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\src;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\Extras\Serialize\BulletFileLoader;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\bulletSource\src;..\..\..\bulletSource\Extras\Serialize\BulletFileLoader;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Debug/</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <CompileAs>CompileAsCpp</CompileAs>

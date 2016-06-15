@@ -86,7 +86,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\test\InverseDynamics\.;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\test\InverseDynamics\..\..\src;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\test\InverseDynamics\..\gtest-1.7.0\include;D:\Users\1530025\Desktop\bart-dx-engine-e16\bart-dx-engine-e16\bulletSource\test\InverseDynamics\..\..\Extras\InverseDynamics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\bulletSource\test\InverseDynamics\.;..\..\..\bulletSource\test\InverseDynamics\..\..\src;..\..\..\bulletSource\test\InverseDynamics\..\gtest-1.7.0\include;..\..\..\bulletSource\test\InverseDynamics\..\..\Extras\InverseDynamics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Debug/</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <CompileAs>CompileAsCpp</CompileAs>
