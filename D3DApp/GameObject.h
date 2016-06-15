@@ -13,8 +13,8 @@ public:
 
 	~GameObject();
 
-	void OnLostDevice();
-	void OnResetDevice();
+	//virtual void OnLostDevice();
+	//virtual void OnResetDevice();
 
 	virtual void Start();
 	virtual void Update();

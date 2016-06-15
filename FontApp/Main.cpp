@@ -1,15 +1,20 @@
-#include "D3DApp.h"
+#include "Engine.h"
+#include "GameObject.h"
+#include "TextObject.h"
+
 
 int WINAPI WinMain(
 	HINSTANCE hInstance, HINSTANCE prevInstance,
 	PSTR cmd, int showCmd)
 {
-	D3DApp* app = new D3DApp(hInstance, "D3DApp");
-	gD3DApp = app;
+	gEngine = new Engine(hInstance, "Game: ");
 
-	int assert = app->Run();
+	//TestEnvironment* env = new TestEnvironment();
+	TextObject* text = new TextObject();
 
-	delete app;
+	int res = gEngine->Run();
 
-	return assert;
+	//delete env;
+
+	return res;
 }
