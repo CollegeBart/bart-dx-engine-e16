@@ -13,6 +13,7 @@ public:
 	void OnLostDevice();
 	void OnResetDevice();
 
+	void SetText(const char* _txt);
 	void SetProperties(int _height);
 	void SetProperties(int _height, int _width);
 	void SetProperties(int _height, int _width,bool _italic);

@@ -68,6 +68,11 @@ void TextObject::OnResetDevice()
 	mFont->OnResetDevice();
 }
 
+void TextObject::SetText(const char * _txt)
+{
+	text = _txt;
+}
+
 void TextObject::SetProperties(int _height)
 {
 	fontDesc.Height = _height;
