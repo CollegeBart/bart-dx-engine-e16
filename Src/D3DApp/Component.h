@@ -40,6 +40,5 @@ protected:
 	IDirect3DTexture9* mTexture;
 	D3DXVECTOR3 mCenter;
 	D3DXVECTOR3 mPosition;
-
 };
 
