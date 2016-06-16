@@ -3,7 +3,7 @@
 TextObject::TextObject() :
 	Component()
 	, text(""), color(0), position(0, 0, 0)
-	, fontRect()
+	, fontRect(), str(new char[5])
 {
 	::GetClientRect(gD3DApp->GetMainWindow(), &fontRect);
 
@@ -23,7 +23,7 @@ TextObject::TextObject() :
 TextObject::TextObject(const char * _fontName, const char * _text) :
 	Component()
 	, text(_text), color(0), position(0, 0, 0)
-	, fontRect()
+	, fontRect(), str(new char[5])
 {
 	::GetClientRect(gD3DApp->GetMainWindow(), &fontRect);
 
@@ -44,7 +44,7 @@ TextObject::TextObject(const char * _fontName, const char * _text) :
 TextObject::TextObject(const char * _fontName, const char * _text, D3DCOLOR  _color) :
 	Component()
 	, text(_text), color(_color), position(0, 0, 0)
-	, fontRect()
+	, fontRect(), str(new char[5])
 {
 	::GetClientRect(gD3DApp->GetMainWindow(), &fontRect);
 
@@ -65,7 +65,7 @@ TextObject::TextObject(const char * _fontName, const char * _text, D3DCOLOR  _co
 TextObject::TextObject(const char * _fontName, const char * _text, D3DCOLOR _color, D3DXVECTOR3 _position) :
 	Component()
 	, text(_text), color(_color), position(_position)
-	, fontRect()
+	, fontRect() , str(new char[5])
 {
 	//Ne gere pas les paragraphe
 	fontDesc.Weight = FW_DONTCARE;
@@ -89,6 +89,7 @@ TextObject::TextObject(const char * _fontName, const char * _text, D3DCOLOR _col
 
 TextObject::~TextObject()
 {
+	delete str;
 	delete mFont;
 }
 
@@ -102,9 +103,15 @@ void TextObject::OnResetDevice()
 	mFont->OnResetDevice();
 }
 
-void TextObject::SetText(const char * _txt)
+void TextObject::SetText(char * _txt)
 {
 	text = _txt;
+}
+
+void TextObject::SetText(int _txt)
+{
+	std::sprintf(str, "%d", _txt);
+	text = str;
 }
 
 void TextObject::SetProperties(int _height)
