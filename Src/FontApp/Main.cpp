@@ -12,9 +12,7 @@ int WINAPI WinMain(
 	//TestEnvironment* env = new TestEnvironment();
 	TextObject* text = new TextObject("Times New Roman", "lol",D3DCOLOR_XRGB(0,0,0));
 	text->SetProperties(10, 10, true, true, D3DCOLOR_XRGB(10, 100, 25));
-	text->SetText("Salut");																			
-	TextObject* text2 = new TextObject("Times New Roman", "Center", D3DCOLOR_XRGB(0, 0, 0),
-		D3DXVECTOR3(500,500,0)); 		//500,500 etant ça position dans le monde
+	text->SetText("Salut");
 
 	int res = gEngine->Run();
 

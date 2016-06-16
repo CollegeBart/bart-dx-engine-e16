@@ -1,9 +1,7 @@
 #pragma once
-#include "PhysicsManager.h"
+
 #include "D3DApp.h"
 #include "Component.h"
-
-#define PHYSICS PhysicsManager::Physics()
 
 class Engine
 	: public D3DApp

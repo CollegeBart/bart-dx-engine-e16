@@ -2,36 +2,25 @@
 
 GameObject::GameObject()
 	: Component()
-	, body(nullptr)
-	, needImpl(false)
+	,
+	needImpl(false)
 {
-	transform.setIdentity();
-	D3DXMatrixIdentity(&rot);
-	D3DXMatrixIdentity(&trans);
-	D3DXMatrixScaling(&scale, 1.0f, -1.0f, 1.0);
-	D3DXMatrixIdentity(&resultant);
+	
 }
 
 GameObject::GameObject(const char * path)
-	: Component()
-	, body(nullptr)
+	:Component()
 	, needImpl(true)
 {
 	//HR(D3DXCreateTextureFromFile(gD3DDevice, path, &mTexture));
 	HR(D3DXCreateTextureFromFileEx(gD3DDevice, path, 0, 0, 1, 0,
 		D3DFMT_A8R8G8B8, D3DPOOL_MANAGED, D3DX_FILTER_NONE, D3DX_DEFAULT,
 		D3DCOLOR_XRGB(255, 255, 255), &info, NULL, &mTexture));
-	transform.setIdentity();
-	D3DXMatrixIdentity(&rot);
-	D3DXMatrixIdentity(&trans);
-	D3DXMatrixScaling(&scale, 1.0f, -1.0f, 1.0);
-	D3DXMatrixIdentity(&resultant);
 }
 
 GameObject::GameObject(const char * path, float startX, float startY)
-	: Component()
-	, body(nullptr)
-	, needImpl(true)
+	:Component()
+	,needImpl(true)
 {
 	//HR(D3DXCreateTextureFromFile(gD3DDevice, path, &mTexture));
 	HR(D3DXCreateTextureFromFileEx(gD3DDevice, path, 0, 0, 1, 0,
@@ -40,12 +29,6 @@ GameObject::GameObject(const char * path, float startX, float startY)
 
 	mPosition.x = startX;
 	mPosition.y = startY;
-	transform.setIdentity();
-	D3DXMatrixIdentity(&rot);
-	D3DXMatrixIdentity(&trans);
-	D3DXMatrixTranslation(&trans, startX, startY, 0);
-	D3DXMatrixScaling(&scale, 1.0f, -1.0f, 1.0);
-	D3DXMatrixIdentity(&resultant);
 }
 
 GameObject::~GameObject()
@@ -60,71 +43,32 @@ void GameObject::OnResetDevice()
 {
 }
 
-void GameObject::CreateBody(btVector3 & pos, float mass, btCollisionShape * shape)
-{
-	btAssert((!shape || shape->getShapeType() != INVALID_SHAPE_PROXYTYPE));
-
-	//rigidbody is dynamic if and only if mass is non zero, otherwise static
-	bool isDynamic = (mass != 0.f);
-
-	btVector3 localInertia(0, 0, 0);
-	if (isDynamic)
-		shape->calculateLocalInertia(mass, localInertia);
-
-	transform.setOrigin(pos);
-
-	btDefaultMotionState* myMotionState = new btDefaultMotionState(transform);
-
-	btScalar btMass = mass;
-
-
-	btRigidBody::btRigidBodyConstructionInfo cInfo(mass, myMotionState, shape, localInertia);
-	body = new btRigidBody(cInfo);
-	WORLD->addRigidBody(body);
-}
-
 void GameObject::Start()
 {
 }
 
 void GameObject::Update()
 {
-	MakeResultantMatrix();
+	
 }
 
 void GameObject::Draw(ID3DXSprite* spriteBatch)
 {
 	if (needImpl)
 	{
+		D3DXMATRIX S;
+		D3DXMatrixScaling(&S, 1.f, -1.0f, 1.0f);
 
 		HR(spriteBatch->Begin(
 			D3DXSPRITE_ALPHABLEND |
 			D3DXSPRITE_OBJECTSPACE |
 			D3DXSPRITE_DONOTMODIFY_RENDERSTATE));
 		{
-			HR(spriteBatch->SetTransform(&resultant));
+			HR(spriteBatch->SetTransform(&S));
 			HR(spriteBatch->Draw(mTexture, 0,
 				&mCenter, &mPosition, D3DCOLOR_XRGB(255, 255, 255)));
 		}
 
 		HR(spriteBatch->End());
 	}
-}
-
-void GameObject::MakeResultantMatrix()
-{
-	if (body && body->getMotionState())
-	{
-		body->getMotionState()->getWorldTransform(transform);
-
-		btQuaternion btQuat = transform.getRotation();
-		btVector3 btVec3 = transform.getOrigin();
-
-		D3DXQUATERNION quat{ btQuat.x(), btQuat.y(), btQuat.z(), btQuat.w() };
-
-		D3DXMatrixRotationQuaternion(&rot, &quat);
-		D3DXMatrixTranslation(&trans, btVec3.x(), btVec3.y(), btVec3.z());
-	}
-	D3DXMatrixMultiply(&resultant, &rot, &trans);
-	D3DXMatrixMultiply(&resultant, &resultant, &scale);
 }

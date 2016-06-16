@@ -8,7 +8,6 @@ class TextObject :
 public:
 	TextObject(const char* _fontName,const char* _text);
 	TextObject(const char* _fontName, const char* _text, D3DCOLOR _color);
-	TextObject(const char* _fontName, const char* _text, D3DCOLOR _color,D3DXVECTOR3 _position);
 	~TextObject();
 
 	void OnLostDevice();
@@ -22,7 +21,6 @@ public:
 	void SetProperties(int _height, int _width, bool _italic, bool _bold, D3DCOLOR _color);
 	void SetProperties(bool _italic) { fontDesc.Italic = _italic; }
 	void SetProperties(D3DCOLOR _color);
-	void SetPosition(D3DXVECTOR3 _position);
 
 
 
@@ -33,8 +31,6 @@ protected:
 	D3DXFONT_DESC fontDesc;
 
 private:
-	RECT fontRect;
-	D3DXVECTOR3 position;
 	D3DCOLOR color;
 	const char* text;
 	TextObject();
