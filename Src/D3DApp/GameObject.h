@@ -1,7 +1,7 @@
 #pragma once
 #include "Component.h"
 #include <iostream>
-
+#include "Engine.h"
 class GameObject : public Component
 {
 public:
@@ -16,6 +16,8 @@ public:
 	void OnLostDevice();
 	void OnResetDevice();
 
+	virtual void CreateBody(btVector3& pos, float mass, btCollisionShape* shape);
+
 	virtual void Start();
 	virtual void Update();
 	virtual void Draw(ID3DXSprite* spriteBatch);
@@ -28,8 +30,11 @@ protected:
 	D3DXMATRIX scale;
 	D3DXMATRIX resultant;
 
+	btTransform transform;
+	btRigidBody* body;
+
 private :
 	bool needImpl;
-	
+	void MakeResultantMatrix();
 };
 

@@ -40,7 +40,7 @@ int Engine::Run()
 		else
 		{
 			Update();
-
+			PHYSICS->Step(gTimer->GetDeltaTime());
 			PreDraw();
 			Draw();
 			PostDraw();
@@ -59,6 +59,7 @@ Engine::Engine(HINSTANCE hInstance, std::string winCaption)
 	gD3DApp = this;
 
 	HR(D3DXCreateSprite(gD3DDevice, &mSpriteBatch));
+	PHYSICS->CreateEmptyWorld();
 }
 
 Engine::Engine(HINSTANCE hInstance, std::string winCaption, int resWidth, int resHeight)
@@ -68,10 +69,12 @@ Engine::Engine(HINSTANCE hInstance, std::string winCaption, int resWidth, int re
 	gD3DApp = this;
 
 	HR(D3DXCreateSprite(gD3DDevice, &mSpriteBatch));
+	PHYSICS->CreateEmptyWorld();
 }
 
 Engine::~Engine()
 {
+	PHYSICS->exitPhysics();
 }
 
 void Engine::OnLostDevice()

@@ -12,6 +12,9 @@ int WINAPI WinMain(
 	GameObject* test = new GameObject("background.png");
 	GameObject* test2 = new GameObject("hey-girl-sloth.jpg", -250,-200);
 
+	btVector3 pos{ 0,0,0 };
+	test2->CreateBody(pos, 1.0f, SPHERE);
+
 	int res = gEngine->Run();
 	
 	//delete env;
