@@ -62,22 +62,10 @@ D3DApp::D3DApp(HINSTANCE hInstance, std::string winCaption)
 	gTimer = new GameTimer();
 	gTimer->Reset();
 
-	D3DXMATRIX view;
-	D3DXMATRIX orth;
-	D3DXVECTOR3 pos(0.f, 0.f, -100.0f);
-	D3DXVECTOR3 up(0.f, 1.f, 0.f);
-	D3DXVECTOR3 target(0.f, 0.f, 0.f);
-
-	D3DXMatrixLookAtLH(&view, &pos, &target, &up);
-	D3DXMatrixOrthoLH(
-		&orth, (float)mD3Dpp.BackBufferWidth, (float)mD3Dpp.BackBufferHeight,
-		1.0f, 5000.0f);
+	OnResetDevice();
 
 	HR(gD3DDevice->SetRenderState(D3DRS_LIGHTING, false));
 	HR(gD3DDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE));
-
-	HR(gD3DDevice->SetTransform(D3DTS_VIEW, &view));
-	HR(gD3DDevice->SetTransform(D3DTS_PROJECTION, &orth));
 }
 
 D3DApp::D3DApp(HINSTANCE hInstance, std::string winCaption, int resWidth, int resHeight)
@@ -116,22 +104,10 @@ D3DApp::D3DApp(HINSTANCE hInstance, std::string winCaption, int resWidth, int re
 	gTimer = new GameTimer();
 	gTimer->Reset();
 
-	D3DXMATRIX view;
-	D3DXMATRIX orth;
-	D3DXVECTOR3 pos(0.f, 0.f, -100.0f);
-	D3DXVECTOR3 up(0.f, 1.f, 0.f);
-	D3DXVECTOR3 target(0.f, 0.f, 0.f);
-
-	D3DXMatrixLookAtLH(&view, &pos, &target, &up);
-	D3DXMatrixOrthoLH(
-		&orth, (float)mD3Dpp.BackBufferWidth, (float)mD3Dpp.BackBufferHeight,
-		1.0f, 5000.0f);
+	OnResetDevice();
 
 	HR(gD3DDevice->SetRenderState(D3DRS_LIGHTING, false));
 	HR(gD3DDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE));
-
-	HR(gD3DDevice->SetTransform(D3DTS_VIEW, &view));
-	HR(gD3DDevice->SetTransform(D3DTS_PROJECTION, &orth));
 }
 
 D3DApp::~D3DApp()
@@ -273,6 +249,18 @@ void D3DApp::InitDirect3D()
 
 void D3DApp::OnResetDevice()
 {
+	D3DXMATRIX view;
+	D3DXMATRIX persp;
+
+	D3DXVECTOR3 pos(0.f, 0.f, -10.f);
+	D3DXVECTOR3 up(0.f, 1.f, 0.f);
+	D3DXVECTOR3 target(0.f, 0.f, 0.f);
+
+	D3DXMatrixLookAtLH(&view, &pos, &target, &up);
+	D3DXMatrixPerspectiveFovLH(&persp, D3DX_PI*0.25f, (float)resWidth / (float)resHeight, 0.1f, 5000.0f);
+
+	HR(gD3DDevice->SetTransform(D3DTS_VIEW, &view));
+	HR(gD3DDevice->SetTransform(D3DTS_PROJECTION, &persp));
 }
 
 void D3DApp::OnLostDevice()
@@ -281,17 +269,16 @@ void D3DApp::OnLostDevice()
 
 void D3DApp::Update()
 {
-	
+
 }
 
 void D3DApp::PreDraw()
 {
 	HR(gD3DDevice->Clear(
 		0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,
-		D3DCOLOR_XRGB(255, 255, 255), 1.0f, 0));
+		D3DCOLOR_XRGB(119, 81, 44), 1.0f, 0));
 
 	HR(gD3DDevice->BeginScene());
-	
 }
 
 void D3DApp::Draw()
@@ -321,6 +308,14 @@ LRESULT D3DApp::MsgProc(UINT msg, WPARAM wParam, LPARAM lParam)
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		return 0;
+
+	case WM_SIZE:
+		resWidth = LOWORD(lParam);
+		resHeight = HIWORD(lParam);
+
+		OnResetDevice();
+		return 0;
+
 	default:
 		return ::DefWindowProc(mhMainWindow, msg, wParam, lParam);
 	}
