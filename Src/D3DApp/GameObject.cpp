@@ -104,7 +104,7 @@ void GameObject::Draw(ID3DXSprite* spriteBatch)
 		{
 			HR(spriteBatch->SetTransform(&resultant));
 			HR(spriteBatch->Draw(mTexture, 0,
-				&mCenter, &mPosition, D3DCOLOR_XRGB(255, 255, 255)));
+				&mCenter, 0, D3DCOLOR_XRGB(255, 255, 255)));
 		}
 
 		HR(spriteBatch->End());
@@ -115,14 +115,13 @@ void GameObject::MakeResultantMatrix()
 {
 	if (body && body->getMotionState())
 	{
-		body->getMotionState()->getWorldTransform(transform);
-
-		btQuaternion btQuat = transform.getRotation();
-		btVector3 btVec3 = transform.getOrigin();
+		btQuaternion btQuat = body->getWorldTransform().getRotation();
+		btVector3 btVec3 = body->getWorldTransform().getOrigin();
 
 		D3DXQUATERNION quat{ btQuat.x(), btQuat.y(), btQuat.z(), btQuat.w() };
 
 		D3DXMatrixRotationQuaternion(&rot, &quat);
+		D3DXMatrixTranslation(&trans, 0.0f, 0.0f, 0.0f);
 		D3DXMatrixTranslation(&trans, btVec3.x(), btVec3.y(), btVec3.z());
 	}
 	D3DXMatrixMultiply(&resultant, &rot, &trans);
