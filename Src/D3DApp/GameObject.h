@@ -16,7 +16,8 @@ public:
 	void OnLostDevice();
 	void OnResetDevice();
 
-	virtual void CreateBody(btVector3& pos, float mass, btCollisionShape* shape);
+	virtual void CreateBody(const btVector3& pos, float mass, btCollisionShape* shape);
+	virtual void CreateBody(const btVector3& pos, float mass, btCollisionShape* shape, short group, short mask);
 
 	virtual void Start();
 	virtual void Update();

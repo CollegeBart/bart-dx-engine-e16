@@ -252,7 +252,7 @@ void D3DApp::OnResetDevice()
 	D3DXMATRIX view;
 	D3DXMATRIX persp;
 
-	D3DXVECTOR3 pos(0.f, 0.f, -10.f);
+	D3DXVECTOR3 pos(0.f, 0.f, -800.f);
 	D3DXVECTOR3 up(0.f, 1.f, 0.f);
 	D3DXVECTOR3 target(0.f, 0.f, 0.f);
 

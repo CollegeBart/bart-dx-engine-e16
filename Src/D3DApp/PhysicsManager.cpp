@@ -5,7 +5,7 @@ PhysicsManager* PhysicsManager::instance = 0;
 PhysicsManager::PhysicsManager()
 	: broadphase(nullptr), collisionConfiguration(nullptr)
 	, dispatcher(nullptr), solver(nullptr), world(nullptr)
-	, planeShape(nullptr), capsuleShape(nullptr)
+	, capsuleShape(nullptr)
 	, coneShape(nullptr), cylinderShape(nullptr)
 	, boxShape(nullptr), sphereShape(nullptr)
 {
@@ -26,6 +26,17 @@ void PhysicsManager::CreateEmptyWorld()
 	///use the default collision dispatcher. For parallel processing you can use a diffent dispatcher (see Extras/BulletMultiThreaded)
 	dispatcher = new	btCollisionDispatcher(collisionConfiguration);
 
+	//m_simplexSolver = new btVoronoiSimplexSolver();
+	//m_pdSolver = new btMinkowskiPenetrationDepthSolver();
+	//m_convexAlgo2d = new btConvex2dConvex2dAlgorithm::CreateFunc(m_simplexSolver, m_pdSolver);
+	//m_box2dbox2dAlgo = new btBox2dBox2dCollisionAlgorithm::CreateFunc();
+
+
+	//dispatcher->registerCollisionCreateFunc(CONVEX_2D_SHAPE_PROXYTYPE, CONVEX_2D_SHAPE_PROXYTYPE, m_convexAlgo2d);
+	//dispatcher->registerCollisionCreateFunc(BOX_2D_SHAPE_PROXYTYPE, CONVEX_2D_SHAPE_PROXYTYPE, m_convexAlgo2d);
+	//dispatcher->registerCollisionCreateFunc(CONVEX_2D_SHAPE_PROXYTYPE, BOX_2D_SHAPE_PROXYTYPE, m_convexAlgo2d);
+	//dispatcher->registerCollisionCreateFunc(BOX_2D_SHAPE_PROXYTYPE, BOX_2D_SHAPE_PROXYTYPE, m_box2dbox2dAlgo);
+
 	broadphase = new btDbvtBroadphase();
 
 	///the default constraint solver. For parallel processing you can use a different solver (see Extras/BulletMultiThreaded)
@@ -36,8 +47,34 @@ void PhysicsManager::CreateEmptyWorld()
 
 	world->setGravity(btVector3(0, 10, 0));
 
-	boxShape = new btBoxShape(btVector3(50, 50, 50));
-	sphereShape = new btSphereShape(1);
+	boxShape = new btBoxShape(btVector3(1, 1, 1));
+	sphereShape = new btSphereShape(10);
+	capsuleShape = new btCapsuleShape(1, 2);
+	coneShape = new btConeShape(1, 2);
+	cylinderShape = new btCylinderShape(btVector3(1, 1, 1));
+
+	m_collisionShapes.push_back(boxShape);
+	m_collisionShapes.push_back(sphereShape);
+	m_collisionShapes.push_back(capsuleShape);
+	m_collisionShapes.push_back(coneShape);
+	m_collisionShapes.push_back(cylinderShape);
+
+
+	btScalar u = btScalar(1 * SCALING - 0.04);
+	btVector3 points[3] = { btVector3(0,u,0),btVector3(-u,-u,0),btVector3(u,-u,0) };
+	childShape0 = new btBoxShape(btVector3(btScalar(SCALING * 1), btScalar(SCALING * 1), btScalar(0.04)));
+	box2DShape = new btConvex2dShape(childShape0);
+	childShape1 = new btConvexHullShape(&points[0].getX(), 3);
+	convexHull2DShape = new btConvex2dShape(childShape1);
+	childShape2 = new btCylinderShapeZ(btVector3(btScalar(SCALING * 1), btScalar(SCALING * 1), btScalar(0.04)));
+	cylinder2DShape = new btConvex2dShape(childShape2);
+
+	m_collisionShapes.push_back(box2DShape);
+	m_collisionShapes.push_back(convexHull2DShape);
+	m_collisionShapes.push_back(cylinder2DShape);
+	m_collisionShapes.push_back(childShape0);
+	m_collisionShapes.push_back(childShape1);
+	m_collisionShapes.push_back(childShape2);
 }
 
 void PhysicsManager::exitPhysics()
@@ -83,7 +120,6 @@ PhysicsManager::~PhysicsManager()
 	delete cylinderShape;
 	delete coneShape;
 	delete capsuleShape;
-	delete planeShape;
 
 	delete world;
 	delete solver;

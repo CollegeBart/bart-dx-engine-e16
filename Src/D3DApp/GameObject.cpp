@@ -60,7 +60,7 @@ void GameObject::OnResetDevice()
 {
 }
 
-void GameObject::CreateBody(btVector3 & pos, float mass, btCollisionShape * shape)
+void GameObject::CreateBody(const btVector3 & pos, float mass, btCollisionShape * shape)
 {
 	btAssert((!shape || shape->getShapeType() != INVALID_SHAPE_PROXYTYPE));
 
@@ -81,6 +81,29 @@ void GameObject::CreateBody(btVector3 & pos, float mass, btCollisionShape * shap
 	btRigidBody::btRigidBodyConstructionInfo cInfo(mass, myMotionState, shape, localInertia);
 	body = new btRigidBody(cInfo);
 	WORLD->addRigidBody(body);
+}
+
+void GameObject::CreateBody(const btVector3 & pos, float mass, btCollisionShape * shape, short group, short mask)
+{
+	btAssert((!shape || shape->getShapeType() != INVALID_SHAPE_PROXYTYPE));
+
+	//rigidbody is dynamic if and only if mass is non zero, otherwise static
+	bool isDynamic = (mass != 0.f);
+
+	btVector3 localInertia(0, 0, 0);
+	if (isDynamic)
+		shape->calculateLocalInertia(mass, localInertia);
+
+	transform.setOrigin(pos);
+
+	btDefaultMotionState* myMotionState = new btDefaultMotionState(transform);
+
+	btScalar btMass = mass;
+
+
+	btRigidBody::btRigidBodyConstructionInfo cInfo(mass, myMotionState, shape, localInertia);
+	body = new btRigidBody(cInfo);
+	WORLD->addRigidBody(body, group, mask);
 }
 
 void GameObject::Start()
