@@ -93,7 +93,7 @@ bool DirectInput::mouseButtonPressed(int button)
 
 bool DirectInput::mouseButtonReleased(int button)
 {
-	return false;
+	return (mMouseState.rgbButtons[button] & 0x80) != 1;
 }
 
 float DirectInput::mouseDX()
