@@ -13,6 +13,9 @@ public:
 
 	~GameObject();
 
+	int GetWidth() const { return info.Width; }
+	int GetHeight() const { return info.Height;	}
+
 	void OnLostDevice();
 	void OnResetDevice();
 

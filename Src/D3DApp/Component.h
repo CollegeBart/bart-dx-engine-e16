@@ -32,6 +32,18 @@ public:
 		mPosition = *pos;
 	}
 
+	void SetCenter(float x, float y, float z)
+	{
+		mCenter.x = x;
+		mCenter.y = y;
+		mCenter.z = z;
+	}
+
+	void SetCenter(D3DXVECTOR3* center)
+	{
+		mCenter = *center;
+	}
+
 private:
 	static std::vector<Component*> components;
 

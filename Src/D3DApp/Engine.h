@@ -17,6 +17,7 @@ public:
 	void SetCameraPostion(const D3DXVECTOR3& pos)
 	{
 		cameraPos = pos;
+		OnResetDevice();
 	}
 
 	// Appel Update sur tout les Component dans le vector components	

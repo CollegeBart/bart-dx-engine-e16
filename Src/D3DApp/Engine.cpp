@@ -111,7 +111,7 @@ void Engine::OnResetDevice()
 	GetClientRect(gD3DApp->GetMainWindow(), &r);
 
 	D3DXMatrixLookAtLH(&view, &cameraPos, &cameraTarget, &cameraUp);
-	D3DXMatrixPerspectiveFovLH(&persp, D3DX_PI*0.25f, (float) r.right / (float)r.bottom, 0.1f, 5000.0f);
+	D3DXMatrixPerspectiveFovLH(&persp, D3DX_PI*0.25f, (float) r.right / (float)r.bottom, 0.1f, 5000000.0f);
 
 	HR(gD3DDevice->SetTransform(D3DTS_VIEW, &view));
 	HR(gD3DDevice->SetTransform(D3DTS_PROJECTION, &persp));
