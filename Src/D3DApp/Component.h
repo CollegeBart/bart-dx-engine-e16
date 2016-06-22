@@ -62,5 +62,6 @@ protected:
 	D3DXMATRIX R;
 	D3DXMATRIX T;
 	D3DXMATRIX S;
+	D3DXMATRIX resultant;
 };
 
