@@ -28,6 +28,9 @@ public:
 
 	HWND GetMainWindow() const { return mhMainWindow; }
 
+	int GetResolutionW() const { return resWidth; }
+	int GetResolutionH() const { return resHeight;}
+
 protected:
 	virtual void InitMainWindow();
 	virtual void InitDirect3D();

@@ -1,23 +1,25 @@
 #pragma once
+
 #include "D3DApp.h"
+#include "GameObject.h"
 
 class SpriteApp :
-	public D3DApp
+	public Component
 {
 public:
 	SpriteApp();
-	SpriteApp(HINSTANCE hInstance, std::string winCaption);
 	~SpriteApp();
 
 	void OnLostDevice();
 	void OnResetDevice();
 	void Update();
-	void Draw();
+	void Draw(ID3DXSprite* spriteBatch);
 
 private:
-	ID3DXSprite* mSpriteBatch;
-	IDirect3DTexture9* mTexture;
-	D3DXVECTOR3 mCenter;
-	D3DXVECTOR3 mPosition;
+
+	float currentRotation;
+
+	GameObject* bkg;
+	GameObject* canon;
 };
 

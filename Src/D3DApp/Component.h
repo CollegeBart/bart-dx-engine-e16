@@ -25,11 +25,13 @@ public:
 		mPosition.x = x; 
 		mPosition.y = y; 
 		mPosition.z = z;
+
+		D3DXMatrixTranslation(&T, x, y, z);
 	}
 
-	void SetPosition(D3DXVECTOR3* pos)
+	void SetPosition(const D3DXVECTOR3& pos)
 	{
-		mPosition = *pos;
+		SetPosition(pos.x, pos.y, pos.z);
 	}
 
 	void SetCenter(float x, float y, float z)
@@ -44,13 +46,21 @@ public:
 		mCenter = *center;
 	}
 
+	void SetRotationZ(float angle)
+	{
+		D3DXMatrixRotationZ(&R, angle);
+	}
+
 private:
 	static std::vector<Component*> components;
 
 protected:
-	
 	IDirect3DTexture9* mTexture;
 	D3DXVECTOR3 mCenter;
 	D3DXVECTOR3 mPosition;
+
+	D3DXMATRIX R;
+	D3DXMATRIX T;
+	D3DXMATRIX S;
 };
 

@@ -1,25 +1,21 @@
 #include "SpriteApp.h"
 
 SpriteApp::SpriteApp()
-	: mSpriteBatch(nullptr)
-	, mTexture(nullptr)
-	, mCenter(0.f, 0.f, 0.f)
-	, mPosition(0.f, 0.f, 0.f)
+	: currentRotation(0)
 {
+	D3DXVECTOR3 camPos(0.f, 0.f, -1086.f);
+	gEngine->SetCameraPostion(camPos);
 
-}
+	bkg = new GameObject("background.png");
+	bkg->SetCenter((float)bkg->GetWidth() / 2.f, (float)bkg->GetHeight() / 2.f, 0.f);
 
-SpriteApp::SpriteApp(HINSTANCE hInstance, std::string winCaption)
-	: D3DApp(hInstance, winCaption)
-	, mSpriteBatch(nullptr)
-	, mTexture(nullptr)
-	, mCenter(0.f, 0.f, 0.f)
-	, mPosition(-392.f, -281.f, 0.f)
-{
-	HR(D3DXCreateSprite(gD3DDevice, &mSpriteBatch));
+	canon = new GameObject("Bullet_Bill_Cannon.png");
+	canon->SetCenter((float)canon->GetWidth() / 2.f, 36.f, 0.f);
+	canon->SetRotationZ(-45.f);
+	canon->SetPosition(0.f, (-gD3DApp->GetResolutionH()/2) + 100, 0.f);
 
-	// TODO - D3DXCreateTextureFromFileEx
-	HR(D3DXCreateTextureFromFile(gD3DDevice, "hey-girl-sloth.jpg", &mTexture));
+	//btVector3 pos{ 0,0,0 };
+	//test2->CreateBody(pos, 1.0f, SPHERE);
 }
 
 SpriteApp::~SpriteApp()
@@ -29,38 +25,29 @@ SpriteApp::~SpriteApp()
 
 void SpriteApp::OnLostDevice()
 {
-	HR(mSpriteBatch->OnLostDevice());
+
 }
 
 void SpriteApp::OnResetDevice()
 {
-	HR(mSpriteBatch->OnResetDevice());
+
 }
 
 void SpriteApp::Update()
 {
-	if (gDInput->keyDown(DIK_SPACE))
-	{
-		mPosition.x += 100.0f * gTimer->GetDeltaTime();
-	}
+	POINT mousePos;
+	GetCursorPos(&mousePos);
+	ScreenToClient(gD3DApp->GetMainWindow(), &mousePos);
 
-	
+	D3DXVECTOR3 vMousePos(mousePos.x - gD3DApp->GetResolutionW()/2, mousePos.y - gD3DApp->GetResolutionH()/2, 0.f);
+	D3DXVECTOR3 dir = vMousePos - canon->GetPosition();
+
+	D3DXVec3Normalize(&dir, &dir);
+
+	canon->SetRotationZ( atan2(dir.y, dir.x) - 90 * DEG_TO_RAD);
 }
 
-void SpriteApp::Draw()
+void SpriteApp::Draw(ID3DXSprite * spriteBatch)
 {
-	D3DXMATRIX S;
-	D3DXMatrixScaling(&S, 1.f, -1.0f, 1.0f);
 
-	HR(mSpriteBatch->Begin(
-		D3DXSPRITE_ALPHABLEND |
-		D3DXSPRITE_OBJECTSPACE |
-		D3DXSPRITE_DONOTMODIFY_RENDERSTATE));
-	{
-		HR(mSpriteBatch->SetTransform(&S));
-		HR(mSpriteBatch->Draw(mTexture, 0,
-			&mCenter, &mPosition, D3DCOLOR_XRGB(255, 255, 255)));
-	}
-
-	HR(mSpriteBatch->End());
 }

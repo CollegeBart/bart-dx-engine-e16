@@ -29,16 +29,10 @@ public:
 protected:
 	D3DXIMAGE_INFO info;
 
-	D3DXMATRIX rot;
-	D3DXMATRIX trans;
-	D3DXMATRIX scale;
-	D3DXMATRIX resultant;
-
 	btTransform transform;
 	btRigidBody* body;
 
 private :
-	bool needImpl;
 	void MakeResultantMatrix();
 };
 
