@@ -17,7 +17,7 @@ SpriteApp::SpriteApp(HINSTANCE hInstance, std::string winCaption)
 	, mPosition(-392.f, -281.f, 0.f)
 {
 	HR(D3DXCreateSprite(gD3DDevice, &mSpriteBatch));
-	
+
 	// TODO - D3DXCreateTextureFromFileEx
 	HR(D3DXCreateTextureFromFile(gD3DDevice, "hey-girl-sloth.jpg", &mTexture));
 }

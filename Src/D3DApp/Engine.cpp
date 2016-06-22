@@ -40,7 +40,9 @@ int Engine::Run()
 		else
 		{
 			Update();
+			
 			PHYSICS->Step(gTimer->GetDeltaTime());
+
 			PreDraw();
 			Draw();
 			PostDraw();
@@ -52,24 +54,42 @@ int Engine::Run()
 	return (int)msg.wParam;
 }
 
+Engine::Engine()
+	: cameraPos(0.f, 0.f, -800.f)
+	, cameraUp(0.f, 1.f, 0.f)
+	, cameraTarget(0.f, 0.f, 0.f)
+{
+	OnResetDevice();
+}
+
 Engine::Engine(HINSTANCE hInstance, std::string winCaption)
 	: D3DApp(hInstance, winCaption)
 	, mSpriteBatch(nullptr)
+	, cameraPos(0.f, 0.f, -800.f)
+	, cameraUp(0.f, 1.f, 0.f)
+	, cameraTarget(0.f, 0.f, 0.f)
 {
 	gD3DApp = this;
 
 	HR(D3DXCreateSprite(gD3DDevice, &mSpriteBatch));
 	PHYSICS->CreateEmptyWorld();
+
+	OnResetDevice();
 }
 
 Engine::Engine(HINSTANCE hInstance, std::string winCaption, int resWidth, int resHeight)
 	: D3DApp(hInstance, winCaption, resWidth, resHeight)
 	, mSpriteBatch(nullptr)
+	, cameraPos(0.f, 0.f, -800.f)
+	, cameraUp(0.f, 1.f, 0.f)
+	, cameraTarget(0.f, 0.f, 0.f)
 {
 	gD3DApp = this;
 
 	HR(D3DXCreateSprite(gD3DDevice, &mSpriteBatch));
 	PHYSICS->CreateEmptyWorld();
+
+	OnResetDevice();
 }
 
 Engine::~Engine()
@@ -87,6 +107,15 @@ void Engine::OnLostDevice()
 
 void Engine::OnResetDevice()
 {
+	RECT r;
+	GetClientRect(gD3DApp->GetMainWindow(), &r);
+
+	D3DXMatrixLookAtLH(&view, &cameraPos, &cameraTarget, &cameraUp);
+	D3DXMatrixPerspectiveFovLH(&persp, D3DX_PI*0.25f, (float) r.right / (float)r.bottom, 0.1f, 5000.0f);
+
+	HR(gD3DDevice->SetTransform(D3DTS_VIEW, &view));
+	HR(gD3DDevice->SetTransform(D3DTS_PROJECTION, &persp));
+
 	for (int i = 0; i < Component::components.size(); i++)
 	{
 		Component::components[i]->OnResetDevice();

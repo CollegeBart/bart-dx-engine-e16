@@ -249,18 +249,7 @@ void D3DApp::InitDirect3D()
 
 void D3DApp::OnResetDevice()
 {
-	D3DXMATRIX view;
-	D3DXMATRIX persp;
 
-	D3DXVECTOR3 pos(0.f, 0.f, -800.f);
-	D3DXVECTOR3 up(0.f, 1.f, 0.f);
-	D3DXVECTOR3 target(0.f, 0.f, 0.f);
-
-	D3DXMatrixLookAtLH(&view, &pos, &target, &up);
-	D3DXMatrixPerspectiveFovLH(&persp, D3DX_PI*0.25f, (float)resWidth / (float)resHeight, 0.1f, 5000.0f);
-
-	HR(gD3DDevice->SetTransform(D3DTS_VIEW, &view));
-	HR(gD3DDevice->SetTransform(D3DTS_PROJECTION, &persp));
 }
 
 void D3DApp::OnLostDevice()

@@ -14,6 +14,11 @@ public:
 		
 	~Engine();
 
+	void SetCameraPostion(const D3DXVECTOR3& pos)
+	{
+		cameraPos = pos;
+	}
+
 	// Appel Update sur tout les Component dans le vector components	
 	void OnLostDevice();
 	void OnResetDevice();
@@ -23,9 +28,19 @@ public:
 	int Run();
 
 private:
-	Engine() { }
+	Engine();
 
+	// 2D
 	ID3DXSprite* mSpriteBatch;
+
+	// 3D
+	D3DXMATRIX view;
+	D3DXMATRIX persp;
+
+	// Camera
+	D3DXVECTOR3 cameraPos;
+	D3DXVECTOR3 cameraUp;
+	D3DXVECTOR3 cameraTarget;
 
 	static Engine* engine;
 };

@@ -47,7 +47,6 @@ private:
 	HINSTANCE mhAppInstance;
 	std::string mMainWindowCaption;
 
-
 	int resWidth;
 	int resHeight;
 };
