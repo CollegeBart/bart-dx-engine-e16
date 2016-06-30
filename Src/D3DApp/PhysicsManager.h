@@ -38,8 +38,6 @@ public:
 	void CreateEmptyWorld();
 	virtual void exitPhysics();
 
-
-
 	btDiscreteDynamicsWorld* GetWorld() { return world; }
 	btCollisionShape* GetCapsuleShape() { return capsuleShape; }
 	btCollisionShape* GetConeShape() { return coneShape; }
