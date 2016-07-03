@@ -87,6 +87,32 @@ TextObject::TextObject(const char * _fontName, const char * _text, D3DCOLOR _col
 	HR(D3DXCreateFontIndirect(gD3DDevice, &fontDesc, &mFont));
 }
 
+TextObject::TextObject(const char * _fontName, const char * _text, D3DCOLOR _color, D3DXVECTOR3 _position, int _height) :
+	Component()
+	, text(_text), color(_color), position(_position)
+	, fontRect(), str(new char[5])
+{
+	//Ne gere pas les paragraphe
+	fontDesc.Weight = FW_DONTCARE;
+	fontDesc.Height = _height;
+	fontDesc.Width = (int)(_height * 0.5f);
+	fontDesc.MipLevels = 0;
+	fontDesc.Italic = true;
+	fontDesc.CharSet = DEFAULT_CHARSET;
+	fontDesc.OutputPrecision = OUT_DEFAULT_PRECIS;
+	fontDesc.Quality = DEFAULT_QUALITY;
+	fontDesc.PitchAndFamily = DEFAULT_PITCH | FF_DONTCARE;
+	strcpy_s(fontDesc.FaceName, _T(_fontName));
+
+	fontRect.top = _position.y - fontDesc.Height;
+	fontRect.bottom = _position.y;
+	fontRect.left = _position.x;
+	fontRect.right = _position.x + ((strlen(_text) + 1)*fontDesc.Width);
+
+	HR(D3DXCreateFontIndirect(gD3DDevice, &fontDesc, &mFont));
+}
+
+
 TextObject::~TextObject()
 {
 	delete str;

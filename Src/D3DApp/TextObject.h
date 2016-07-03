@@ -8,6 +8,7 @@ public:
 	TextObject(const char* _fontName, const char* _text);
 	TextObject(const char* _fontName, const char* _text, D3DCOLOR _color);
 	TextObject(const char* _fontName, const char* _text, D3DCOLOR _color, D3DXVECTOR3 _position);
+	TextObject(const char * _fontName, const char * _text, D3DCOLOR _color, D3DXVECTOR3 _position, int _height);
 	~TextObject();
 
 	void OnLostDevice();
