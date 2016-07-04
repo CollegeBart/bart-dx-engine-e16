@@ -9,7 +9,7 @@ public:
 	TextObject(const char* _fontName, const char* _text, D3DCOLOR _color);
 	TextObject(const char* _fontName, const char* _text, D3DCOLOR _color, D3DXVECTOR3 _position);
 	TextObject(const char * _fontName, const char * _text, D3DCOLOR _color, D3DXVECTOR3 _position, int _height);
-	~TextObject();
+	virtual ~TextObject();
 
 	void OnLostDevice();
 	void OnResetDevice();
@@ -24,6 +24,9 @@ public:
 	void SetProperties(bool _italic) { fontDesc.Italic = _italic; }
 	void SetProperties(D3DCOLOR _color);
 	void SetPosition(D3DXVECTOR3 _position);
+	//Used to move the textobject on the screen.
+	void SetTranslationText(D3DXVECTOR3 _position);
+	D3DXVECTOR3 GetTranslationText() const { return position; }
 
 
 

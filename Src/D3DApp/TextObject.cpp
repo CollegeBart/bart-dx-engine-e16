@@ -192,6 +192,12 @@ void TextObject::SetPosition(D3DXVECTOR3 _position)
 	fontRect.right = _position.x + ((strlen(text) + 1)*fontDesc.Width);
 }
 
+void TextObject::SetTranslationText(D3DXVECTOR3 _position)
+{
+	position = _position;
+	SetPosition(position);
+}
+
 void TextObject::Update()
 {
 }
