@@ -4,6 +4,7 @@
 #include "DirectInput.h"
 #include "GameTimer.h"
 #include "time.h"
+#include "Vertex.h"
 
 class D3DApp
 {
@@ -43,6 +44,9 @@ protected:
 	virtual void PostDraw();
 
 private:
+
+	void Init();
+
 	IDirect3D9* mD3DObject;
 	D3DPRESENT_PARAMETERS mD3Dpp;
 	

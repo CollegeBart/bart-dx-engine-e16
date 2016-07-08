@@ -55,7 +55,7 @@ int Engine::Run()
 }
 
 Engine::Engine()
-	: cameraPos(0.f, 0.f, -800.f)
+	: cameraPos(0.f, 0.f, CAMERA_DEFAULT_POS)
 	, cameraUp(0.f, 1.f, 0.f)
 	, cameraTarget(0.f, 0.f, 0.f)
 {
@@ -65,7 +65,7 @@ Engine::Engine()
 Engine::Engine(HINSTANCE hInstance, std::string winCaption)
 	: D3DApp(hInstance, winCaption)
 	, mSpriteBatch(nullptr)
-	, cameraPos(0.f, 0.f, -800.f)
+	, cameraPos(0.f, 0.f, CAMERA_DEFAULT_POS)
 	, cameraUp(0.f, 1.f, 0.f)
 	, cameraTarget(0.f, 0.f, 0.f)
 {
@@ -80,7 +80,7 @@ Engine::Engine(HINSTANCE hInstance, std::string winCaption)
 Engine::Engine(HINSTANCE hInstance, std::string winCaption, int resWidth, int resHeight)
 	: D3DApp(hInstance, winCaption, resWidth, resHeight)
 	, mSpriteBatch(nullptr)
-	, cameraPos(0.f, 0.f, -800.f)
+	, cameraPos(0.f, 0.f, CAMERA_DEFAULT_POS)
 	, cameraUp(0.f, 1.f, 0.f)
 	, cameraTarget(0.f, 0.f, 0.f)
 {
@@ -115,6 +115,7 @@ void Engine::OnResetDevice()
 
 	HR(gD3DDevice->SetTransform(D3DTS_VIEW, &view));
 	HR(gD3DDevice->SetTransform(D3DTS_PROJECTION, &persp));
+
 
 	for (int i = 0; i < Component::components.size(); i++)
 	{

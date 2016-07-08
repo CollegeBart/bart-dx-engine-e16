@@ -3,6 +3,8 @@
 #include "D3DApp.h"
 #include "Component.h"
 
+#define CAMERA_DEFAULT_POS -10
+
 #define PHYSICS PhysicsManager::Physics()
 
 class Engine

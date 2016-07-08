@@ -24,6 +24,7 @@ D3DApp::D3DApp()
 	, resWidth(1218)
 	, resHeight(939)
 {
+	Init();
 }
 
 D3DApp::D3DApp(HINSTANCE hInstance, std::string winCaption)
@@ -33,39 +34,7 @@ D3DApp::D3DApp(HINSTANCE hInstance, std::string winCaption)
 	, resWidth(1218)
 	, resHeight(939)
 {
-	srand((unsigned int)time(0));
-
-	//standard input/ output/ error file pointers
-	FILE *fpStdIn, *fpStdOut, *fpStdErr;
-
-	// Enable run-time memory check for debug build
-#if defined(DEBUG) | defined(_DEBUG)
-	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-
-	if (AllocConsole())
-	{
-		//Assign the stdin/ stdout/ stderr streams to the newly created console
-		_tfreopen_s(&fpStdIn, _T("CONIN$"), _T("r"), stdin);
-		_tfreopen_s(&fpStdOut, _T("CONOUT$"), _T("w"), stdout);
-		_tfreopen_s(&fpStdErr, _T("CONOUT$"), _T("w"), stderr);
-	}
-#endif
-
-	InitMainWindow();
-	InitDirect3D();
-	
-	gDInput = new DirectInput(
-		hInstance, mhMainWindow,
-		DISCL_NONEXCLUSIVE | DISCL_FOREGROUND,
-		DISCL_NONEXCLUSIVE | DISCL_FOREGROUND);
-
-	gTimer = new GameTimer();
-	gTimer->Reset();
-
-	OnResetDevice();
-
-	HR(gD3DDevice->SetRenderState(D3DRS_LIGHTING, false));
-	HR(gD3DDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE));
+	Init();
 }
 
 D3DApp::D3DApp(HINSTANCE hInstance, std::string winCaption, int resWidth, int resHeight)
@@ -75,45 +44,15 @@ D3DApp::D3DApp(HINSTANCE hInstance, std::string winCaption, int resWidth, int re
 	, resWidth(resWidth + 18)
 	, resHeight(resHeight + 39)
 {
-	srand((unsigned int)time(0));
-
-	//standard input/ output/ error file pointers
-	FILE *fpStdIn, *fpStdOut, *fpStdErr;
-
-	// Enable run-time memory check for debug build
-#if defined(DEBUG) | defined(_DEBUG)
-	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-
-	if (AllocConsole())
-	{
-		//Assign the stdin/ stdout/ stderr streams to the newly created console
-		_tfreopen_s(&fpStdIn, _T("CONIN$"), _T("r"), stdin);
-		_tfreopen_s(&fpStdOut, _T("CONOUT$"), _T("w"), stdout);
-		_tfreopen_s(&fpStdErr, _T("CONOUT$"), _T("w"), stderr);
-	}
-#endif
-
-	InitMainWindow();
-	InitDirect3D();
-
-	gDInput = new DirectInput(
-		hInstance, mhMainWindow,
-		DISCL_NONEXCLUSIVE | DISCL_FOREGROUND,
-		DISCL_NONEXCLUSIVE | DISCL_FOREGROUND);
-
-	gTimer = new GameTimer();
-	gTimer->Reset();
-
-	OnResetDevice();
-
-	HR(gD3DDevice->SetRenderState(D3DRS_LIGHTING, false));
-	HR(gD3DDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE));
+	Init();
 }
 
 D3DApp::~D3DApp()
 {
 	ReleaseCOM(mD3DObject);
 	ReleaseCOM(gD3DDevice);
+
+	DestroyAllVertexDeclaration();
 }
 
 int D3DApp::Run()
@@ -245,6 +184,8 @@ void D3DApp::InitDirect3D()
 	HR(mD3DObject->CreateDevice(
 		D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, 
 		mhMainWindow, devBehaviourFlags, &mD3Dpp, &gD3DDevice));
+
+	InitAllVertexdeclaration();
 }
 
 void D3DApp::OnResetDevice()
@@ -279,6 +220,43 @@ void D3DApp::PostDraw()
 {
 	HR(gD3DDevice->EndScene());
 	HR(gD3DDevice->Present(0, 0, 0, 0));
+}
+
+void D3DApp::Init()
+{
+	srand((unsigned int)time(0));
+
+	//standard input/ output/ error file pointers
+	FILE *fpStdIn, *fpStdOut, *fpStdErr;
+
+	// Enable run-time memory check for debug build
+#if defined(DEBUG) | defined(_DEBUG)
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
+	if (AllocConsole())
+	{
+		//Assign the stdin/ stdout/ stderr streams to the newly created console
+		_tfreopen_s(&fpStdIn, _T("CONIN$"), _T("r"), stdin);
+		_tfreopen_s(&fpStdOut, _T("CONOUT$"), _T("w"), stdout);
+		_tfreopen_s(&fpStdErr, _T("CONOUT$"), _T("w"), stderr);
+	}
+#endif
+
+	InitMainWindow();
+	InitDirect3D();
+
+	gDInput = new DirectInput(
+		mhAppInstance, mhMainWindow,
+		DISCL_NONEXCLUSIVE | DISCL_FOREGROUND,
+		DISCL_NONEXCLUSIVE | DISCL_FOREGROUND);
+
+	gTimer = new GameTimer();
+	gTimer->Reset();
+
+	HR(gD3DDevice->SetRenderState(D3DRS_LIGHTING, false));
+	HR(gD3DDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE));
+	HR(gD3DDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME));
+
 }
 
 LRESULT D3DApp::MsgProc(UINT msg, WPARAM wParam, LPARAM lParam)

@@ -1,23 +1,24 @@
 #pragma once
 
 #include "D3DApp.h"
+#include "Component.h"
 
 class CubeApp :
-	public D3DApp
+	public Component
 {
 public:
 	CubeApp();
-	CubeApp(HINSTANCE hInstance, std::string winCaption);
 	~CubeApp();
 
 protected:
-	virtual void OnResetDevice()	{}
-	virtual void OnLostDevice()		{}
-	virtual void Update()			{}
-	virtual void Draw();
+	void OnResetDevice()	{}
+	void OnLostDevice()		{}
+	void Update()			{}
+	void Draw(ID3DXSprite* spriteBatch);
 
 private:
 	IDirect3DVertexBuffer9* mVB;
+	IDirect3DIndexBuffer9* mIB;
 
 };
 

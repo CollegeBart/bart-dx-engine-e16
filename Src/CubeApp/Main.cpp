@@ -1,15 +1,20 @@
 #include "CubeApp.h"
+#include "Engine.h"
 
 int WINAPI WinMain(
 	HINSTANCE hInstance, HINSTANCE prevInstance,
 	PSTR cmd, int showCmd)
 {
-	D3DApp* app = new CubeApp(hInstance, "D3DApp");
-	gD3DApp = app;
+	gEngine = new Engine(hInstance, "Game: ");
 
-	int assert = app->Run();
+	CubeApp* spriteApp = new CubeApp();
 
-	delete app;
+	D3DXVECTOR3 pos(10.f, 10.f, -10.f);
+	gEngine->SetCameraPostion(pos);
 
-	return assert;
+	int res = gEngine->Run();
+
+	delete spriteApp;
+
+	return res;
 }

@@ -170,6 +170,7 @@
     <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="TextObject.cpp" />
+    <ClCompile Include="Vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.h" />
@@ -182,6 +183,7 @@
     <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="TextObject.h" />
+    <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
