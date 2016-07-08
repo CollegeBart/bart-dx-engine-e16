@@ -97,7 +97,7 @@ void GameObject::Update()
 	MakeResultantMatrix();
 }
 
-void GameObject::Draw(ID3DXSprite* spriteBatch)
+void GameObject::Draw(ID3DXSprite* spriteBatch, const D3DXMATRIX& view, const D3DXMATRIX& proj)
 {
 	HR(spriteBatch->Begin(
 		D3DXSPRITE_ALPHABLEND |

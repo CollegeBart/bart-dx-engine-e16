@@ -38,7 +38,7 @@ private:
 
 	// 3D
 	D3DXMATRIX view;
-	D3DXMATRIX persp;
+	D3DXMATRIX proj;
 
 	// Camera
 	D3DXVECTOR3 cameraPos;

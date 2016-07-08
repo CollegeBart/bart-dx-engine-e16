@@ -24,7 +24,7 @@ public:
 
 	virtual void Start();
 	virtual void Update();
-	virtual void Draw(ID3DXSprite* spriteBatch);
+	virtual void Draw(ID3DXSprite* spriteBatch, const D3DXMATRIX& view, const D3DXMATRIX& proj);
 
 protected:
 	D3DXIMAGE_INFO info;

@@ -255,7 +255,7 @@ void D3DApp::Init()
 
 	HR(gD3DDevice->SetRenderState(D3DRS_LIGHTING, false));
 	HR(gD3DDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE));
-	HR(gD3DDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME));
+	//HR(gD3DDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME));
 
 }
 

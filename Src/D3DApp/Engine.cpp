@@ -15,7 +15,7 @@ void Engine::Draw()
 {
 	for (int i = 0; i < Component::components.size(); i++)
 	{
-		Component::components[i]->Draw(mSpriteBatch);
+		Component::components[i]->Draw(mSpriteBatch, view, proj);
 	}
 }
 
@@ -111,10 +111,10 @@ void Engine::OnResetDevice()
 	GetClientRect(gD3DApp->GetMainWindow(), &r);
 
 	D3DXMatrixLookAtLH(&view, &cameraPos, &cameraTarget, &cameraUp);
-	D3DXMatrixPerspectiveFovLH(&persp, D3DX_PI*0.25f, (float) r.right / (float)r.bottom, 0.1f, 5000000.0f);
+	D3DXMatrixPerspectiveFovLH(&proj, D3DX_PI*0.25f, (float) r.right / (float)r.bottom, 0.1f, 5000000.0f);
 
-	HR(gD3DDevice->SetTransform(D3DTS_VIEW, &view));
-	HR(gD3DDevice->SetTransform(D3DTS_PROJECTION, &persp));
+	//HR(gD3DDevice->SetTransform(D3DTS_VIEW, &view));
+	//HR(gD3DDevice->SetTransform(D3DTS_PROJECTION, &persp));
 
 
 	for (int i = 0; i < Component::components.size(); i++)

@@ -9,7 +9,7 @@ int WINAPI WinMain(
 
 	CubeApp* spriteApp = new CubeApp();
 
-	D3DXVECTOR3 pos(10.f, 10.f, -10.f);
+	D3DXVECTOR3 pos(0.f, 0.f, -10.f);
 	gEngine->SetCameraPostion(pos);
 
 	int res = gEngine->Run();

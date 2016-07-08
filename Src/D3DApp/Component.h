@@ -13,7 +13,7 @@ public:
 
 	// Virtuel pure
 	virtual void Update() = 0;
-	virtual void Draw(ID3DXSprite* spriteBatch) = 0;
+	virtual void Draw(ID3DXSprite* spriteBatch, const D3DXMATRIX& view, const D3DXMATRIX& proj) = 0;
 
 	D3DXVECTOR3 GetPosition() const
 	{

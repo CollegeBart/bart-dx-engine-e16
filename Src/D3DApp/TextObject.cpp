@@ -202,7 +202,7 @@ void TextObject::Update()
 {
 }
 
-void TextObject::Draw(ID3DXSprite * spriteBatch)
+void TextObject::Draw(ID3DXSprite* spriteBatch, const D3DXMATRIX& view, const D3DXMATRIX& proj)
 {
 	HR(mFont->DrawText(0, _T(text), -1, &fontRect, DT_LEFT | DT_TOP,
 		color));

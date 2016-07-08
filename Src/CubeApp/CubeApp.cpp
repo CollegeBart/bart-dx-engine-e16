@@ -1,28 +1,42 @@
 #include "CubeApp.h"
 
 CubeApp::CubeApp()
+	: rotation(0)
 {
+	HR(D3DXCreateEffectFromFile(gD3DDevice, "Transform.fx", 0, 0, D3DXSHADER_DEBUG, 0, &mFX, &mErrors));
+	if (mErrors)
+	{
+		MessageBox(0, (char*)mErrors->GetBufferPointer(), 0, 0);
+	}
+
+	mhTech = mFX->GetTechniqueByName("TransformTech");
+	mhWVP = mFX->GetParameterByName(0, "gWVP");
+
+	HR(mFX->SetTechnique(mhTech));
+
 	// v1____v2
 	// |    /|
 	// |  /  |
 	// |/____|
 	// v3    v4
 	// [v1, v3, v2, v2, v3, v4]
-	HR(gD3DDevice->CreateVertexBuffer(8 * sizeof(D3DXVECTOR3), 0, D3DFVF_XYZW, D3DPOOL_MANAGED, &mVB, 0));
+
+	//HR(gD3DDevice->CreateVertexBuffer(8 * sizeof(VertexPos), 0, D3DFVF_XYZW, D3DPOOL_MANAGED, &mVB, 0));
+	HR(gD3DDevice->CreateVertexBuffer(8 * sizeof(VertexPos), 0, 0, D3DPOOL_MANAGED, &mVB, 0));
 	HR(gD3DDevice->CreateIndexBuffer(36 * sizeof(WORD), 0, D3DFMT_INDEX16, D3DPOOL_MANAGED, &mIB, 0));
 
 	// Vertex Buffer
-	D3DXVECTOR3* vertices;
+	VertexPos* vertices;
 	HR(mVB->Lock(0, 0, (void**)&vertices, 0));
 
-	vertices[0] = D3DXVECTOR3(-0.5f, 0.5f, 0.5f);
-	vertices[1] = D3DXVECTOR3(-0.5f, -0.5f, 0.5f);
-	vertices[2] = D3DXVECTOR3(0.5f, 0.5f, 0.5f);
-	vertices[3] = D3DXVECTOR3(0.5f, -0.5f, 0.5f);
-	vertices[4] = D3DXVECTOR3(-0.5f, 0.5f, -0.5f);
-	vertices[5] = D3DXVECTOR3(-0.5f, -0.5f, -0.5f);
-	vertices[6] = D3DXVECTOR3(0.5f, 0.5f, -0.5f);
-	vertices[7] = D3DXVECTOR3(0.5f, -0.5f, -0.5f);
+	vertices[0] = VertexPos(-0.5f, 0.5f, 0.5f);
+	vertices[1] = VertexPos(-0.5f, -0.5f, 0.5f);
+	vertices[2] = VertexPos(0.5f, 0.5f, 0.5f);
+	vertices[3] = VertexPos(0.5f, -0.5f, 0.5f);
+	vertices[4] = VertexPos(-0.5f, 0.5f, -0.5f);
+	vertices[5] = VertexPos(-0.5f, -0.5f, -0.5f);
+	vertices[6] = VertexPos(0.5f, 0.5f, -0.5f);
+	vertices[7] = VertexPos(0.5f, -0.5f, -0.5f);
 
 	HR(mVB->Unlock());
 
@@ -56,17 +70,42 @@ CubeApp::CubeApp()
 
 	HR(mIB->Unlock());
 
-	HR(gD3DDevice->SetStreamSource(0, mVB, 0, sizeof(D3DXVECTOR3)));
+	HR(gD3DDevice->SetStreamSource(0, mVB, 0, sizeof(VertexPos)));
 	HR(gD3DDevice->SetIndices(mIB));
-	HR(gD3DDevice->SetFVF(D3DFVF_XYZW));
+	HR(gD3DDevice->SetVertexDeclaration(VertexPos::decl));
+	//HR(gD3DDevice->SetFVF(D3DFVF_XYZW));
 }
 
 CubeApp::~CubeApp()
 {
 }
 
-void CubeApp::Draw(ID3DXSprite* spriteBatch)
+void CubeApp::Update()
 {
-	//gD3DDevice->DrawPrimitive(D3DPT_TRIANGLELIST, 0, 6);
-	HR(gD3DDevice->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, 8, 0, 12));
+	rotation += 1.0f * gTimer->GetDeltaTime();
+}
+
+void CubeApp::Draw(ID3DXSprite* spriteBatch, const D3DXMATRIX& view, const D3DXMATRIX& proj)
+{
+	D3DXMatrixTranslation(&T, -2.0f, -2.0f, 0.0f);
+	D3DXMatrixRotationYawPitchRoll(&R, rotation, rotation, 0.0f);
+	D3DXMatrixScaling(&S, 2.0f, 2.0f, 2.0f); 
+	D3DXMATRIX WVP = S * R * T *view * proj;
+
+	HR(mFX->SetMatrix(mhWVP, &WVP));
+
+	UINT numPasses = 0;
+	mFX->Begin(&numPasses, 0);
+
+	for (int i = 0; i < numPasses; i++)
+	{
+		mFX->BeginPass(i);
+
+		//gD3DDevice->DrawPrimitive(D3DPT_TRIANGLELIST, 0, 6);
+		HR(gD3DDevice->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, 8, 0, 12));
+
+		mFX->EndPass();
+	}
+
+	mFX->End();
 }

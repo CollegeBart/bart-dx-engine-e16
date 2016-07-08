@@ -5,9 +5,12 @@
 
 struct VertexPos
 {
-	VertexPos() : pos(0.f, 0.f, 0.f) {}
-	VertexPos(float x, float y, float z) : pos(x, y, z) {}
-	VertexPos(D3DXVECTOR3& v) : pos(v) {}
+	VertexPos() 
+		: pos(0.f, 0.f, 0.f) {}
+	VertexPos(float x, float y, float z) 
+		: pos(x, y, z) {}
+	VertexPos(D3DXVECTOR3& v) 
+		: pos(v) {}
 
 	D3DXVECTOR3 pos;
 
@@ -16,10 +19,14 @@ struct VertexPos
 
 struct VertexPosCol
 {
-	VertexPosCol() : pos(0.f, 0.f, 0.f), col(0x00000000) {}
-	VertexPosCol(int r, int g, int b, int a) : pos(0.f, 0.f, 0.f), col(D3DCOLOR_ARGB(a, r, g, b)) {}
-	VertexPosCol(float x, float y, float z) : pos(x, y, z), col(0x00000000) {}
-	VertexPosCol(D3DXVECTOR3& v, D3DCOLOR& c) : pos(v), col(c) {}
+	VertexPosCol() 
+		: pos(0.f, 0.f, 0.f), col(0x00000000) {}
+	VertexPosCol(int r, int g, int b, int a) 
+		: pos(0.f, 0.f, 0.f), col(D3DCOLOR_ARGB(a, r, g, b)) {}
+	VertexPosCol(float x, float y, float z) 
+		: pos(x, y, z), col(0x00000000) {}
+	VertexPosCol(D3DXVECTOR3& v, D3DCOLOR& c) 
+		: pos(v), col(c) {}
 
 	D3DXVECTOR3 pos;
 	D3DCOLOR col;

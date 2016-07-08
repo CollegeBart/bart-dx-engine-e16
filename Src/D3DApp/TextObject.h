@@ -31,7 +31,7 @@ public:
 
 
 	void Update();
-	void Draw(ID3DXSprite* spriteBatch);
+	void Draw(ID3DXSprite* spriteBatch, const D3DXMATRIX& view, const D3DXMATRIX& proj);
 
 protected:
 	D3DXFONT_DESC fontDesc;
