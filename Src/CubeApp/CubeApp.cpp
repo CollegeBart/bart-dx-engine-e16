@@ -22,21 +22,30 @@ CubeApp::CubeApp()
 	// [v1, v3, v2, v2, v3, v4]
 
 	//HR(gD3DDevice->CreateVertexBuffer(8 * sizeof(VertexPos), 0, D3DFVF_XYZW, D3DPOOL_MANAGED, &mVB, 0));
-	HR(gD3DDevice->CreateVertexBuffer(8 * sizeof(VertexPos), 0, 0, D3DPOOL_MANAGED, &mVB, 0));
+	HR(gD3DDevice->CreateVertexBuffer(8 * sizeof(VertexPosCol), 0, 0, D3DPOOL_MANAGED, &mVB, 0));
 	HR(gD3DDevice->CreateIndexBuffer(36 * sizeof(WORD), 0, D3DFMT_INDEX16, D3DPOOL_MANAGED, &mIB, 0));
 
 	// Vertex Buffer
-	VertexPos* vertices;
+	VertexPosCol* vertices;
 	HR(mVB->Lock(0, 0, (void**)&vertices, 0));
 
-	vertices[0] = VertexPos(-0.5f, 0.5f, 0.5f);
-	vertices[1] = VertexPos(-0.5f, -0.5f, 0.5f);
-	vertices[2] = VertexPos(0.5f, 0.5f, 0.5f);
-	vertices[3] = VertexPos(0.5f, -0.5f, 0.5f);
-	vertices[4] = VertexPos(-0.5f, 0.5f, -0.5f);
-	vertices[5] = VertexPos(-0.5f, -0.5f, -0.5f);
-	vertices[6] = VertexPos(0.5f, 0.5f, -0.5f);
-	vertices[7] = VertexPos(0.5f, -0.5f, -0.5f);
+	vertices[0] = VertexPosCol(-0.5f, 0.5f, 0.5f, D3DCOLOR_XRGB(255,0,0));
+	vertices[1] = VertexPosCol(-0.5f, -0.5f, 0.5f, D3DCOLOR_XRGB(0, 255, 0));
+	vertices[2] = VertexPosCol(0.5f, 0.5f, 0.5f, D3DCOLOR_XRGB(0, 0, 255));
+	vertices[3] = VertexPosCol(0.5f, -0.5f, 0.5f, D3DCOLOR_XRGB(255, 255, 0));
+	vertices[4] = VertexPosCol(-0.5f, 0.5f, -0.5f, D3DCOLOR_XRGB(255, 0, 255));
+	vertices[5] = VertexPosCol(-0.5f, -0.5f, -0.5f, D3DCOLOR_XRGB(0, 255, 255));
+	vertices[6] = VertexPosCol(0.5f, 0.5f, -0.5f, D3DCOLOR_XRGB(255, 255, 255));
+	vertices[7] = VertexPosCol(0.5f, -0.5f, -0.5f, D3DCOLOR_XRGB(0, 0, 0));
+
+	//vertices[0] = VertexPos(-0.5f, 0.5f, 0.5f);
+	//vertices[1] = VertexPos(-0.5f, -0.5f, 0.5f);
+	//vertices[2] = VertexPos(0.5f, 0.5f, 0.5f);
+	//vertices[3] = VertexPos(0.5f, -0.5f, 0.5f);
+	//vertices[4] = VertexPos(-0.5f, 0.5f, -0.5f);
+	//vertices[5] = VertexPos(-0.5f, -0.5f, -0.5f);
+	//vertices[6] = VertexPos(0.5f, 0.5f, -0.5f);
+	//vertices[7] = VertexPos(0.5f, -0.5f, -0.5f);
 
 	HR(mVB->Unlock());
 
@@ -70,9 +79,9 @@ CubeApp::CubeApp()
 
 	HR(mIB->Unlock());
 
-	HR(gD3DDevice->SetStreamSource(0, mVB, 0, sizeof(VertexPos)));
+	HR(gD3DDevice->SetStreamSource(0, mVB, 0, sizeof(VertexPosCol)));
 	HR(gD3DDevice->SetIndices(mIB));
-	HR(gD3DDevice->SetVertexDeclaration(VertexPos::decl));
+	HR(gD3DDevice->SetVertexDeclaration(VertexPosCol::decl));
 	//HR(gD3DDevice->SetFVF(D3DFVF_XYZW));
 }
 

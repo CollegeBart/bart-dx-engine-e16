@@ -13,7 +13,7 @@ public:
 	void OnLostDevice();
 	void OnResetDevice();
 	void Update();
-	void Draw(ID3DXSprite* spriteBatch);
+	void Draw(ID3DXSprite* spriteBatch, const D3DXMATRIX& view, const D3DXMATRIX& proj);
 
 private:
 

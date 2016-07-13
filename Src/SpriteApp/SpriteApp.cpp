@@ -47,7 +47,7 @@ void SpriteApp::Update()
 	canon->SetRotationZ( atan2(dir.y, dir.x) - 90 * DEG_TO_RAD);
 }
 
-void SpriteApp::Draw(ID3DXSprite * spriteBatch)
+void SpriteApp::Draw(ID3DXSprite* spriteBatch, const D3DXMATRIX& view, const D3DXMATRIX& proj)
 {
 
 }

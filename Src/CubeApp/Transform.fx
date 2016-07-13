@@ -10,26 +10,49 @@
 
 uniform extern float4x4 gWVP;
 
-struct VSOut
+struct PosVS
 {
 			 // SEMANTIQUE
 	float4 pos: POSITION0;
 };
 
-// Vertex Shader Function
-VSOut TransformVS(float3 posL: POSITION0)
+struct PosColVS
 {
-	VSOut vsOut = (VSOut)0;
+	// SEMANTIQUE
+	float4 pos: POSITION0;
+	float4 col: COLOR0;
+};
+
+ //Vertex Shader Function
+PosVS TransformVS(float3 posL: POSITION0)
+{
+	PosVS vsOut = (PosVS)0;
 
 	vsOut.pos = mul(float4(posL, 1.0f), gWVP);
 
 	return vsOut;
 }
 
-// Pixel Shader Function
-float4 TransformPS(): COLOR0
+// Vertex Shader Function
+PosColVS TransformColVS(float3 posL: POSITION0, float4 col: COLOR0)
+{
+	PosColVS vsOut = (PosColVS)0;
+
+	vsOut.pos = mul(float4(posL, 1.0f), gWVP);
+	vsOut.col = col;
+
+	return vsOut;
+}
+
+ //Pixel Shader Function
+float4 TransformPS() : COLOR0
 {
 	return float4(0.0f, 0.0f, 0.0f, 0.0f);
+}
+
+float4 TransformColPS(float4 col: COLOR0): COLOR
+{
+	return col;
 }
 
 technique TransformTech
@@ -46,5 +69,13 @@ technique TransformTech
 
 		FillMode = WireFrame;
 	}
+};
 
+technique TransformColTech
+{
+	pass P0
+	{
+		vertexShader = compile vs_2_0 TransformColVS();
+		pixelShader = compile ps_2_0 TransformColPS();
+	}
 };
