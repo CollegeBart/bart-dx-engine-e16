@@ -9,7 +9,7 @@ CubeApp::CubeApp()
 		MessageBox(0, (char*)mErrors->GetBufferPointer(), 0, 0);
 	}
 
-	mhTech = mFX->GetTechniqueByName("TransformTech");
+	mhTech = mFX->GetTechniqueByName("TransformColTech");
 	mhWVP = mFX->GetParameterByName(0, "gWVP");
 
 	HR(mFX->SetTechnique(mhTech));
@@ -37,15 +37,6 @@ CubeApp::CubeApp()
 	vertices[5] = VertexPosCol(-0.5f, -0.5f, -0.5f, D3DCOLOR_XRGB(0, 255, 255));
 	vertices[6] = VertexPosCol(0.5f, 0.5f, -0.5f, D3DCOLOR_XRGB(255, 255, 255));
 	vertices[7] = VertexPosCol(0.5f, -0.5f, -0.5f, D3DCOLOR_XRGB(0, 0, 0));
-
-	//vertices[0] = VertexPos(-0.5f, 0.5f, 0.5f);
-	//vertices[1] = VertexPos(-0.5f, -0.5f, 0.5f);
-	//vertices[2] = VertexPos(0.5f, 0.5f, 0.5f);
-	//vertices[3] = VertexPos(0.5f, -0.5f, 0.5f);
-	//vertices[4] = VertexPos(-0.5f, 0.5f, -0.5f);
-	//vertices[5] = VertexPos(-0.5f, -0.5f, -0.5f);
-	//vertices[6] = VertexPos(0.5f, 0.5f, -0.5f);
-	//vertices[7] = VertexPos(0.5f, -0.5f, -0.5f);
 
 	HR(mVB->Unlock());
 

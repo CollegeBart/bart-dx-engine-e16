@@ -78,4 +78,12 @@ technique TransformColTech
 		vertexShader = compile vs_2_0 TransformColVS();
 		pixelShader = compile ps_2_0 TransformColPS();
 	}
+
+	pass P1
+	{
+		vertexShader = compile vs_2_0 TransformColVS();
+		pixelShader = compile ps_2_0 TransformPS();
+
+		FillMode = WireFrame;
+	}
 };

@@ -25,9 +25,9 @@ struct VertexPosCol
 		: pos(0.f, 0.f, 0.f), col(D3DCOLOR_ARGB(a, r, g, b)) {}
 	VertexPosCol(float x, float y, float z) 
 		: pos(x, y, z), col(0x00000000) {}
-	VertexPosCol(float x, float y, float z, D3DCOLOR& c)
+	VertexPosCol(float x, float y, float z, D3DCOLOR c)
 		: pos(x, y, z), col(c) {}
-	VertexPosCol(D3DXVECTOR3& v, D3DCOLOR& c) 
+	VertexPosCol(D3DXVECTOR3 v, D3DCOLOR c) 
 		: pos(v), col(c) {}
 
 	D3DXVECTOR3 pos;
