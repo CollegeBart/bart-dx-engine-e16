@@ -75,8 +75,9 @@ void ThreeDObject::Render()
 
 	gD3DDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
 
+	//Apply Texture
 	g_pEffect->SetTexture("texDiffuse", g_pTexture);
-
+	g_pEffect->SetBool("useDiffuseTexture", true);
 
 	UINT passes = 0;
 	if (g_pD3DMesh && SUCCEEDED(g_pEffect->Begin(&passes, 0)))

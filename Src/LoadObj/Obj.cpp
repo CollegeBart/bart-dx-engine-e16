@@ -73,7 +73,9 @@ void Obj::Render()
 
 	gD3DDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
 
+	//Apply texture
 	g_pEffect->SetTexture("texDiffuse", g_pTexture);
+	g_pEffect->SetBool("useDiffuseTexture", true);
 
 
 	UINT passes = 0;
