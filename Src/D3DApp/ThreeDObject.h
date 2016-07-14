@@ -12,10 +12,22 @@ class ThreeDObject :
 {
 public:
 	ThreeDObject(char* const _path, char* const _txPath,char* const _shader);
+	ThreeDObject(char* const _path, char* const _txPath, char* const _shader,float _speed);
 	~ThreeDObject();
 
 	void Update();
 	void Draw(ID3DXSprite* spriteBatch, const D3DXMATRIX& view, const D3DXMATRIX& proj);
+
+	D3DXVECTOR3 GetPosition()const { return objPosition; }
+	void SetPosition(float _x, float _y, float _z);
+	void SetPosition(D3DXVECTOR3 _position);
+
+	D3DXVECTOR3 GetRotation() const { return objRotation; }
+	void SetRotation(float _yaw, float _pitch, float _roll);
+	void SetRotation(D3DXVECTOR3 _rotation);
+
+	float GetScale() const { return g_fScale; }
+	void SetScale(float _scale);
 
 
 protected:
@@ -46,8 +58,12 @@ private:
 
 	float rotation;
 	D3DXVECTOR3 bbCenter;
-	D3DXVECTOR3 position;
+
+	D3DXVECTOR3 objPosition;
+	D3DXVECTOR3 objRotation;
+
 	char* const texturePath;
 	char* const shaderName;
+	float speed;
 };
 

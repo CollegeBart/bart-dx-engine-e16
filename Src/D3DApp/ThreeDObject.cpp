@@ -8,13 +8,28 @@ Component(true),
 rotation(0), g_pD3D(NULL), g_pTexture(NULL)
 , g_fScale(1), g_pEffect(NULL), g_pD3DMesh(NULL)
 , g_fFOV(45.5f), g_fAspect(1.333f)
-, position(D3DXVECTOR3(0, 0, 0)), texturePath(_txPath)
-, shaderName(_shader)
+, objPosition(D3DXVECTOR3(0, 0, 0)), texturePath(_txPath)
+, shaderName(_shader), objRotation(D3DXVECTOR3(0,0,0))
+, speed(MOVEMENT)
 {
 	//No error management
 	HR(InitD3D());
 	LoadObjectFile(_path);
 }
+ThreeDObject::ThreeDObject(char * const _path, char * const _txPath, char * const _shader, float _speed) :
+	Component(true),
+	rotation(0), g_pD3D(NULL), g_pTexture(NULL)
+	, g_fScale(1), g_pEffect(NULL), g_pD3DMesh(NULL)
+	, g_fFOV(45.5f), g_fAspect(1.333f)
+	, objPosition(D3DXVECTOR3(0, 0, 0)), texturePath(_txPath)
+	, shaderName(_shader), objRotation(D3DXVECTOR3(0, 0, 0))
+	, speed(_speed)
+{
+	//No error management
+	HR(InitD3D());
+	LoadObjectFile(_path);
+}
+
 ThreeDObject::~ThreeDObject()
 {
 	SAFE_RELEASE(g_pTexture);
@@ -52,6 +67,35 @@ void ThreeDObject::Update()
 void ThreeDObject::Draw(ID3DXSprite * spriteBatch, const D3DXMATRIX & view, const D3DXMATRIX & proj)
 {
 	Render();
+}
+
+void ThreeDObject::SetPosition(float _x, float _y, float _z)
+{
+	objPosition.x = _x;
+	objPosition.y = _y;
+	objPosition.z = _z;
+}
+
+void ThreeDObject::SetPosition(D3DXVECTOR3 _position)
+{
+	objPosition = _position;
+}
+
+void ThreeDObject::SetRotation(float _yaw, float _pitch, float _roll)
+{
+	objRotation.x = _yaw;
+	objRotation.y= _pitch;
+	objRotation.z = _roll;
+}
+
+void ThreeDObject::SetRotation(D3DXVECTOR3 _rotation)
+{
+	objRotation = _rotation;
+}
+
+void ThreeDObject::SetScale(float _scale)
+{
+	g_fScale = _scale;
 }
 
 void ThreeDObject::Render()
@@ -100,12 +144,13 @@ void ThreeDObject::Render()
 		sizeFactor *= g_fScale;
 
 		D3DXMATRIX mT, mR, mS;
-		D3DXMatrixTranslation(&mT, -bbCenter.x + position.x, -bbCenter.y + position.y, -bbCenter.z + position.z);
+		D3DXMatrixTranslation(&mT, -bbCenter.x + objPosition.x, -bbCenter.y + objPosition.y, -bbCenter.z + objPosition.z);
 		D3DXMatrixScaling(&mS, sizeFactor, sizeFactor, sizeFactor);
 
 		D3DXMATRIX mWorld = mT * mS;
 
-		D3DXMatrixRotationY(&mR, rotation);
+		//YawPitchRoll XYZ to check
+		D3DXMatrixRotationYawPitchRoll(&mR, objRotation.x, objRotation.y, objRotation.z);
 		mWorld *= mR;
 
 		D3DXMATRIX mWVP, mWI, mWIT, mView, mProj;
