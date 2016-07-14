@@ -5,7 +5,9 @@
 #include "D3DObjMesh.h"
 #include "Resource.h"
 #include <strsafe.h>
+#include "DirectInput.h"
 
+#define MOVEMENT 0.0001F
 class Obj :
 	public Component
 {
@@ -20,7 +22,6 @@ protected:
 	void Update();
 	void Draw(ID3DXSprite* spriteBatch, const D3DXMATRIX& view, const D3DXMATRIX& proj);
 
-protected:
 	void Render();
 	HRESULT DrawTransformedQuad(LPDIRECT3DDEVICE9 pDevice,
 		FLOAT x, FLOAT y, FLOAT z,
@@ -34,6 +35,8 @@ protected:
 
 
 private:
+	void NormalizeVec3(D3DXVECTOR3* _vector);
+	void ManageInput();
 	LPDIRECT3D9 g_pD3D ;
 	LPDIRECT3DTEXTURE9 g_pTexture ;
 	float						g_fScale ;
@@ -44,6 +47,9 @@ private:
 	FLOAT g_fAspect;
 
 	float rotation;
+	D3DXVECTOR3 velocity;
+	D3DXVECTOR3 position;
+	D3DXVECTOR3 bbCenter;
 
 };
 
