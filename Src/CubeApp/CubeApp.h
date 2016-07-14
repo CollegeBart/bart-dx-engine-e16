@@ -11,8 +11,8 @@ public:
 	~CubeApp();
 
 protected:
-	void OnResetDevice()	{}
-	void OnLostDevice()		{}
+	void OnResetDevice() {}
+	void OnLostDevice() {}
 	void Update();
 	void Draw(ID3DXSprite* spriteBatch, const D3DXMATRIX& view, const D3DXMATRIX& proj);
 
@@ -32,4 +32,3 @@ private:
 	D3DXMATRIX T;
 	D3DXMATRIX S;
 };
-

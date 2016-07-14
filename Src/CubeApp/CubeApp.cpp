@@ -29,7 +29,7 @@ CubeApp::CubeApp()
 	VertexPosCol* vertices;
 	HR(mVB->Lock(0, 0, (void**)&vertices, 0));
 
-	vertices[0] = VertexPosCol(-0.5f, 0.5f, 0.5f, D3DCOLOR_XRGB(255,0,0));
+	vertices[0] = VertexPosCol(-0.5f, 0.5f, 0.5f, D3DCOLOR_XRGB(255, 0, 0));
 	vertices[1] = VertexPosCol(-0.5f, -0.5f, 0.5f, D3DCOLOR_XRGB(0, 255, 0));
 	vertices[2] = VertexPosCol(0.5f, 0.5f, 0.5f, D3DCOLOR_XRGB(0, 0, 255));
 	vertices[3] = VertexPosCol(0.5f, -0.5f, 0.5f, D3DCOLOR_XRGB(255, 255, 0));
@@ -89,7 +89,7 @@ void CubeApp::Draw(ID3DXSprite* spriteBatch, const D3DXMATRIX& view, const D3DXM
 {
 	D3DXMatrixTranslation(&T, -2.0f, -2.0f, 0.0f);
 	D3DXMatrixRotationYawPitchRoll(&R, rotation, rotation, 0.0f);
-	D3DXMatrixScaling(&S, 2.0f, 2.0f, 2.0f); 
+	D3DXMatrixScaling(&S, 2.0f, 2.0f, 2.0f);
 	D3DXMATRIX WVP = S * R * T *view * proj;
 
 	HR(mFX->SetMatrix(mhWVP, &WVP));

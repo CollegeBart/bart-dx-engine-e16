@@ -11,11 +11,26 @@ void Engine::Update()
 	}
 }
 
+void Engine::PreDraw()
+{
+	for (int i = 0; i < Component::components.size(); i++)
+	{
+		Component::components[i]->PreDraw();
+	}
+}
+
 void Engine::Draw()
 {
 	for (int i = 0; i < Component::components.size(); i++)
 	{
 		Component::components[i]->Draw(mSpriteBatch, view, proj);
+	}
+}
+void Engine::PostDraw()
+{
+	for (int i = 0; i < Component::components.size(); i++)
+	{
+		Component::components[i]->PostDraw();
 	}
 }
 

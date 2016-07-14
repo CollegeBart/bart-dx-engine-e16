@@ -6,6 +6,7 @@ class Component
 	friend class Engine;
 public:
 	Component();
+	Component(bool _bbis);
 	~Component();
 
 	virtual void OnLostDevice();
@@ -13,7 +14,9 @@ public:
 
 	// Virtuel pure
 	virtual void Update() = 0;
+	void PreDraw();
 	virtual void Draw(ID3DXSprite* spriteBatch, const D3DXMATRIX& view, const D3DXMATRIX& proj) = 0;
+	void PostDraw();
 
 	D3DXVECTOR3 GetPosition() const
 	{
@@ -53,6 +56,8 @@ public:
 
 private:
 	static std::vector<Component*> components;
+
+	bool hadBbis;
 
 protected:
 	IDirect3DTexture9* mTexture;

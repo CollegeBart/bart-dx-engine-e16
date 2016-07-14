@@ -28,6 +28,8 @@ public:
 	
 	void Update();
 	void Draw();
+	void PreDraw();
+	void PostDraw();
 	int Run();
 
 private:

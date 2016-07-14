@@ -204,11 +204,7 @@ void D3DApp::Update()
 
 void D3DApp::PreDraw()
 {
-	HR(gD3DDevice->Clear(
-		0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,
-		D3DCOLOR_XRGB(119, 81, 44), 1.0f, 0));
-
-	HR(gD3DDevice->BeginScene());
+	
 }
 
 void D3DApp::Draw()
@@ -218,8 +214,6 @@ void D3DApp::Draw()
 
 void D3DApp::PostDraw()
 {
-	HR(gD3DDevice->EndScene());
-	HR(gD3DDevice->Present(0, 0, 0, 0));
 }
 
 void D3DApp::Init()
