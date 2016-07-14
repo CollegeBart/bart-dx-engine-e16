@@ -171,6 +171,7 @@
     <ClCompile Include="ObjLoader.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="TextObject.cpp" />
     <ClCompile Include="ThreeDObject.cpp" />
     <ClCompile Include="Vertex.cpp" />
@@ -188,6 +189,7 @@
     <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="TextObject.h" />
     <ClInclude Include="ThreeDObject.h" />
     <ClInclude Include="Vertex.h" />
