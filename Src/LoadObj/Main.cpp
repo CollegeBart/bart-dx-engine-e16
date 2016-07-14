@@ -6,8 +6,11 @@ int WINAPI WinMain(
 	PSTR cmd, int showCmd)
 {
 	gEngine = new Engine(hInstance, "Game: ");
-	Obj* obj = new Obj("Art/menu_arwing.obj"); 
-
+	/* 
+	ThreeDObject* obj = 
+		new ThreeDObject("Art/menu_arwing.obj", "Art/texture.png","D3DObjViewer.fx");
+	*/
+	Obj* obj = new Obj("Art/menu_arwing.obj");
 	D3DXVECTOR3 pos(0.f, 0.f, -10.f);
 	gEngine->SetCameraPostion(pos);
 

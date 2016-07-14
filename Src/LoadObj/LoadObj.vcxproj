@@ -128,15 +128,15 @@
     <ClCompile Include="Obj.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Obj.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\D3DApp\D3DApp.vcxproj">
       <Project>{b2355076-d77d-49b4-9264-95c54d92c403}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="D3DObjViewer.fx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Obj.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

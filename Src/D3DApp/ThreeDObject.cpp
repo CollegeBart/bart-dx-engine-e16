@@ -1,18 +1,21 @@
-#include "Obj.h"
+#include "ThreeDObject.h"
 
-Obj::Obj(char* const path) :
-	Component(true),
-	  rotation(0),g_pD3D(NULL),g_pTexture(NULL)
-	, g_fScale(1),g_pEffect(NULL),g_pD3DMesh(NULL)
-	, g_fFOV(45.5f), g_fAspect(1.333f), velocity(D3DXVECTOR3(0,0,0))
-	, position(D3DXVECTOR3(0,0,0))
+
+
+
+ThreeDObject::ThreeDObject(char * const _path, char * const _txPath, char * const _shader) :
+Component(true),
+rotation(0), g_pD3D(NULL), g_pTexture(NULL)
+, g_fScale(1), g_pEffect(NULL), g_pD3DMesh(NULL)
+, g_fFOV(45.5f), g_fAspect(1.333f)
+, position(D3DXVECTOR3(0, 0, 0)), texturePath(_txPath)
+, shaderName(_shader)
 {
 	//No error management
 	HR(InitD3D());
-	LoadObjectFile(path);
+	LoadObjectFile(_path);
 }
-
-Obj::~Obj()
+ThreeDObject::~ThreeDObject()
 {
 	SAFE_RELEASE(g_pTexture);
 	SAFE_DELETE(g_pD3DMesh);
@@ -20,12 +23,12 @@ Obj::~Obj()
 	SAFE_RELEASE(g_pD3D);
 }
 
-HRESULT Obj::OnCreateDevice()
+HRESULT ThreeDObject::OnCreateDevice()
 {
 	HRESULT hr;
 	// Load the effect from file.
 	LPD3DXBUFFER pErrors = NULL;
-	hr = D3DXCreateEffectFromFile(gD3DDevice, TEXT("D3DObjViewer.fx"), NULL, NULL,
+	hr = D3DXCreateEffectFromFile(gD3DDevice, TEXT(shaderName), NULL, NULL,
 		0, NULL, &g_pEffect, &pErrors);
 	if (FAILED(hr))
 	{
@@ -37,22 +40,21 @@ HRESULT Obj::OnCreateDevice()
 		return hr;
 	}
 
-	HR(D3DXCreateTextureFromFile(gD3DDevice, TEXT("Art/texture.png"), &g_pTexture));
+	HR(D3DXCreateTextureFromFile(gD3DDevice, TEXT(texturePath), &g_pTexture));
 
 	return S_OK;
 }
 
-void Obj::Update()
+void ThreeDObject::Update()
 {
-	ManageInput();
 }
 
-void Obj::Draw(ID3DXSprite * spriteBatch, const D3DXMATRIX & view, const D3DXMATRIX & proj)
+void ThreeDObject::Draw(ID3DXSprite * spriteBatch, const D3DXMATRIX & view, const D3DXMATRIX & proj)
 {
 	Render();
 }
 
-void Obj::Render()
+void ThreeDObject::Render()
 {
 	gD3DDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_ARGB(0, 45, 50, 170), 1.0f, 0);
 	if (FAILED(gD3DDevice->BeginScene()))
@@ -97,7 +99,7 @@ void Obj::Render()
 		sizeFactor *= g_fScale;
 
 		D3DXMATRIX mT, mR, mS;
-		D3DXMatrixTranslation(&mT, -bbCenter.x+position.x, -bbCenter.y+position.y, -bbCenter.z+position.z);
+		D3DXMatrixTranslation(&mT, -bbCenter.x + position.x, -bbCenter.y + position.y, -bbCenter.z + position.z);
 		D3DXMatrixScaling(&mS, sizeFactor, sizeFactor, sizeFactor);
 
 		D3DXMATRIX mWorld = mT * mS;
@@ -134,7 +136,7 @@ void Obj::Render()
 	gD3DDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
 }
 
-HRESULT Obj::DrawTransformedQuad(LPDIRECT3DDEVICE9 pDevice,
+HRESULT ThreeDObject::DrawTransformedQuad(LPDIRECT3DDEVICE9 pDevice,
 	FLOAT x, FLOAT y, FLOAT z,
 	FLOAT width, FLOAT height,
 	D3DXVECTOR2 uvTopLeft, D3DXVECTOR2 uvTopRight,
@@ -158,7 +160,7 @@ HRESULT Obj::DrawTransformedQuad(LPDIRECT3DDEVICE9 pDevice,
 }
 TCHAR g_sObjFileName[MAX_PATH];
 
-BOOL Obj::LoadObjectFile(LPCTSTR sFileName)
+BOOL ThreeDObject::LoadObjectFile(LPCTSTR sFileName)
 {
 	BOOL flipTriangles = false;
 	BOOL flipUVs = false;
@@ -196,7 +198,7 @@ BOOL Obj::LoadObjectFile(LPCTSTR sFileName)
 	return TRUE;
 }
 
-HRESULT Obj::InitD3D()
+HRESULT ThreeDObject::InitD3D()
 {
 	HRESULT hr;
 	g_pD3D = Direct3DCreate9(D3D_SDK_VERSION);
@@ -216,65 +218,4 @@ HRESULT Obj::InitD3D()
 	d3dpp.hDeviceWindow = gD3DApp->GetMainWindow();
 
 	return OnCreateDevice();
-}
-
-void Obj::NormalizeVec3(D3DXVECTOR3* _vector)
-{
-	if (_vector->x > MOVEMENT)
-		_vector->x = MOVEMENT;
-	if (_vector->x < -MOVEMENT)
-		_vector->x = -MOVEMENT;
-			   
-	if (_vector->y > MOVEMENT)
-		_vector->y = MOVEMENT;
-	if (_vector->y < -MOVEMENT)
-		_vector->y = -MOVEMENT;
-			   
-	if (_vector->z > MOVEMENT)
-		_vector->z = MOVEMENT;
-	if (_vector->z < -MOVEMENT)
-		_vector->z = -MOVEMENT;
-}
-
-void Obj::ManageInput()
-{
-	/*					ça bouge par rapport au devant du obj
-	WASD for x and y 
-	E and Q for z
-	Space for rotate
-	*/
-	if ((gDInput->keyDown(DIK_W)) || (gDInput->keyDown(DIK_S)))
-	{
-		if (gDInput->keyDown(DIK_S))
-		{
-			velocity.y -= MOVEMENT;
-		}
-		else if ((gDInput->keyDown(DIK_W)))
-		velocity.y += MOVEMENT;
-	}else velocity.y = 0;
-
-
-	if ((gDInput->keyDown(DIK_A)) || (gDInput->keyDown(DIK_D)))
-	{
-		if (gDInput->keyDown(DIK_D))
-			velocity.x += MOVEMENT;
-		else if (gDInput->keyDown(DIK_A))
-			velocity.x -= MOVEMENT;
-	}else velocity.x = 0;
-
-	if ((gDInput->keyDown(DIK_E)) ||(gDInput->keyDown(DIK_Q)))
-	{
-		if(gDInput->keyDown(DIK_E))
-			velocity.z += MOVEMENT;
-		if (gDInput->keyDown(DIK_Q))
-			velocity.z -= MOVEMENT;
-	}
-	else velocity.z = 0;
-
-
-	if (gDInput->keyDown(DIK_SPACE))
-		rotation += MOVEMENT;
-
-	NormalizeVec3(&velocity);
-	position += velocity;
 }
