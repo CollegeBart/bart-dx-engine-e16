@@ -27,7 +27,6 @@ struct PosColVS
 PosVS TransformVS(float3 posL: POSITION0)
 {
 	PosVS vsOut = (PosVS)0;
-
 	vsOut.pos = mul(float4(posL, 1.0f), gWVP);
 
 	return vsOut;
@@ -67,6 +66,7 @@ technique TransformTech
 		vertexShader = compile vs_2_0 TransformVS();
 		pixelShader = compile ps_2_0 TransformPS();
 
+		ZEnable = FALSE;
 		FillMode = WireFrame;
 	}
 };

@@ -13,10 +13,13 @@ void Engine::Update()
 
 void Engine::PreDraw()
 {
-	for (int i = 0; i < Component::components.size(); i++)
-	{
-		Component::components[i]->PreDraw();
-	}
+	HR(gD3DDevice->Clear(
+		0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,
+		D3DCOLOR_XRGB(119, 81, 44), 1.0f, 0));
+
+	HR(gD3DDevice->BeginScene());
+
+	
 }
 
 void Engine::Draw()
@@ -28,10 +31,10 @@ void Engine::Draw()
 }
 void Engine::PostDraw()
 {
-	for (int i = 0; i < Component::components.size(); i++)
-	{
-		Component::components[i]->PostDraw();
-	}
+	HR(gD3DDevice->EndScene());
+	HR(gD3DDevice->Present(0, 0, 0, 0));
+
+
 }
 
 int Engine::Run()

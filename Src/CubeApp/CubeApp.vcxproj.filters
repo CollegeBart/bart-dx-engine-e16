@@ -21,9 +21,15 @@
     <ClCompile Include="CubeApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TriGrid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CubeApp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TriGrid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

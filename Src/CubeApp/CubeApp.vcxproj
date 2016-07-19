@@ -161,6 +161,7 @@
   <ItemGroup>
     <ClCompile Include="CubeApp.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="TriGrid.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\D3DApp\D3DApp.vcxproj">
@@ -169,6 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CubeApp.h" />
+    <ClInclude Include="TriGrid.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Transform.fx" />

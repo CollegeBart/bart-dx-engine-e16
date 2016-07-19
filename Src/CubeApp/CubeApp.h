@@ -2,6 +2,7 @@
 
 #include "D3DApp.h"
 #include "Component.h"
+#include "TriGrid.h"
 
 class CubeApp :
 	public Component
@@ -17,6 +18,9 @@ protected:
 	void Draw(ID3DXSprite* spriteBatch, const D3DXMATRIX& view, const D3DXMATRIX& proj);
 
 private:
+
+	TriGrid* grid;
+
 	IDirect3DVertexBuffer9* mVB;
 	IDirect3DIndexBuffer9* mIB;
 
