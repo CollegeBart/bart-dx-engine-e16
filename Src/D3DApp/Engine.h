@@ -16,6 +16,11 @@ public:
 		
 	~Engine();
 
+	D3DXVECTOR3 GetCameraPos() const
+	{
+		return cameraPos;
+	}
+
 	void SetCameraPostion(const D3DXVECTOR3& pos)
 	{
 		cameraPos = pos;

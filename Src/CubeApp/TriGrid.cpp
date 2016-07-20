@@ -25,36 +25,36 @@ TriGrid::TriGrid(int w, int h, int dx)
 		MessageBox(0, (char*)mErrors->GetBufferPointer(), 0, 0);
 	}
 	
-	mhTech = mFX->GetTechniqueByName("TransformTech");
+	mhTech = mFX->GetTechniqueByName("WaveFogColTech");
 	mFX->SetTechnique(mhTech);
 
 	mhWVP = mFX->GetParameterByName(0, "gWVP");
-	//mhTime = mFx->GetParameterByName(0, "gTime");
-	//mhEyePos = mFx->GetParameterByName(0, "gEyePos");
-	//mhFogColor = mFx->GetParameterByName(0, "gFogColor");
+	mhTime = mFX->GetParameterByName(0, "gTime");
+	mhEyePos = mFX->GetParameterByName(0, "gEye");
+	mhFogColor = mFX->GetParameterByName(0, "gFogColor");
+	mhMinDist = mFX->GetParameterByName(0, "gMinDist");
+	mhMaxDist = mFX->GetParameterByName(0, "gMaxDist");
+
 }
 
 TriGrid::~TriGrid()
 {
-
+	ReleaseCOM(mFX);
+	ReleaseCOM(mErrors);
 }
 
 void TriGrid::Update()
 {
 	rotation += 1.0f * gTimer->GetDeltaTime();
-
-	//mFx->SetFloat(mhTime, gTimer->GetGameTime());
-	//mFx->SetValue(mhEyePos, gEngine->GetCamera()->GetCamPos(), sizeof(D3DXVECTOR3));
-	//mFx->SetVector(mhFogColor, &D3DXVECTOR4(0.5f, 0.5f, 0.5f, 1.0f));
 }
 
 void TriGrid::BuildVertexBuffer()
 {
-	HR(gD3DDevice->CreateVertexBuffer(GetNumVertices() * sizeof(VertexPos),
+	HR(gD3DDevice->CreateVertexBuffer(GetNumVertices() * sizeof(VertexPosCol),
 		D3DUSAGE_WRITEONLY, 0,
 		D3DPOOL_MANAGED, &mVB, 0));
 
-	VertexPos* v = 0;
+	VertexPosCol* v = 0;
 	HR(mVB->Lock(0, 0, (void**)&v, 0));
 
 	float w = (width - 1) * tileW;
@@ -73,7 +73,7 @@ void TriGrid::BuildVertexBuffer()
 			float y = 0;// (mIsFlat) ? 0 : GetHeight(x, z);
 	
 			v[k].pos = D3DXVECTOR3(x, y, z);
-			//v[i * (height + 1) + j].col = D3DCOLOR_XRGB(255, 255, 255);
+			v[k].col = D3DCOLOR_XRGB(0, 255, 0);
 			++k;
 		}
 	}
@@ -109,15 +109,23 @@ void TriGrid::BuildIndexBuffer()
 
 void TriGrid::Draw(ID3DXSprite * spriteBatch, const D3DXMATRIX & view, const D3DXMATRIX & proj)
 {
-	HR(gD3DDevice->SetStreamSource(0, mVB, 0, sizeof(VertexPos)));
+	HR(gD3DDevice->SetStreamSource(0, mVB, 0, sizeof(VertexPosCol)));
 	HR(gD3DDevice->SetIndices(mIB));
-	HR(gD3DDevice->SetVertexDeclaration(VertexPos::decl));
+	HR(gD3DDevice->SetVertexDeclaration(VertexPosCol::decl));
 
 	//D3DXMatrixTranslation(&T, -2.0f, -2.0f, 0.0f);
 	//D3DXMatrixRotationYawPitchRoll(&R, rotation, rotation, 0.0f);
 	//D3DXMatrixScaling(&S, 2.0f, 2.0f, 2.0f);
 	D3DXMATRIX WVP = view * proj;
+
+	D3DXVECTOR3 eye = gEngine->GetCameraPos();
+
 	HR(mFX->SetMatrix(mhWVP, &WVP));
+	HR(mFX->SetFloat(mhMinDist, 10.0f));
+	HR(mFX->SetFloat(mhMaxDist, 100.0f));
+	HR(mFX->SetFloat(mhTime, gTimer->GetGameTime()));
+	HR(mFX->SetValue(mhEyePos, eye, sizeof(D3DXVECTOR3)));
+	HR(mFX->SetVector(mhFogColor, &D3DXVECTOR4(0.5f, 0.5f, 0.5f, 1.0f)));
 	
 	UINT numPasses = 0;
 	mFX->Begin(&numPasses, 0);

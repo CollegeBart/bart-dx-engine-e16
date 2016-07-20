@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Component.h"
+#include "Engine.h"
 
 class TriGrid :
 	public Component
@@ -40,10 +41,10 @@ private:
 
 	D3DXHANDLE mhTech;
 	D3DXHANDLE mhWVP;
-
-	//D3DXHANDLE mhTime;
-	//D3DXHANDLE mhEyePos;
-	//D3DXHANDLE mhFogColor;
-
+	D3DXHANDLE mhTime;
+	D3DXHANDLE mhEyePos;
+	D3DXHANDLE mhFogColor;
+	D3DXHANDLE mhMinDist;
+	D3DXHANDLE mhMaxDist;
 };
 
