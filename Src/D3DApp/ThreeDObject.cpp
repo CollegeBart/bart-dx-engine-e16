@@ -1,8 +1,5 @@
 #include "ThreeDObject.h"
 
-
-
-
 ThreeDObject::ThreeDObject(char * const _path, char * const _txPath, char * const _shader) :
 Component(),
 rotation(0), g_pD3D(NULL), g_pTexture(NULL)
@@ -38,6 +35,120 @@ ThreeDObject::~ThreeDObject()
 	SAFE_RELEASE(g_pD3D);
 }
 
+void ThreeDObject::Draw(ID3DXSprite * spriteBatch, const D3DXMATRIX & view, const D3DXMATRIX & proj)
+ {
+	 //gD3DDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_ARGB(0, 45, 50, 170), 1.0f, 0);
+	 //if (FAILED(gD3DDevice->BeginScene()))
+	 //return;
+	 //------------------------------------------------------------
+	 // Draw the background gradient.
+	 //RECT rClient;
+	 //GetClientRect(gD3DApp->GetMainWindow(), &rClient);
+	 //D3DXCOLOR c1(0.2, 0.2, 0.2, 1);
+	 //D3DXCOLOR c2(0.45, 0.45, 0.45, 1);
+	 //gD3DDevice->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);			*Pour le background*
+	 //DrawTransformedQuad(gD3DDevice, -0.5f, -0.5f, 0.f,
+	 //(FLOAT)(rClient.right - rClient.left),
+	 //(FLOAT)(rClient.bottom - rClient.top),
+	 //D3DXVECTOR2(0, 0), D3DXVECTOR2(1, 0),
+	 //D3DXVECTOR2(0, 1), D3DXVECTOR2(1, 1),
+	 //, c1, c2, c2);
+	 //gD3DDevice->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
+
+	 //gD3DDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
+	 //---------------------------------------------------------------------
+	 //Apply Texture
+	 g_pEffect->SetTexture("texDiffuse", g_pTexture);
+	 g_pEffect->SetBool("useDiffuseTexture", true);
+
+	 UINT passes = 0;
+	 if (g_pD3DMesh && SUCCEEDED(g_pEffect->Begin(&passes, 0)))
+	 {
+		 g_pEffect->BeginPass(0);
+
+		 CD3DMesh& d3dMesh = *g_pD3DMesh;
+
+		 // Scale the object based on bounding box.
+		 D3DXVECTOR3 bbSize = d3dMesh.bbmax - d3dMesh.bbmin;
+		 D3DXVECTOR3 bbCenter = d3dMesh.bbmax - bbSize / 2;
+		 FLOAT sizeFactor = MAX(bbSize.z, MAX(bbSize.x, bbSize.y));
+		 if (sizeFactor > 0)
+			 sizeFactor = 5 / sizeFactor;
+		 else
+			 sizeFactor = 1;
+		 if (g_fScale < 0.05f)
+			 g_fScale = 0.05f;
+
+		 sizeFactor *= g_fScale;
+
+		 D3DXMATRIX mT, mR, mS;
+		 D3DXMatrixTranslation(&mT, -bbCenter.x + objPosition.x, -bbCenter.y + objPosition.y, -bbCenter.z + objPosition.z);
+		 D3DXMatrixScaling(&mS, sizeFactor, sizeFactor, sizeFactor);
+
+		 D3DXMATRIX mWorld = mT * mS;
+
+		 //YawPitchRoll XYZ to check
+		 D3DXMatrixRotationYawPitchRoll(&mR, objRotation.x, objRotation.y, objRotation.z);
+		 mWorld *= mR;
+
+		 D3DXMATRIX mWVP, mWI, mWIT, mView, mProj;
+		 D3DXVECTOR3 vEye(0, 0, -5);
+		 D3DXMatrixLookAtLH(&mView, &vEye, &(D3DXVECTOR3(0, 0, 0)), &(D3DXVECTOR3(0, 1, 0)));
+		 D3DXMatrixPerspectiveFovLH(&mProj, g_fFOV, g_fAspect, 0.5f, 100.f);
+		 mWVP = mWorld * mView * mProj;
+		 D3DXMatrixInverse(&mWI, NULL, &mWorld);
+		 D3DXMatrixTranspose(&mWIT, &mWI);
+
+		 g_pEffect->SetMatrix("mWorld", &mWorld);
+		 g_pEffect->SetMatrix("mWVP", &mWVP);
+		 g_pEffect->SetMatrix("mWIT", &mWIT);
+
+		 g_pEffect->SetFloatArray("vEye", &vEye.x, 3);
+		 g_pEffect->CommitChanges();
+
+		 gD3DDevice->SetStreamSource(0, d3dMesh.pVB, 0, d3dMesh.vertexSize);
+		 gD3DDevice->SetFVF(d3dMesh.FVF);
+
+		 gD3DDevice->DrawPrimitive(D3DPT_TRIANGLELIST, 0, d3dMesh.triCount);
+
+		 g_pEffect->EndPass();
+		 g_pEffect->End();
+	 }
+	 //gD3DDevice->EndScene();
+	 //gD3DDevice->Present(NULL, NULL, NULL, NULL);
+
+	 gD3DDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
+}
+
+void ThreeDObject::SetPosition(float _x, float _y, float _z)
+ {
+	objPosition.x = _x;
+	objPosition.y = _y;
+	objPosition.z = _z;
+	}
+
+void ThreeDObject::SetPosition(D3DXVECTOR3 _position)
+ {
+	objPosition = _position;
+	}
+
+void ThreeDObject::SetRotation(float _yaw, float _pitch, float _roll)
+ {
+	objRotation.x = _yaw;
+	objRotation.y = _pitch;
+	objRotation.z = _roll;
+	}
+
+void ThreeDObject::SetRotation(D3DXVECTOR3 _rotation)
+ {
+	objRotation = _rotation;
+	}
+
+void ThreeDObject::SetScale(float _scale)
+ {
+	g_fScale = _scale;
+	}
+
 HRESULT ThreeDObject::OnCreateDevice()
 {
 	HRESULT hr;
@@ -63,92 +174,6 @@ HRESULT ThreeDObject::OnCreateDevice()
 void ThreeDObject::Update()
 {
 }
-
-void ThreeDObject::Draw(ID3DXSprite * spriteBatch, const D3DXMATRIX & view, const D3DXMATRIX & proj, D3DXVECTOR3& objPosition, D3DXVECTOR3& objRotation, D3DXVECTOR3& objScale)
-{
-	//gD3DDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_ARGB(0, 45, 50, 170), 1.0f, 0);
-	//if (FAILED(gD3DDevice->BeginScene()))
-	//return;
-	//------------------------------------------------------------
-	// Draw the background gradient.
-	//RECT rClient;
-	//GetClientRect(gD3DApp->GetMainWindow(), &rClient);
-	//D3DXCOLOR c1(0.2, 0.2, 0.2, 1);
-	//D3DXCOLOR c2(0.45, 0.45, 0.45, 1);
-	//gD3DDevice->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);			*Pour le background*
-	//DrawTransformedQuad(gD3DDevice, -0.5f, -0.5f, 0.f,
-	//(FLOAT)(rClient.right - rClient.left),
-	//(FLOAT)(rClient.bottom - rClient.top),
-	//D3DXVECTOR2(0, 0), D3DXVECTOR2(1, 0),
-	//D3DXVECTOR2(0, 1), D3DXVECTOR2(1, 1),
-	//, c1, c2, c2);
-	//gD3DDevice->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
-
-	//gD3DDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
-	//---------------------------------------------------------------------
-	//Apply Texture
-	g_pEffect->SetTexture("texDiffuse", g_pTexture);
-	g_pEffect->SetBool("useDiffuseTexture", true);
-
-	UINT passes = 0;
-	if (g_pD3DMesh && SUCCEEDED(g_pEffect->Begin(&passes, 0)))
-	{
-		g_pEffect->BeginPass(0);
-
-		CD3DMesh& d3dMesh = *g_pD3DMesh;
-
-		// Scale the object based on bounding box.
-		D3DXVECTOR3 bbSize = d3dMesh.bbmax - d3dMesh.bbmin;
-		D3DXVECTOR3 bbCenter = d3dMesh.bbmax - bbSize / 2;
-		FLOAT sizeFactor = MAX(bbSize.z, MAX(bbSize.x, bbSize.y));
-		if (sizeFactor > 0)
-			sizeFactor = 5 / sizeFactor;
-		else
-			sizeFactor = 1;
-		if (g_fScale < 0.05f)
-			g_fScale = 0.05f;
-
-		sizeFactor *= g_fScale;
-
-		D3DXMATRIX mT, mR, mS;
-		D3DXMatrixTranslation(&mT, -bbCenter.x + objPosition.x, -bbCenter.y + objPosition.y, -bbCenter.z + objPosition.z);
-		D3DXMatrixScaling(&mS, sizeFactor, sizeFactor, sizeFactor);
-
-		D3DXMATRIX mWorld = mT * mS;
-
-		//YawPitchRoll XYZ to check
-		D3DXMatrixRotationYawPitchRoll(&mR, objRotation.x, objRotation.y, objRotation.z);
-		mWorld *= mR;
-
-		D3DXMATRIX mWVP, mWI, mWIT, mView, mProj;
-		D3DXVECTOR3 vEye(0, 0, -5);
-		D3DXMatrixLookAtLH(&mView, &vEye, &(D3DXVECTOR3(0, 0, 0)), &(D3DXVECTOR3(0, 1, 0)));
-		D3DXMatrixPerspectiveFovLH(&mProj, g_fFOV, g_fAspect, 0.5f, 100.f);
-		mWVP = mWorld * mView * mProj;
-		D3DXMatrixInverse(&mWI, NULL, &mWorld);
-		D3DXMatrixTranspose(&mWIT, &mWI);
-
-		g_pEffect->SetMatrix("mWorld", &mWorld);
-		g_pEffect->SetMatrix("mWVP", &mWVP);
-		g_pEffect->SetMatrix("mWIT", &mWIT);
-
-		g_pEffect->SetFloatArray("vEye", &vEye.x, 3);
-		g_pEffect->CommitChanges();
-
-		gD3DDevice->SetStreamSource(0, d3dMesh.pVB, 0, d3dMesh.vertexSize);
-		gD3DDevice->SetFVF(d3dMesh.FVF);
-
-		gD3DDevice->DrawPrimitive(D3DPT_TRIANGLELIST, 0, d3dMesh.triCount);
-
-		g_pEffect->EndPass();
-		g_pEffect->End();
-	}
-	//gD3DDevice->EndScene();
-	//gD3DDevice->Present(NULL, NULL, NULL, NULL);
-
-	gD3DDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
-}
-
 
 HRESULT ThreeDObject::DrawTransformedQuad(LPDIRECT3DDEVICE9 pDevice,
 	FLOAT x, FLOAT y, FLOAT z,

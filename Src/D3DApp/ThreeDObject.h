@@ -16,7 +16,19 @@ public:
 	~ThreeDObject();
 
 	void Update();
-	void Draw(ID3DXSprite* spriteBatch, const D3DXMATRIX& view, const D3DXMATRIX& proj , D3DXVECTOR3& objPosition, D3DXVECTOR3& objRotation, D3DXVECTOR3& objScale);
+
+	void Draw(ID3DXSprite* spriteBatch, const D3DXMATRIX& view, const D3DXMATRIX& proj);
+	
+	D3DXVECTOR3 GetPosition()const { return objPosition; }
+	void SetPosition(float _x, float _y, float _z);
+	void SetPosition(D3DXVECTOR3 _position);
+	
+	D3DXVECTOR3 GetRotation() const { return objRotation; }
+	void SetRotation(float _yaw, float _pitch, float _roll);
+	void SetRotation(D3DXVECTOR3 _rotation);
+	
+	float GetScale() const { return g_fScale; }
+	void SetScale(float _scale);
 
 
 protected:
@@ -33,6 +45,8 @@ protected:
 
 	BOOL LoadObjectFile(LPCTSTR sFileName);
 	HRESULT InitD3D();
+	D3DXVECTOR3 objPosition;
+	D3DXVECTOR3 objRotation;
 
 private:
 	LPDIRECT3D9 g_pD3D;
@@ -47,7 +61,6 @@ private:
 	float rotation;
 	D3DXVECTOR3 bbCenter;
 
-	D3DXVECTOR3 objRotation;
 
 	char* const texturePath;
 	char* const shaderName;
