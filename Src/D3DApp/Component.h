@@ -6,7 +6,6 @@ class Component
 	friend class Engine;
 public:
 	Component();
-	Component(bool _bbis);
 	~Component();
 
 	virtual void OnLostDevice();
@@ -54,7 +53,6 @@ public:
 
 private:
 	static std::vector<Component*> components;
-	bool hadBbis;
 
 protected:
 	IDirect3DTexture9* mTexture;
