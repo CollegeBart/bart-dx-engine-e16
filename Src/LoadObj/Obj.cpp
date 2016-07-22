@@ -1,7 +1,7 @@
 #include "Obj.h"
 
 Obj::Obj(char* const path) :
-	Component(true),
+	Component(),
 	  rotation(0),g_pD3D(NULL),g_pTexture(NULL)
 	, g_fScale(1),g_pEffect(NULL),g_pD3DMesh(NULL)
 	, g_fFOV(45.5f), g_fAspect(1.333f), velocity(D3DXVECTOR3(0,0,0))

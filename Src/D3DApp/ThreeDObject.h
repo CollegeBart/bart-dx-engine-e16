@@ -16,18 +16,7 @@ public:
 	~ThreeDObject();
 
 	void Update();
-	void Draw(ID3DXSprite* spriteBatch, const D3DXMATRIX& view, const D3DXMATRIX& proj);
-
-	D3DXVECTOR3 GetPosition()const { return objPosition; }
-	void SetPosition(float _x, float _y, float _z);
-	void SetPosition(D3DXVECTOR3 _position);
-
-	D3DXVECTOR3 GetRotation() const { return objRotation; }
-	void SetRotation(float _yaw, float _pitch, float _roll);
-	void SetRotation(D3DXVECTOR3 _rotation);
-
-	float GetScale() const { return g_fScale; }
-	void SetScale(float _scale);
+	void Draw(ID3DXSprite* spriteBatch, const D3DXMATRIX& view, const D3DXMATRIX& proj , D3DXVECTOR3& objPosition, D3DXVECTOR3& objRotation, D3DXVECTOR3& objScale);
 
 
 protected:
@@ -35,7 +24,6 @@ protected:
 	void OnLostDevice() {}
 	HRESULT OnCreateDevice();
 	
-	void Render();
 	HRESULT DrawTransformedQuad(LPDIRECT3DDEVICE9 pDevice,
 		FLOAT x, FLOAT y, FLOAT z,
 		FLOAT width, FLOAT height,
@@ -59,7 +47,6 @@ private:
 	float rotation;
 	D3DXVECTOR3 bbCenter;
 
-	D3DXVECTOR3 objPosition;
 	D3DXVECTOR3 objRotation;
 
 	char* const texturePath;

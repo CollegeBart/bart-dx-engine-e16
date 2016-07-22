@@ -8,7 +8,7 @@ Component(),
 rotation(0), g_pD3D(NULL), g_pTexture(NULL)
 , g_fScale(1), g_pEffect(NULL), g_pD3DMesh(NULL)
 , g_fFOV(45.5f), g_fAspect(1.333f)
-, objPosition(D3DXVECTOR3(0, 0, 0)), texturePath(_txPath)
+, texturePath(_txPath)
 , shaderName(_shader), objRotation(D3DXVECTOR3(0,0,0))
 , speed(MOVEMENT)
 {
@@ -21,7 +21,7 @@ ThreeDObject::ThreeDObject(char * const _path, char * const _txPath, char * cons
 	rotation(0), g_pD3D(NULL), g_pTexture(NULL)
 	, g_fScale(1), g_pEffect(NULL), g_pD3DMesh(NULL)
 	, g_fFOV(45.5f), g_fAspect(1.333f)
-	, objPosition(D3DXVECTOR3(0, 0, 0)), texturePath(_txPath)
+	, texturePath(_txPath)
 	, shaderName(_shader), objRotation(D3DXVECTOR3(0, 0, 0))
 	, speed(_speed)
 {
@@ -64,61 +64,28 @@ void ThreeDObject::Update()
 {
 }
 
-void ThreeDObject::Draw(ID3DXSprite * spriteBatch, const D3DXMATRIX & view, const D3DXMATRIX & proj)
-{
-	Render();
-}
-
-void ThreeDObject::SetPosition(float _x, float _y, float _z)
-{
-	objPosition.x = _x;
-	objPosition.y = _y;
-	objPosition.z = _z;
-}
-
-void ThreeDObject::SetPosition(D3DXVECTOR3 _position)
-{
-	objPosition = _position;
-}
-
-void ThreeDObject::SetRotation(float _yaw, float _pitch, float _roll)
-{
-	objRotation.x = _yaw;
-	objRotation.y= _pitch;
-	objRotation.z = _roll;
-}
-
-void ThreeDObject::SetRotation(D3DXVECTOR3 _rotation)
-{
-	objRotation = _rotation;
-}
-
-void ThreeDObject::SetScale(float _scale)
-{
-	g_fScale = _scale;
-}
-
-void ThreeDObject::Render()
+void ThreeDObject::Draw(ID3DXSprite * spriteBatch, const D3DXMATRIX & view, const D3DXMATRIX & proj, D3DXVECTOR3& objPosition, D3DXVECTOR3& objRotation, D3DXVECTOR3& objScale)
 {
 	//gD3DDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_ARGB(0, 45, 50, 170), 1.0f, 0);
 	//if (FAILED(gD3DDevice->BeginScene()))
-		//return;
+	//return;
+	//------------------------------------------------------------
 	// Draw the background gradient.
 	//RECT rClient;
 	//GetClientRect(gD3DApp->GetMainWindow(), &rClient);
 	//D3DXCOLOR c1(0.2, 0.2, 0.2, 1);
 	//D3DXCOLOR c2(0.45, 0.45, 0.45, 1);
-	//gD3DDevice->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
+	//gD3DDevice->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);			*Pour le background*
 	//DrawTransformedQuad(gD3DDevice, -0.5f, -0.5f, 0.f,
-		//(FLOAT)(rClient.right - rClient.left),
-		//(FLOAT)(rClient.bottom - rClient.top),
-		//D3DXVECTOR2(0, 0), D3DXVECTOR2(1, 0),
-		//D3DXVECTOR2(0, 1), D3DXVECTOR2(1, 1),
-		//, c1, c2, c2);
+	//(FLOAT)(rClient.right - rClient.left),
+	//(FLOAT)(rClient.bottom - rClient.top),
+	//D3DXVECTOR2(0, 0), D3DXVECTOR2(1, 0),
+	//D3DXVECTOR2(0, 1), D3DXVECTOR2(1, 1),
+	//, c1, c2, c2);
 	//gD3DDevice->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 
 	//gD3DDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
-
+	//---------------------------------------------------------------------
 	//Apply Texture
 	g_pEffect->SetTexture("texDiffuse", g_pTexture);
 	g_pEffect->SetBool("useDiffuseTexture", true);
@@ -181,6 +148,7 @@ void ThreeDObject::Render()
 
 	gD3DDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
 }
+
 
 HRESULT ThreeDObject::DrawTransformedQuad(LPDIRECT3DDEVICE9 pDevice,
 	FLOAT x, FLOAT y, FLOAT z,
