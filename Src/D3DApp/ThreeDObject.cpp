@@ -7,7 +7,7 @@ rotation(0), g_pD3D(NULL), g_pTexture(NULL)
 , g_fFOV(45.5f), g_fAspect(1.333f)
 , texturePath(_txPath)
 , shaderName(_shader), objRotation(D3DXVECTOR3(0,0,0))
-, speed(MOVEMENT)
+, speed(0.001f)
 {
 	//No error management
 	HR(InitD3D());
@@ -143,6 +143,11 @@ void ThreeDObject::SetRotation(D3DXVECTOR3 _rotation)
  {
 	objRotation = _rotation;
 	}
+
+void ThreeDObject::SetSpeed(float _speed)
+{
+	speed = _speed;
+}
 
 void ThreeDObject::SetScale(float _scale)
  {

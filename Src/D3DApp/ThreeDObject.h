@@ -6,7 +6,6 @@
 #include <strsafe.h>
 #include "DirectInput.h"
 
-#define MOVEMENT 0.0001F
 class ThreeDObject :
 	public Component
 {
@@ -27,6 +26,8 @@ public:
 	void SetRotation(float _yaw, float _pitch, float _roll);
 	void SetRotation(D3DXVECTOR3 _rotation);
 	
+	void SetSpeed(float _speed);
+
 	float GetScale() const { return g_fScale; }
 	void SetScale(float _scale);
 
