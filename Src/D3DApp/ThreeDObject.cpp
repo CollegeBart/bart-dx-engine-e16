@@ -2,7 +2,7 @@
 
 ThreeDObject::ThreeDObject(char * const _path, char * const _txPath, char * const _shader) :
 Component(),
-rotation(0), g_pD3D(NULL), g_pTexture(NULL)
+rotation(0), g_pD3D(NULL), g_pTexture(NULL) , body(nullptr)
 	, g_fScale(1), g_pEffect(NULL), g_pD3DMesh(NULL)
 	, g_fFOV(45.5f), g_fAspect(1.333f)
 	, texturePath(_txPath)
@@ -11,18 +11,20 @@ rotation(0), g_pD3D(NULL), g_pTexture(NULL)
 	//No error management
 	HR(InitD3D());
 	LoadObjectFile(_path);
+	transform.setIdentity();
 }
 ThreeDObject::ThreeDObject(char * const _path, char * const _txPath, char * const _shader, float _speed) :
 	Component(),
 	rotation(0), g_pD3D(NULL), g_pTexture(NULL)
 	, g_fScale(1), g_pEffect(NULL), g_pD3DMesh(NULL)
-	, g_fFOV(45.5f), g_fAspect(1.333f)
+	, g_fFOV(45.5f), g_fAspect(1.333f), body(nullptr)
 	, texturePath(_txPath)
 	, shaderName(_shader), objRotation(D3DXVECTOR3(0, 0, 0))
 {
 	//No error management
 	HR(InitD3D());
 	LoadObjectFile(_path);
+	transform.setIdentity();
 }
 
 ThreeDObject::~ThreeDObject()
@@ -171,6 +173,49 @@ HRESULT ThreeDObject::OnCreateDevice()
 
 void ThreeDObject::Update()
 {
+}
+
+void ThreeDObject::CreateBody(const btVector3 & pos, float mass, btCollisionShape * shape)
+{
+	btAssert((!shape || shape->getShapeType() != INVALID_SHAPE_PROXYTYPE));
+
+	//rigidbody is dynamic if and only if mass is non zero, otherwise static
+	bool isDynamic = (mass != 0.f);
+
+	btVector3 localInertia(0, 0, 0);
+	if (isDynamic)
+		shape->calculateLocalInertia(mass, localInertia);
+
+	transform.setOrigin(pos);
+
+	btDefaultMotionState* myMotionState = new btDefaultMotionState(transform);
+
+	btScalar btMass = mass;
+
+	btRigidBody::btRigidBodyConstructionInfo cInfo(mass, myMotionState, shape, localInertia);
+	body = new btRigidBody(cInfo);
+	WORLD->addRigidBody(body);
+}
+
+void ThreeDObject::CreateBody(const btVector3 & pos, float mass, btCollisionShape * shape, short group, short mask)
+{
+	btAssert((!shape || shape->getShapeType() != INVALID_SHAPE_PROXYTYPE));
+
+	//rigidbody is dynamic if and only if mass is non zero, otherwise static
+	bool isDynamic = (mass != 0.f);
+
+	btVector3 localInertia(0, 0, 0);
+	if (isDynamic)
+		shape->calculateLocalInertia(mass, localInertia);
+
+	transform.setOrigin(pos);
+
+	btDefaultMotionState* myMotionState = new btDefaultMotionState(transform);
+	btScalar btMass = mass;
+
+	btRigidBody::btRigidBodyConstructionInfo cInfo(mass, myMotionState, shape, localInertia);
+	body = new btRigidBody(cInfo);
+	WORLD->addRigidBody(body, group, mask);
 }
 
 HRESULT ThreeDObject::DrawTransformedQuad(LPDIRECT3DDEVICE9 pDevice,

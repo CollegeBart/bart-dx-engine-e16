@@ -2,6 +2,7 @@
 #include "D3DApp.h"
 #include "Component.h"
 #include "D3DObjMesh.h"
+#include "Engine.h"
 #include "Resource.h"
 #include <strsafe.h>
 #include "DirectInput.h"
@@ -15,7 +16,8 @@ public:
 	~ThreeDObject();
 
 	void Update();
-
+	virtual void CreateBody(const btVector3& pos, float mass, btCollisionShape* shape);
+	virtual void CreateBody(const btVector3& pos, float mass, btCollisionShape* shape, short group, short mask);
 	void Draw(ID3DXSprite* spriteBatch, const D3DXMATRIX& view, const D3DXMATRIX& proj);
 	
 	D3DXVECTOR3 GetPosition()const { return objPosition; }
@@ -26,7 +28,6 @@ public:
 	void SetRotation(float _yaw, float _pitch, float _roll);
 	void SetRotation(D3DXVECTOR3 _rotation);
 	
-	void SetSpeed(float _speed);
 
 	float GetScale() const { return g_fScale; }
 	void SetScale(float _scale);
@@ -62,7 +63,8 @@ private:
 	float rotation;
 	D3DXVECTOR3 bbCenter;
 
-
+	btTransform transform;
+	btRigidBody* body;
 	char* const texturePath;
 	char* const shaderName;
 	float speed;
