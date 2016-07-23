@@ -3,11 +3,10 @@
 ThreeDObject::ThreeDObject(char * const _path, char * const _txPath, char * const _shader) :
 Component(),
 rotation(0), g_pD3D(NULL), g_pTexture(NULL)
-, g_fScale(1), g_pEffect(NULL), g_pD3DMesh(NULL)
-, g_fFOV(45.5f), g_fAspect(1.333f)
-, texturePath(_txPath)
-, shaderName(_shader), objRotation(D3DXVECTOR3(0,0,0))
-, speed(0.001f)
+	, g_fScale(1), g_pEffect(NULL), g_pD3DMesh(NULL)
+	, g_fFOV(45.5f), g_fAspect(1.333f)
+	, texturePath(_txPath)
+	, shaderName(_shader), objRotation(D3DXVECTOR3(0,0,0))
 {
 	//No error management
 	HR(InitD3D());
@@ -20,7 +19,6 @@ ThreeDObject::ThreeDObject(char * const _path, char * const _txPath, char * cons
 	, g_fFOV(45.5f), g_fAspect(1.333f)
 	, texturePath(_txPath)
 	, shaderName(_shader), objRotation(D3DXVECTOR3(0, 0, 0))
-	, speed(_speed)
 {
 	//No error management
 	HR(InitD3D());
@@ -143,11 +141,6 @@ void ThreeDObject::SetRotation(D3DXVECTOR3 _rotation)
  {
 	objRotation = _rotation;
 	}
-
-void ThreeDObject::SetSpeed(float _speed)
-{
-	speed = _speed;
-}
 
 void ThreeDObject::SetScale(float _scale)
  {
