@@ -34,5 +34,8 @@ protected:
 
 private :
 	void MakeResultantMatrix();
+
+	// Constante pour la patch d'affichage.
+	const float ScaleFactor;
 };
 
