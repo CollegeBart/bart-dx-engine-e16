@@ -24,11 +24,24 @@ public:
 	void SetProperties(bool _italic) { fontDesc.Italic = _italic; }
 	void SetProperties(D3DCOLOR _color);
 	void SetPosition(D3DXVECTOR3 _position);
+
 	//Used to move the textobject on the screen.
 	void SetTranslationText(D3DXVECTOR3 _position);
 	D3DXVECTOR3 GetTranslationText() const { return position; }
 
+	int GetTextWidth(const char *szText, LPD3DXFONT pFont)
+	{
+		RECT rcRect = { 0,0,0,0 };
+		if (pFont)
+		{
+			// calculate required rect
+			pFont->DrawText(NULL, szText, strlen(szText), &rcRect, DT_CALCRECT,
+				D3DCOLOR_XRGB(0, 0, 0));
+		}
 
+		// return width
+		return rcRect.right - rcRect.left;
+	}
 
 	void Update();
 	void Draw(ID3DXSprite* spriteBatch, const D3DXMATRIX& view, const D3DXMATRIX& proj);

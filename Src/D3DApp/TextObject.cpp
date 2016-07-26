@@ -52,7 +52,7 @@ TextObject::TextObject(const char * _fontName, const char * _text, D3DCOLOR  _co
 	fontDesc.Height = 80;
 	fontDesc.Width = 40;
 	fontDesc.MipLevels = 0;
-	fontDesc.Italic = true;
+	fontDesc.Italic = false;
 	fontDesc.CharSet = DEFAULT_CHARSET;
 	fontDesc.OutputPrecision = OUT_DEFAULT_PRECIS;
 	fontDesc.Quality = DEFAULT_QUALITY;
@@ -72,19 +72,19 @@ TextObject::TextObject(const char * _fontName, const char * _text, D3DCOLOR _col
 	fontDesc.Height = 80;
 	fontDesc.Width = 40;
 	fontDesc.MipLevels = 0;
-	fontDesc.Italic = true;
+	fontDesc.Italic = false;
 	fontDesc.CharSet = DEFAULT_CHARSET;
 	fontDesc.OutputPrecision = OUT_DEFAULT_PRECIS;
 	fontDesc.Quality = DEFAULT_QUALITY;
 	fontDesc.PitchAndFamily = DEFAULT_PITCH | FF_DONTCARE;
 	strcpy_s(fontDesc.FaceName, _T(_fontName));
 
-	fontRect.top = _position.y - fontDesc.Height;
-	fontRect.bottom = _position.y;
-	fontRect.left = _position.x;
-	fontRect.right = _position.x + ((strlen(_text) + 1)*fontDesc.Width);
-
 	HR(D3DXCreateFontIndirect(gD3DDevice, &fontDesc, &mFont));
+
+	fontRect.top = _position.y;
+	fontRect.bottom = _position.y + fontDesc.Height;
+	fontRect.left = _position.x;
+	fontRect.right = _position.x + GetTextWidth(_text, mFont);
 }
 
 TextObject::TextObject(const char * _fontName, const char * _text, D3DCOLOR _color, D3DXVECTOR3 _position, int _height) :
@@ -204,7 +204,5 @@ void TextObject::Update()
 
 void TextObject::Draw(ID3DXSprite* spriteBatch, const D3DXMATRIX& view, const D3DXMATRIX& proj)
 {
-	HR(mFont->DrawText(0, _T(text), -1, &fontRect, DT_LEFT | DT_TOP,
-		color));
-
+	HR(mFont->DrawText(0, _T(text), -1, &fontRect, DT_LEFT | DT_TOP, color));
 }
