@@ -81,8 +81,15 @@ void ThreeDObject::Draw(ID3DXSprite * spriteBatch, const D3DXMATRIX & view, cons
 
 		 sizeFactor *= g_fScale;
 
-		 D3DXMATRIX mT, mR, mS;
-		 D3DXMatrixTranslation(&mT, -bbCenter.x + objPosition.x, -bbCenter.y + objPosition.y, -bbCenter.z + objPosition.z);
+		 GetResultantMatrix();
+		 if (body && body->getMotionState())
+		 {
+		 }
+		 else
+		 {
+			 D3DXMatrixTranslation(&mT, -bbCenter.x + objPosition.x, -bbCenter.y + objPosition.y, -bbCenter.z + objPosition.z);
+		 }
+		 
 		 D3DXMatrixScaling(&mS, sizeFactor, sizeFactor, sizeFactor);
 
 		 D3DXMATRIX mWorld = mT * mS;
@@ -120,17 +127,73 @@ void ThreeDObject::Draw(ID3DXSprite * spriteBatch, const D3DXMATRIX & view, cons
 	 gD3DDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
 }
 
-void ThreeDObject::SetPosition(float _x, float _y, float _z)
- {
-	objPosition.x = _x;
-	objPosition.y = _y;
-	objPosition.z = _z;
+void ThreeDObject::ApplyTransformation(float _x , float _y, float _z)
+{
+	if (body && body->getMotionState())
+	{
+		btVector3 btVelocity;
+		btVelocity.setX(_x);
+		btVelocity.setY(_y);
+		btVelocity.setZ(_z);
+		body->getWorldTransform().setOrigin(body->getWorldTransform().getOrigin() + btVelocity);
 	}
+	else
+	{
+		objPosition.x = _x;
+		objPosition.y = _y;
+		objPosition.z = _z;
+	}
+}
+
+void ThreeDObject::ApplyTransformation(D3DXVECTOR3 _position)
+{
+	if (body && body->getMotionState())
+	{
+		btVector3 btVelocity;
+		btVelocity.setX(_position.x);
+		btVelocity.setY(_position.y);
+		btVelocity.setZ(_position.z);
+		body->getWorldTransform().setOrigin(body->getWorldTransform().getOrigin() + btVelocity);
+	}
+	else
+	{
+		objPosition = _position;
+	}
+}
+
+void ThreeDObject::SetPosition(float _x, float _y, float _z)
+{
+	if (body && body->getMotionState())
+	{
+		btVector3 btVelocity;
+		btVelocity.setX(_x);
+		btVelocity.setY(_y);
+		btVelocity.setZ(_z);
+		body->getWorldTransform().setOrigin(btVelocity);
+	}
+	else
+	{
+		objPosition.x = _x;
+		objPosition.y = _y;
+		objPosition.z = _z;
+	}
+}
 
 void ThreeDObject::SetPosition(D3DXVECTOR3 _position)
- {
-	objPosition = _position;
+{
+	if (body && body->getMotionState())
+	{
+		btVector3 btVelocity;
+		btVelocity.setX(_position.x);
+		btVelocity.setY(_position.y);
+		btVelocity.setZ(_position.z);
+		body->getWorldTransform().setOrigin(btVelocity);
 	}
+	else
+	{
+		objPosition = _position;
+	}
+}
 
 void ThreeDObject::SetRotation(float _yaw, float _pitch, float _roll)
  {
@@ -300,4 +363,19 @@ HRESULT ThreeDObject::InitD3D()
 	d3dpp.hDeviceWindow = gD3DApp->GetMainWindow();
 
 	return OnCreateDevice();
+}
+
+void ThreeDObject::GetResultantMatrix()
+{
+	if (body && body->getMotionState())
+	{
+		btQuaternion btQuat = body->getWorldTransform().getRotation();
+		btVector3 btVec3 = body->getWorldTransform().getOrigin();
+
+		D3DXQUATERNION quat{ btQuat.x(), btQuat.y(), btQuat.z(), btQuat.w() };
+
+		D3DXMatrixRotationQuaternion(&mR, &quat);
+		D3DXMatrixTranslation(&mT, 0.0f, 0.0f, 0.0f);
+		D3DXMatrixTranslation(&mT, btVec3.x(), btVec3.y(), btVec3.z());
+	}
 }
