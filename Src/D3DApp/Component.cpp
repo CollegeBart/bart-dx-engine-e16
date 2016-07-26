@@ -21,6 +21,19 @@ Component::~Component()
 	ReleaseCOM(mTexture);
 }
 
+// Supprime de la liste l'objet passé en paramètre.
+void Component::DeleteComponent(Component * c)
+{
+	std::vector<Component*>::iterator iter = find(components.begin(), components.end(), c);
+
+	if (iter != components.end())
+	{
+		delete (*iter);
+		components.erase(iter);
+		Update();
+	}
+}
+
 void Component::OnLostDevice()
 {
 }

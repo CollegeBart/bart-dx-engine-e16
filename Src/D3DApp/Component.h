@@ -8,6 +8,8 @@ public:
 	Component();
 	~Component();
 
+	void DeleteComponent(Component* c);
+
 	virtual void OnLostDevice();
 	virtual void OnResetDevice();
 
