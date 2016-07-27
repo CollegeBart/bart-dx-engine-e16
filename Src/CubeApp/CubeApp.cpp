@@ -20,10 +20,9 @@ CubeApp::CubeApp()
 	// |/____|
 	// v3    v4
 	// [v1, v3, v2, v2, v3, v4]
-	
+
 	//HR(gD3DDevice->CreateVertexBuffer(8 * sizeof(VertexPos), 0, D3DFVF_XYZW, D3DPOOL_MANAGED, &mVB, 0));
 	HR(gD3DDevice->CreateVertexBuffer(8 * sizeof(VertexPosCol), 0, 0, D3DPOOL_MANAGED, &mVB, 0));
-	HR(gD3DDevice->CreateIndexBuffer(36 * sizeof(WORD), 0, D3DFMT_INDEX16, D3DPOOL_MANAGED, &mIB, 0));
 	
 	// Vertex Buffer
 	VertexPosCol* vertices;
@@ -40,6 +39,8 @@ CubeApp::CubeApp()
 	
 	HR(mVB->Unlock());
 	
+	HR(gD3DDevice->CreateIndexBuffer(36 * sizeof(WORD), 0, D3DFMT_INDEX16, D3DPOOL_MANAGED, &mIB, 0));
+
 	// Index Buffer
 	WORD* k;
 	HR(mIB->Lock(0, 0, (void**)&k, 0));
@@ -70,7 +71,7 @@ CubeApp::CubeApp()
 	
 	HR(mIB->Unlock());
 
-	grid = new TriGrid(50, 50, 2);
+	grid = new TriGrid(100, 100, 1);
 }
 
 CubeApp::~CubeApp()
@@ -87,8 +88,9 @@ void CubeApp::Update()
 void CubeApp::Draw(ID3DXSprite* spriteBatch, const D3DXMATRIX& view, const D3DXMATRIX& proj)
 {
 	HR(gD3DDevice->SetStreamSource(0, mVB, 0, sizeof(VertexPosCol)));
-	HR(gD3DDevice->SetIndices(mIB));
 	HR(gD3DDevice->SetVertexDeclaration(VertexPosCol::decl));
+
+	HR(gD3DDevice->SetIndices(mIB));
 	//HR(gD3DDevice->SetFVF(D3DFVF_XYZW));
 
 	D3DXMatrixTranslation(&T, -20.0f, 60.0f, -80.0f);

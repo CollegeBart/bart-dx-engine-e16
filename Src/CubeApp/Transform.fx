@@ -17,13 +17,13 @@ uniform extern float gMinDist;
 uniform extern float gMaxDist;
 
 // Amplitude
-static float a[3] = { 8.f, 0.2f, 1.2f };
+static float a[3] = { 2.f, 0.2f, 1.2f };
 
 // Angular Wave number
-static float k[3] = { 0.1f, 0.2f, 0.4f };
+static float k[3] = { 0.2f, 0.2f, 0.4f };
 
 // Angular Frequency
-static float w[3] = { 1.0f, 2.0f, 4.0f };
+static float w[3] = { 2.0f, 2.0f, 4.0f };
 
 // Phase shift
 static float p[3] = { 0.0f, 1.0f, 4.0f };

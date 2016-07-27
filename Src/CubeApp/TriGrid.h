@@ -24,10 +24,10 @@ protected:
 private:
 	TriGrid();
 
-	//float GetHeight(float x, float z)
-	//{
-	//	return (0.3f * (z*sinf(0.1f * x) + x * cosf(0.1f * z)));
-	//}
+	float GetHeight(float x, float z)
+	{
+		return (0.3f * (z*sinf(0.1f * x) + x * cosf(0.1f * z)));
+	}
 
 	float tileW;
 	int width, height;

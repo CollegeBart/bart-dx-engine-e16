@@ -25,7 +25,7 @@ TriGrid::TriGrid(int w, int h, int dx)
 		MessageBox(0, (char*)mErrors->GetBufferPointer(), 0, 0);
 	}
 	
-	mhTech = mFX->GetTechniqueByName("WaveFogColTech");
+	mhTech = mFX->GetTechniqueByName("TransformColTech");
 	mFX->SetTechnique(mhTech);
 
 	mhWVP = mFX->GetParameterByName(0, "gWVP");
@@ -70,7 +70,7 @@ void TriGrid::BuildVertexBuffer()
 		{
 			float x = j * tileW + halfWidth;
 			float z = -i * tileW + halfHeight;
-			float y = 0;// (mIsFlat) ? 0 : GetHeight(x, z);
+			float y = GetHeight(x, z);
 	
 			v[k].pos = D3DXVECTOR3(x, y, z);
 			v[k].col = D3DCOLOR_XRGB(0, 255, 0);
@@ -121,11 +121,11 @@ void TriGrid::Draw(ID3DXSprite * spriteBatch, const D3DXMATRIX & view, const D3D
 	D3DXVECTOR3 eye = gEngine->GetCameraPos();
 
 	HR(mFX->SetMatrix(mhWVP, &WVP));
-	HR(mFX->SetFloat(mhMinDist, 10.0f));
-	HR(mFX->SetFloat(mhMaxDist, 100.0f));
+	HR(mFX->SetFloat(mhMinDist, 75.0f));
+	HR(mFX->SetFloat(mhMaxDist, 160.0f));
 	HR(mFX->SetFloat(mhTime, gTimer->GetGameTime()));
 	HR(mFX->SetValue(mhEyePos, eye, sizeof(D3DXVECTOR3)));
-	HR(mFX->SetVector(mhFogColor, &D3DXVECTOR4(0.5f, 0.5f, 0.5f, 1.0f)));
+	HR(mFX->SetVector(mhFogColor, &D3DXVECTOR4(1.0f, 0.5f, 0.5f, 1.0f)));
 	
 	UINT numPasses = 0;
 	mFX->Begin(&numPasses, 0);
