@@ -196,21 +196,27 @@ void ThreeDObject::SetPosition(D3DXVECTOR3 _position)
 }
 
 void ThreeDObject::SetRotation(float _yaw, float _pitch, float _roll)
- {
+{
 	objRotation.x = _yaw;
 	objRotation.y = _pitch;
 	objRotation.z = _roll;
-	}
+}
 
 void ThreeDObject::SetRotation(D3DXVECTOR3 _rotation)
- {
+{
 	objRotation = _rotation;
-	}
+}
+
+btVector3 ThreeDObject::GetSize() const
+{
+	//Get the max size of X/Y/Z axis
+	return btVector3(g_pD3DMesh->bbmax.x, g_pD3DMesh->bbmax.y, g_pD3DMesh->bbmax.z);
+}
 
 void ThreeDObject::SetScale(float _scale)
- {
+{
 	g_fScale = _scale;
-	}
+}
 
 HRESULT ThreeDObject::OnCreateDevice()
 {

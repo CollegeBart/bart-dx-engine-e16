@@ -30,11 +30,12 @@ public:
 	D3DXVECTOR3 GetRotation() const { return objRotation; }
 	void SetRotation(float _yaw, float _pitch, float _roll);
 	void SetRotation(D3DXVECTOR3 _rotation);
+
+	btVector3 GetSize() const;
 	
 
 	float GetScale() const { return g_fScale; }
 	void SetScale(float _scale);
-
 
 protected:
 	void OnResetDevice() {}
