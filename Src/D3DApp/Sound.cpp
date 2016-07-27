@@ -26,13 +26,13 @@ Sound::~Sound()
 
 void Sound::Play()
 {
-	/*waveOutSetVolume(0, 0);
+	//waveOutSetVolume(0, 0);
 	if (looping) {
-		PlaySound((LPCSTR)path, NULL, SND_FILENAME | SND_LOOP);
+		PlaySound((LPCSTR)path, NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
 	}
 	else {
-		PlaySound((LPCSTR)path, NULL, SND_FILENAME);
-	}*/
+		PlaySound((LPCSTR)path, NULL, SND_FILENAME | SND_ASYNC);
+	}
 }
 
 void Sound::SetLooping(bool _loop)

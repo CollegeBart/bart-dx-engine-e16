@@ -15,7 +15,8 @@ void Engine::PreDraw()
 {
 	HR(gD3DDevice->Clear(
 		0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,
-		D3DCOLOR_XRGB(119, 81, 44), 1.0f, 0));
+		D3DCOLOR_XRGB(15, 15, 15), 1.0f, 0));
+		//D3DCOLOR_XRGB(119, 81, 44), 1.0f, 0));
 
 	HR(gD3DDevice->BeginScene());
 

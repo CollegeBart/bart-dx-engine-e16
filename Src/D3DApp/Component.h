@@ -6,8 +6,9 @@ class Component
 	friend class Engine;
 public:
 	Component();
-	Component(bool _bbis);
 	~Component();
+
+	void DeleteComponent(Component* c);
 
 	virtual void OnLostDevice();
 	virtual void OnResetDevice();
@@ -35,6 +36,25 @@ public:
 		SetPosition(pos.x, pos.y, pos.z);
 	}
 
+	D3DXVECTOR3 GetScale() const
+	{
+		return mScale;
+	}
+
+	void SetScale(float x, float y, float z)
+	{
+		mScale.x = x;
+		mScale.y = y;
+		mScale.z = z;
+
+		D3DXMatrixScaling(&S, x, -y, z);
+	}
+
+	void SetScale(const D3DXVECTOR3& scale)
+	{
+		SetScale(scale.x, scale.y, scale.z);
+	}
+
 	void SetCenter(float x, float y, float z)
 	{
 		mCenter.x = x;
@@ -54,12 +74,12 @@ public:
 
 private:
 	static std::vector<Component*> components;
-	bool hadBbis;
 
 protected:
 	IDirect3DTexture9* mTexture;
 	D3DXVECTOR3 mCenter;
 	D3DXVECTOR3 mPosition;
+	D3DXVECTOR3 mScale;
 
 	D3DXMATRIX R;
 	D3DXMATRIX T;

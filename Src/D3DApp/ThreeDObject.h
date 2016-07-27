@@ -2,11 +2,11 @@
 #include "D3DApp.h"
 #include "Component.h"
 #include "D3DObjMesh.h"
+#include "Engine.h"
 #include "Resource.h"
 #include <strsafe.h>
 #include "DirectInput.h"
 
-#define MOVEMENT 0.0001F
 class ThreeDObject :
 	public Component
 {
@@ -16,15 +16,21 @@ public:
 	~ThreeDObject();
 
 	void Update();
+	virtual void CreateBody(const btVector3& pos, float mass, btCollisionShape* shape);
+	virtual void CreateBody(const btVector3& pos, float mass, btCollisionShape* shape, short group, short mask);
 	void Draw(ID3DXSprite* spriteBatch, const D3DXMATRIX& view, const D3DXMATRIX& proj);
-
+	
 	D3DXVECTOR3 GetPosition()const { return objPosition; }
+	void ApplyTransformation(float _x, float _y, float _z);
+	void ApplyTransformation(D3DXVECTOR3 _position);
+
 	void SetPosition(float _x, float _y, float _z);
 	void SetPosition(D3DXVECTOR3 _position);
-
+	
 	D3DXVECTOR3 GetRotation() const { return objRotation; }
 	void SetRotation(float _yaw, float _pitch, float _roll);
 	void SetRotation(D3DXVECTOR3 _rotation);
+	
 
 	float GetScale() const { return g_fScale; }
 	void SetScale(float _scale);
@@ -35,7 +41,6 @@ protected:
 	void OnLostDevice() {}
 	HRESULT OnCreateDevice();
 	
-	void Render();
 	HRESULT DrawTransformedQuad(LPDIRECT3DDEVICE9 pDevice,
 		FLOAT x, FLOAT y, FLOAT z,
 		FLOAT width, FLOAT height,
@@ -45,8 +50,14 @@ protected:
 
 	BOOL LoadObjectFile(LPCTSTR sFileName);
 	HRESULT InitD3D();
+	D3DXVECTOR3 objPosition;
+	D3DXVECTOR3 objRotation;
+	btRigidBody* body;
+	D3DXMATRIX mT, mR, mS;
 
 private:
+	void GetResultantMatrix();
+
 	LPDIRECT3D9 g_pD3D;
 	LPDIRECT3DTEXTURE9 g_pTexture;
 	float						g_fScale;
@@ -58,10 +69,10 @@ private:
 
 	float rotation;
 	D3DXVECTOR3 bbCenter;
+	
 
-	D3DXVECTOR3 objPosition;
-	D3DXVECTOR3 objRotation;
-
+	btTransform transform;
+	
 	char* const texturePath;
 	char* const shaderName;
 	float speed;

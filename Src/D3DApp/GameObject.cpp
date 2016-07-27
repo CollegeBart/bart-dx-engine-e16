@@ -3,13 +3,17 @@
 GameObject::GameObject()
 	: Component()
 	, body(nullptr)
+	, ScaleFactor(0.005f)
 {
 	transform.setIdentity();
+
+	D3DXMatrixScaling(&S, ScaleFactor, -ScaleFactor, ScaleFactor);
 }
 
 GameObject::GameObject(const char * path)
 	: Component()
 	, body(nullptr)
+	, ScaleFactor(0.005f)
 {
 	//HR(D3DXCreateTextureFromFile(gD3DDevice, path, &mTexture));
 	HR(D3DXCreateTextureFromFileEx(gD3DDevice, path, 0, 0, 1, 0,
@@ -17,11 +21,14 @@ GameObject::GameObject(const char * path)
 		D3DCOLOR_XRGB(255, 255, 255), &info, NULL, &mTexture));
 
 	transform.setIdentity();
+
+	D3DXMatrixScaling(&S, ScaleFactor, -ScaleFactor, ScaleFactor);
 }
 
 GameObject::GameObject(const char * path, float startX, float startY)
 	: Component()
 	, body(nullptr)
+	, ScaleFactor(0.005f)
 {
 	//HR(D3DXCreateTextureFromFile(gD3DDevice, path, &mTexture));
 	HR(D3DXCreateTextureFromFileEx(gD3DDevice, path, 0, 0, 1, 0,
@@ -31,6 +38,8 @@ GameObject::GameObject(const char * path, float startX, float startY)
 	transform.setIdentity();
 
 	SetPosition(startX, startY, 0.f);
+
+	D3DXMatrixScaling(&S, ScaleFactor, -ScaleFactor, ScaleFactor);
 }
 
 GameObject::~GameObject()
