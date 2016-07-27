@@ -1,5 +1,9 @@
 #pragma once
 #include <xaudio2.h>
+#include <iostream>
+#include <windows.h>
+#include <mmsystem.h>
+#pragma comment(lib,"Winmm.lib")
 class Sound
 {
 public:
