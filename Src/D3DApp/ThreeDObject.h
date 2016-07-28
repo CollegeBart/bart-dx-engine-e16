@@ -30,10 +30,11 @@ public:
 	void SetRotation(D3DXVECTOR3 _rotation);
 
 	btVector3 GetSize() const;
-	
-	bool GetColliding() const { return isColliding; }
 	float GetScale() const { return g_fScale; }
 	void SetScale(float _scale);
+	
+	void SetTag(char* tag) { this->tag = tag; }
+	char* GetTag()const { return tag; }
 
 	bool GetBody() const { return hadBody; }
 
@@ -49,20 +50,23 @@ protected:
 		D3DXVECTOR2 uvBottomLeft, D3DXVECTOR2 uvBottomRight,
 		D3DCOLOR c1, D3DCOLOR c2, D3DCOLOR c3, D3DCOLOR c4);
 
+	ThreeDObject* OnCollisionEnter();
+	virtual void CheckCollision() = 0;
+
 	BOOL LoadObjectFile(LPCTSTR sFileName);
 	HRESULT InitD3D();
 	D3DXVECTOR3 objPosition;
 	D3DXVECTOR3 objRotation;
 	D3DXMATRIX mT, mR, mS;
+	char* tag;
 
 private:
 	static std::vector<ThreeDObject*> colliderObjects;
 	static std::vector<ThreeDObject*> objectToDelete;
-	void CheckCollision();
 	void DeleteObject();
 	LPDIRECT3D9 g_pD3D;
 	LPDIRECT3DTEXTURE9 g_pTexture;
-	float						g_fScale;
+	float g_fScale;
 	// A simple effect file used for rendering the obj mesh.
 	LPD3DXEFFECT g_pEffect;
 	CD3DMesh* g_pD3DMesh; // The loaded object. Can be NULL.
@@ -75,7 +79,6 @@ private:
 
 	
 	bool hadBody;
-	bool isColliding;
 	char* const texturePath;
 	char* const shaderName;
 	float speed;

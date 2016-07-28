@@ -7,8 +7,9 @@ Component(),
 rotation(0), g_pD3D(NULL), g_pTexture(NULL) , hadBody(false)
 	, g_fScale(1), g_pEffect(NULL), g_pD3DMesh(NULL)
 	, g_fFOV(45.5f), g_fAspect(1.333f)
-	, texturePath(_txPath), isColliding(false)
+	, texturePath(_txPath)
 	, shaderName(_shader), objRotation(D3DXVECTOR3(0,0,0))
+	, tag("none")
 {
 	//No error management
 	HR(InitD3D());
@@ -20,8 +21,9 @@ ThreeDObject::ThreeDObject(char * const _path, char * const _txPath, char * cons
 	rotation(0), g_pD3D(NULL), g_pTexture(NULL)
 	, g_fScale(1), g_pEffect(NULL), g_pD3DMesh(NULL)
 	, g_fFOV(45.5f), g_fAspect(1.333f), hadBody(false)
-	, texturePath(_txPath), isColliding(false)
+	, texturePath(_txPath)
 	, shaderName(_shader), objRotation(D3DXVECTOR3(0, 0, 0))
+	, tag("none")
 {
 	//No error management
 	HR(InitD3D());
@@ -184,7 +186,7 @@ void ThreeDObject::Update()
 {
 	if (objectToDelete.size() > 0)
 		DeleteObject();
-	CheckCollision();
+	OnCollisionEnter();
 }
 
 void ThreeDObject::CreateBody()
@@ -276,42 +278,47 @@ HRESULT ThreeDObject::InitD3D()
 	return OnCreateDevice();
 }
 
-void ThreeDObject::CheckCollision()
+ThreeDObject* ThreeDObject::OnCollisionEnter()
 {
 	//Broken
 	//Get the bouding box and position together
-	D3DXVECTOR3 myMax = D3DXVECTOR3(g_pD3DMesh->bbmax.x + mPosition.x, g_pD3DMesh->bbmax.y + mPosition.y, g_pD3DMesh->bbmax.z + mPosition.z);
-	D3DXVECTOR3 myMin = D3DXVECTOR3(mPosition.x - g_pD3DMesh->bbmin.x, mPosition.y - g_pD3DMesh->bbmin.y, mPosition.z - g_pD3DMesh->bbmin.z);
+	D3DXVECTOR3 myMax = D3DXVECTOR3(g_pD3DMesh->bbmax.x + objPosition.x,
+									g_pD3DMesh->bbmax.y + objPosition.y,
+									g_pD3DMesh->bbmax.z + objPosition.z);
+
+	D3DXVECTOR3 myMin = D3DXVECTOR3(g_pD3DMesh->bbmin.x + objPosition.x,
+									g_pD3DMesh->bbmin.y + objPosition.y,
+									g_pD3DMesh->bbmin.z + objPosition.z);
 
 	for (int I = 0; I < colliderObjects.size(); I++)
 	{
-		if (colliderObjects.at(I)->GetBody())
+		
+		if (colliderObjects.at(I)->GetBody() && colliderObjects.at(I) != this)
 		{
 			//Get bounding box and position of all threeDObject with a body on
-			D3DXVECTOR3 hisMax =  D3DXVECTOR3(colliderObjects.at(I)->g_pD3DMesh->bbmax.x + colliderObjects.at(I)->GetPosition().x, 
-											colliderObjects.at(I)->g_pD3DMesh->bbmax.y + colliderObjects.at(I)->GetPosition().y,
-											colliderObjects.at(I)->g_pD3DMesh->bbmax.z + colliderObjects.at(I)->GetPosition().z);
-			D3DXVECTOR3 hisMin = D3DXVECTOR3(colliderObjects.at(I)->colliderObjects.at(I)->GetPosition().x - g_pD3DMesh->bbmin.x,
-				colliderObjects.at(I)->colliderObjects.at(I)->GetPosition().y - g_pD3DMesh->bbmin.y,
-				colliderObjects.at(I)->colliderObjects.at(I)->GetPosition().z - g_pD3DMesh->bbmin.z);
+			D3DXVECTOR3 hisMax = D3DXVECTOR3(	colliderObjects.at(I)->g_pD3DMesh->bbmax.x + colliderObjects.at(I)->GetPosition().x,
+												colliderObjects.at(I)->g_pD3DMesh->bbmax.y + colliderObjects.at(I)->GetPosition().y,
+												colliderObjects.at(I)->g_pD3DMesh->bbmax.z + colliderObjects.at(I)->GetPosition().z);
 
-			if ((myMax.x < hisMax.x) && (myMin.x > hisMin.x))
+			D3DXVECTOR3 hisMin = D3DXVECTOR3(	colliderObjects.at(I)->g_pD3DMesh->bbmin.x + colliderObjects.at(I)->GetPosition().x,
+												colliderObjects.at(I)->g_pD3DMesh->bbmin.y + colliderObjects.at(I)->GetPosition().y,
+												colliderObjects.at(I)->g_pD3DMesh->bbmin.z + colliderObjects.at(I)->GetPosition().z);
+
+
+			if ((myMax.x >= hisMax.x) && (myMin.x <= hisMax.x) || (myMax.x >= hisMin.x) && (myMin.x <= hisMin.x))
 			{
-				if ((myMax.y < hisMax.y) && (myMin.y > hisMin.y))
+				if ((myMax.y >= hisMax.y) && (myMin.y <= hisMax.y) || (myMax.y >= hisMin.y) && (myMin.y <= hisMin.y))
 				{
-					if (((myMax.z < hisMax.z) && (myMin.z > hisMin.z)))
+					if ((myMax.z >= hisMax.z) && (myMin.z <= hisMax.z) || (myMax.z >= hisMin.z) && (myMin.z <= hisMin.z))
 					{
-							isColliding = true;
-							break;
+						return colliderObjects.at(I);
 					}
-					else isColliding = false;
 				}
-				else isColliding = false;
 			}
-			else isColliding = false;
 		}
-			
 	}
+
+	return nullptr;
 }
 
 void ThreeDObject::DeleteObject()
