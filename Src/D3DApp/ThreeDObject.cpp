@@ -1,34 +1,37 @@
 #include "ThreeDObject.h"
+std::vector<ThreeDObject*> ThreeDObject::colliderObjects;
+std::vector<ThreeDObject*> ThreeDObject::objectToDelete;
 
 ThreeDObject::ThreeDObject(char * const _path, char * const _txPath, char * const _shader) :
 Component(),
-rotation(0), g_pD3D(NULL), g_pTexture(NULL) , body(nullptr)
+rotation(0), g_pD3D(NULL), g_pTexture(NULL) , hadBody(false)
 	, g_fScale(1), g_pEffect(NULL), g_pD3DMesh(NULL)
 	, g_fFOV(45.5f), g_fAspect(1.333f)
-	, texturePath(_txPath)
+	, texturePath(_txPath), isColliding(false)
 	, shaderName(_shader), objRotation(D3DXVECTOR3(0,0,0))
 {
 	//No error management
 	HR(InitD3D());
 	LoadObjectFile(_path);
-	transform.setIdentity();
+	colliderObjects.push_back(this);
 }
 ThreeDObject::ThreeDObject(char * const _path, char * const _txPath, char * const _shader, float _speed) :
 	Component(),
 	rotation(0), g_pD3D(NULL), g_pTexture(NULL)
 	, g_fScale(1), g_pEffect(NULL), g_pD3DMesh(NULL)
-	, g_fFOV(45.5f), g_fAspect(1.333f), body(nullptr)
-	, texturePath(_txPath)
+	, g_fFOV(45.5f), g_fAspect(1.333f), hadBody(false)
+	, texturePath(_txPath), isColliding(false)
 	, shaderName(_shader), objRotation(D3DXVECTOR3(0, 0, 0))
 {
 	//No error management
 	HR(InitD3D());
 	LoadObjectFile(_path);
-	transform.setIdentity();
+	colliderObjects.push_back(this);
 }
 
 ThreeDObject::~ThreeDObject()
 {
+	objectToDelete.push_back(this);
 	SAFE_RELEASE(g_pTexture);
 	SAFE_DELETE(g_pD3DMesh);
 	SAFE_RELEASE(g_pEffect);
@@ -81,14 +84,7 @@ void ThreeDObject::Draw(ID3DXSprite * spriteBatch, const D3DXMATRIX & view, cons
 
 		 sizeFactor *= g_fScale;
 
-		 GetResultantMatrix();
-		 if (body && body->getMotionState())
-		 {
-		 }
-		 else
-		 {
-			 D3DXMatrixTranslation(&mT, -bbCenter.x + objPosition.x, -bbCenter.y + objPosition.y, -bbCenter.z + objPosition.z);
-		 }
+		 D3DXMatrixTranslation(&mT, -bbCenter.x + objPosition.x, -bbCenter.y + objPosition.y, -bbCenter.z + objPosition.z);
 		 
 		 D3DXMatrixScaling(&mS, sizeFactor, sizeFactor, sizeFactor);
 
@@ -127,84 +123,28 @@ void ThreeDObject::Draw(ID3DXSprite * spriteBatch, const D3DXMATRIX & view, cons
 	 gD3DDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
 }
 
-void ThreeDObject::ApplyTransformation(float _x , float _y, float _z)
+void ThreeDObject::ApplyPosition(float _x, float _y, float _z)
 {
-	if (body && body->getMotionState())
-	{
-		btVector3 btVelocity;
-		btVelocity.setX(_x);
-		btVelocity.setY(_y);
-		btVelocity.setZ(_z);
-		body->getWorldTransform().setOrigin(body->getWorldTransform().getOrigin() + btVelocity);
-	}
-	else
-	{
 		objPosition.x = _x;
 		objPosition.y = _y;
 		objPosition.z = _z;
-	}
 }
 
-void ThreeDObject::ApplyTransformation(D3DXVECTOR3 _position)
+void ThreeDObject::ApplyPosition(D3DXVECTOR3 _position)
 {
-	if (body && body->getMotionState())
-	{
-		btVector3 btVelocity;
-		btVelocity.setX(_position.x);
-		btVelocity.setY(_position.y);
-		btVelocity.setZ(_position.z);
-		body->getWorldTransform().setOrigin(body->getWorldTransform().getOrigin() + btVelocity);
-	}
-	else
-	{
 		objPosition = _position;
-	}
-}
-
-void ThreeDObject::SetPosition(float _x, float _y, float _z)
-{
-	if (body && body->getMotionState())
-	{
-		btVector3 btVelocity;
-		btVelocity.setX(_x);
-		btVelocity.setY(_y);
-		btVelocity.setZ(_z);
-		body->getWorldTransform().setOrigin(btVelocity);
-	}
-	else
-	{
-		objPosition.x = _x;
-		objPosition.y = _y;
-		objPosition.z = _z;
-	}
-}
-
-void ThreeDObject::SetPosition(D3DXVECTOR3 _position)
-{
-	if (body && body->getMotionState())
-	{
-		btVector3 btVelocity;
-		btVelocity.setX(_position.x);
-		btVelocity.setY(_position.y);
-		btVelocity.setZ(_position.z);
-		body->getWorldTransform().setOrigin(btVelocity);
-	}
-	else
-	{
-		objPosition = _position;
-	}
 }
 
 void ThreeDObject::SetRotation(float _yaw, float _pitch, float _roll)
 {
-	objRotation.x = _yaw;
-	objRotation.y = _pitch;
-	objRotation.z = _roll;
+		objRotation.x = _yaw;
+		objRotation.y = _pitch;
+		objRotation.z = _roll;
 }
 
 void ThreeDObject::SetRotation(D3DXVECTOR3 _rotation)
 {
-	objRotation = _rotation;
+		objRotation = _rotation;
 }
 
 btVector3 ThreeDObject::GetSize() const
@@ -215,7 +155,7 @@ btVector3 ThreeDObject::GetSize() const
 
 void ThreeDObject::SetScale(float _scale)
 {
-	g_fScale = _scale;
+		g_fScale = _scale;
 }
 
 HRESULT ThreeDObject::OnCreateDevice()
@@ -242,49 +182,14 @@ HRESULT ThreeDObject::OnCreateDevice()
 
 void ThreeDObject::Update()
 {
+	if (objectToDelete.size() > 0)
+		DeleteObject();
+	CheckCollision();
 }
 
-void ThreeDObject::CreateBody(const btVector3 & pos, float mass, btCollisionShape * shape)
+void ThreeDObject::CreateBody()
 {
-	btAssert((!shape || shape->getShapeType() != INVALID_SHAPE_PROXYTYPE));
-
-	//rigidbody is dynamic if and only if mass is non zero, otherwise static
-	bool isDynamic = (mass != 0.f);
-
-	btVector3 localInertia(0, 0, 0);
-	if (isDynamic)
-		shape->calculateLocalInertia(mass, localInertia);
-
-	transform.setOrigin(pos);
-
-	btDefaultMotionState* myMotionState = new btDefaultMotionState(transform);
-
-	btScalar btMass = mass;
-
-	btRigidBody::btRigidBodyConstructionInfo cInfo(mass, myMotionState, shape, localInertia);
-	body = new btRigidBody(cInfo);
-	WORLD->addRigidBody(body);
-}
-
-void ThreeDObject::CreateBody(const btVector3 & pos, float mass, btCollisionShape * shape, short group, short mask)
-{
-	btAssert((!shape || shape->getShapeType() != INVALID_SHAPE_PROXYTYPE));
-
-	//rigidbody is dynamic if and only if mass is non zero, otherwise static
-	bool isDynamic = (mass != 0.f);
-
-	btVector3 localInertia(0, 0, 0);
-	if (isDynamic)
-		shape->calculateLocalInertia(mass, localInertia);
-
-	transform.setOrigin(pos);
-
-	btDefaultMotionState* myMotionState = new btDefaultMotionState(transform);
-	btScalar btMass = mass;
-
-	btRigidBody::btRigidBodyConstructionInfo cInfo(mass, myMotionState, shape, localInertia);
-	body = new btRigidBody(cInfo);
-	WORLD->addRigidBody(body, group, mask);
+	hadBody = true;
 }
 
 HRESULT ThreeDObject::DrawTransformedQuad(LPDIRECT3DDEVICE9 pDevice,
@@ -371,17 +276,52 @@ HRESULT ThreeDObject::InitD3D()
 	return OnCreateDevice();
 }
 
-void ThreeDObject::GetResultantMatrix()
+void ThreeDObject::CheckCollision()
 {
-	if (body && body->getMotionState())
+	//Broken
+	//Get the bouding box and position together
+	D3DXVECTOR3 myMax = D3DXVECTOR3(g_pD3DMesh->bbmax.x + mPosition.x, g_pD3DMesh->bbmax.y + mPosition.y, g_pD3DMesh->bbmax.z + mPosition.z);
+	D3DXVECTOR3 myMin = D3DXVECTOR3(mPosition.x - g_pD3DMesh->bbmin.x, mPosition.y - g_pD3DMesh->bbmin.y, mPosition.z - g_pD3DMesh->bbmin.z);
+
+	for (int I = 0; I < colliderObjects.size(); I++)
 	{
-		btQuaternion btQuat = body->getWorldTransform().getRotation();
-		btVector3 btVec3 = body->getWorldTransform().getOrigin();
+		if (colliderObjects.at(I)->GetBody())
+		{
+			//Get bounding box and position of all threeDObject with a body on
+			D3DXVECTOR3 hisMax =  D3DXVECTOR3(colliderObjects.at(I)->g_pD3DMesh->bbmax.x + colliderObjects.at(I)->GetPosition().x, 
+											colliderObjects.at(I)->g_pD3DMesh->bbmax.y + colliderObjects.at(I)->GetPosition().y,
+											colliderObjects.at(I)->g_pD3DMesh->bbmax.z + colliderObjects.at(I)->GetPosition().z);
+			D3DXVECTOR3 hisMin = D3DXVECTOR3(colliderObjects.at(I)->colliderObjects.at(I)->GetPosition().x - g_pD3DMesh->bbmin.x,
+				colliderObjects.at(I)->colliderObjects.at(I)->GetPosition().y - g_pD3DMesh->bbmin.y,
+				colliderObjects.at(I)->colliderObjects.at(I)->GetPosition().z - g_pD3DMesh->bbmin.z);
 
-		D3DXQUATERNION quat{ btQuat.x(), btQuat.y(), btQuat.z(), btQuat.w() };
-
-		D3DXMatrixRotationQuaternion(&mR, &quat);
-		D3DXMatrixTranslation(&mT, 0.0f, 0.0f, 0.0f);
-		D3DXMatrixTranslation(&mT, btVec3.x(), btVec3.y(), btVec3.z());
+			if ((myMax.x < hisMax.x) && (myMin.x > hisMin.x))
+			{
+				if ((myMax.y < hisMax.y) && (myMin.y > hisMin.y))
+				{
+					if (((myMax.z < hisMax.z) && (myMin.z > hisMin.z)))
+					{
+							isColliding = true;
+							break;
+					}
+					else isColliding = false;
+				}
+				else isColliding = false;
+			}
+			else isColliding = false;
+		}
+			
 	}
+}
+
+void ThreeDObject::DeleteObject()
+{
+	//Delete all object in the delete vector
+	for(int I=0;I<objectToDelete.size();++I)
+	{
+		std::vector<ThreeDObject*>::iterator iter = find(colliderObjects.begin(), colliderObjects.end(), objectToDelete.at(I));
+		delete (*iter);
+		colliderObjects.erase(iter);
+	}
+	objectToDelete.clear();
 }

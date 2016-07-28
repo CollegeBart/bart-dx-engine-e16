@@ -6,6 +6,7 @@
 #include "Resource.h"
 #include <strsafe.h>
 #include "DirectInput.h"
+#include <math.h>
 
 class ThreeDObject :
 	public Component
@@ -16,16 +17,13 @@ public:
 	~ThreeDObject();
 
 	void Update();
-	virtual void CreateBody(const btVector3& pos, float mass, btCollisionShape* shape);
-	virtual void CreateBody(const btVector3& pos, float mass, btCollisionShape* shape, short group, short mask);
+	virtual void CreateBody();
 	void Draw(ID3DXSprite* spriteBatch, const D3DXMATRIX& view, const D3DXMATRIX& proj);
 	
 	D3DXVECTOR3 GetPosition()const { return objPosition; }
-	void ApplyTransformation(float _x, float _y, float _z);
-	void ApplyTransformation(D3DXVECTOR3 _position);
 
-	void SetPosition(float _x, float _y, float _z);
-	void SetPosition(D3DXVECTOR3 _position);
+	void ApplyPosition(float _x, float _y, float _z);
+	void ApplyPosition(D3DXVECTOR3 _position);
 	
 	D3DXVECTOR3 GetRotation() const { return objRotation; }
 	void SetRotation(float _yaw, float _pitch, float _roll);
@@ -33,9 +31,11 @@ public:
 
 	btVector3 GetSize() const;
 	
-
+	bool GetColliding() const { return isColliding; }
 	float GetScale() const { return g_fScale; }
 	void SetScale(float _scale);
+
+	bool GetBody() const { return hadBody; }
 
 protected:
 	void OnResetDevice() {}
@@ -53,12 +53,13 @@ protected:
 	HRESULT InitD3D();
 	D3DXVECTOR3 objPosition;
 	D3DXVECTOR3 objRotation;
-	btRigidBody* body;
 	D3DXMATRIX mT, mR, mS;
 
 private:
-	void GetResultantMatrix();
-
+	static std::vector<ThreeDObject*> colliderObjects;
+	static std::vector<ThreeDObject*> objectToDelete;
+	void CheckCollision();
+	void DeleteObject();
 	LPDIRECT3D9 g_pD3D;
 	LPDIRECT3DTEXTURE9 g_pTexture;
 	float						g_fScale;
@@ -72,8 +73,9 @@ private:
 	D3DXVECTOR3 bbCenter;
 	
 
-	btTransform transform;
 	
+	bool hadBody;
+	bool isColliding;
 	char* const texturePath;
 	char* const shaderName;
 	float speed;
