@@ -186,10 +186,10 @@ void TextObject::SetProperties(D3DCOLOR _color)
 
 void TextObject::SetPosition(D3DXVECTOR3 _position)
 {
-	fontRect.top = _position.y - fontDesc.Height;
-	fontRect.bottom = _position.y;
+	fontRect.top = _position.y;
+	fontRect.bottom = _position.y + fontDesc.Height;
 	fontRect.left = _position.x;
-	fontRect.right = _position.x + ((strlen(text) + 1)*fontDesc.Width);
+	fontRect.right = _position.x + ((strlen(text) + 1) * fontDesc.Width);
 }
 
 void TextObject::SetTranslationText(D3DXVECTOR3 _position)

@@ -38,10 +38,17 @@ public:
 			pFont->DrawText(NULL, szText, strlen(szText), &rcRect, DT_CALCRECT,
 				D3DCOLOR_XRGB(0, 0, 0));
 		}
+		else
+		{
+			mFont->DrawText(NULL, szText, strlen(szText), &rcRect, DT_CALCRECT,
+				D3DCOLOR_XRGB(0, 0, 0));
+		}
 
 		// return width
 		return rcRect.right - rcRect.left;
 	}
+
+	int GetTextHeight() { return fontDesc.Height; }
 
 	void Update();
 	void Draw(ID3DXSprite* spriteBatch, const D3DXMATRIX& view, const D3DXMATRIX& proj);
